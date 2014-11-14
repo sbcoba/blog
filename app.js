@@ -13,7 +13,7 @@ var colors = require('colors');
 colors.setTheme({error: 'red'});
 
 /* config */
-var config = require('./config');
+var config = require('./config/config');
 
 /* util */
 

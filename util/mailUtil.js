@@ -2,7 +2,7 @@
  * Created by Administrator on 2014-06-16.
  */
 var nodemailer = require('nodemailer');
-var config = require('../config');
+var config = require('../config/config');
 
 /**
  * 메일 보내기
