@@ -1,0 +1,224 @@
+/**
+ * Created by 동준 on 2014-11-14.
+ */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
+*{
+    font-family: 'Open Sans', Arial, sans-serif, ng;
+}
+
+body {
+    font-family: 'Gotham A','Gotham B';
+    font-weight: 400!important;
+    font-style: normal!important;
+    color: #767676;
+    background: #f1f2f7;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.header {
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    background: #fff;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+header > .logo {
+    background: #1FB5AD;
+    float: left;
+    width: 240px;
+    height: 80px;
+    position: relative;
+}
+
+a.logo {
+    font-size: 21px;
+    color: #2e2e2e;
+    float: left;
+    margin: 20px 0 0 40px;
+    text-transform: uppercase;
+}
+
+.sidebar-toggle-box {
+    float: left;
+    margin-top: 23px;
+    margin-left: -15px;
+    background: #32d2c9;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: -15px;
+}
+
+.sidebar-toggle-box:hover {
+    background: #dcdcdc;
+}
+
+.sidebar-toggle-box .fa-bars {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    padding: 8px 8px 8px 9px;
+    color: rgba(0,0,0,.3);
+}
+
+.fixed-top {
+    position: fixed;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -o-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,.15);
+}
+
+.sidebar {
+    width: 240px;
+    height: 100%;
+    position: fixed;
+    background: #2F9D27;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    padding-top: 80px;
+}
+
+ul.sidebar-menu, ul.sidebar-menu li ul.sub {
+    margin: -2px 0 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    position: relative;
+}
+
+ul.sidebar-menu li {
+    border-bottom: 1px solid #EAEAEA;
+}
+
+ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    background: #1D8B15;
+    color: #EAEAEA;
+    display: block;
+    font-size: 15px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+ul.sidebar-menu li a {
+    color: #EAEAEA;
+    text-decoration: none;
+    display: block;
+    padding: 18px 0 18px 25px;
+    font-size: 14px;
+    font-weight: bolder;
+    outline: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+ul.sidebar-menu li ul.sub li {
+    background: #1D8B15;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+ul.sidebar-menu ul.sub li {
+    border-bottom: none;
+}
+
+.sidebar .sub-menu>.sub li a {
+    padding-left: 46px;
+}
+
+ul.sidebar-menu li ul.sub li a {
+    font-size: 12px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    color: #EAEAEA;
+}
+
+ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
+    background: #10620A;
+    color: #EAEAEA;
+    display: block;
+    font-size: 15px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.icon-right {
+    float: right;
+    padding-right: 15px;
+    font-size: 20px;
+}
+
+.hide-left-bar {
+    margin-left: -240px !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+ul li {
+    list-style: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+section {
+    margin-left: 240px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.move-section {
+    margin-left: 0px;
+}
+
+section > article {
+    display: inline-block;
+    margin-top: 80px;
+    padding: 15px;
+    width: 100%;
+}

@@ -1,0 +1,22 @@
+<div class="sidebar" ng-class="{'hide-left-bar' : hideMenu == 'true'}">
+    <nav style="height: 100%; overflow: hidden; outline: none;">
+        <ul class="sidebar-menu">
+            <li ng-repeat="list in menuList" ng-if="list.subMenu.length < 1">
+                <a ng-href="{{list.url}}" ng-class="isActive(list.name)" ng-click="moveActive(list.name)">
+                    <span>{{list.name}}</span>
+                </a>
+            </li>
+            <li ng-repeat="list in menuList" ng-if="list.subMenu.length > 0" class="sub-menu">
+                <a ng-class="isActive(list.name)" ng-click="moveActive(list.name)">
+                    <span>{{list.name}}</span>
+                    <i class="fa icon-right" ng-class="{'fa-angle-right': !checkActive(list.name), 'fa-angle-down': checkActive(list.name)}"></i>
+                </a>
+                <ul class="sub" ng-show="checkActive(list.name)">
+                    <li ng-repeat="subList in list">
+                        <a ng-href="{{subList.url}}" ng-class="isSubActive(subList.name)">{{subList.name}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
