@@ -9,7 +9,8 @@ angular.module('johayo', [
     "interceptor",
     "johayo.controller",
     "johayo.service",
-    "johayo.directive"
+    "johayo.directive",
+    "mgcrea.ngStrap"
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.responseInterceptors.push('securityInterceptor');

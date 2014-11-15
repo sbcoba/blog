@@ -75,6 +75,30 @@ a.logo {
     padding: 8px 8px 8px 9px;
     color: rgba(0,0,0,.3);
 }
+.header-right-menu{
+    margin-top: 17px;
+}
+
+.top-menu {
+    margin-right: 15px;
+    margin-top: 0;
+}
+
+.my-photo-box {
+    background: #EAEAEA;
+    color: #747474;
+    border-radius: 65px;
+    width: 180px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.top-menu>li {
+    margin-left: 10px;
+}
+ul.top-menu>li {
+    float: left;
+}
 
 .fixed-top {
     position: fixed;

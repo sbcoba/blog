@@ -6,6 +6,8 @@ angular.module('johayo.controller')
         function($rootScope, $scope, $routeParams, $location){
             $scope.hideMenu = false;
 
+            $scope.isLogin = true;
+
             $scope.checkActiveMenu = function(){
                 $scope.activeMenu = '';
                 $scope.activeSuvMenu = '';

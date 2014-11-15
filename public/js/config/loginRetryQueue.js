@@ -4,7 +4,7 @@
 angular.module('loginRetryQueue', [])
 
 // This is a generic retry queue for security failures.  Each item is expected to expose two functions: retry and cancel.
-    .factory('securityRetryQueue', ['$q', '$log', '$location', function($q, $log, $location) {
+    .factory('loginRetryQueue', ['$q', '$log', '$location', function($q, $log, $location) {
         var retryQueue = [];
         var service = {
             // The security service puts its own handler in here!
