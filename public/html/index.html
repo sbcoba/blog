@@ -6,9 +6,13 @@
     <meta http-equiv=”X-UA-Compatible” content=”requiresActiveX=true” />
     <title>johayo_Blog</title>
 
+    <!-- favicon -->
+    <link rel="icon" href="/imgs/favicon.ico" type="image/x-icon">
+
     <!-- css -->
     <link rel="stylesheet" href="/lib/css/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/lib/css/awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/lib/css/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/lib/css/awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog.min.css">
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog-theme-default.min.css" />
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog-theme-flat.css" />
@@ -50,10 +54,11 @@
                 <img src="/imgs/logo.png" alt="Log">
             </a>
             <div class="sidebar-toggle-box" ng-click="hideMenu = !hideMenu">
-                <div class="fa fa-bars"></div>
+                <i class="fa fa-bars"></i>
             </div>
         </div>
-        <div></div>
+        <div>
+        </div>
     </header>
     <aside johayo-menu hide-menu="{{hideMenu}}" active-menu="{{activeMenu}}" active-sub-menu="{{activeSubMenu}}"></aside>
     <section ng-class="{'move-section' : hideMenu}">

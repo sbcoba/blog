@@ -4,7 +4,7 @@
 angular.module('interceptor', ['loginRetryQueue', 'errorHandler'])
 
 // This http interceptor listens for authentication failures
-    .factory('securityInterceptor', ['$injector', 'securityRetryQueue', 'errorQueue', function($injector, queue, err) {
+    .factory('securityInterceptor', ['$injector', 'loginRetryQueue', 'errorQueue', function($injector, queue, err) {
         return function(promise) {
             // Intercept failed requests
             return promise.then(null, function(originalResponse) {

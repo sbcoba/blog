@@ -19,11 +19,10 @@ var config = require('./config/config');
 
 /* routes */
 
-
 var app = express();
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/imgs/favicon.ico'));
 app.use(logger('dev'));
 app.use(domain);
 app.use(bodyParser.json());
