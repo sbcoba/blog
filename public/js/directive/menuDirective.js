@@ -7,9 +7,7 @@ angular.module('johayo.directive')
             restrict: 'A',
             templateUrl : '/html/tpls/sideMenu.html',
             scope : {
-                hideMenu : '@',
-                activeMenu : '@',
-                activeSubMenu : '@'
+                hideMenu : '@'
             },
             controller : 'menuController'
         }

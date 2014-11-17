@@ -26,8 +26,8 @@ var router = express.Router();
  * 아니면 디비에서 가지고 온다.
  */
 router.get('/', function(req, res){
-
-    if(validator.isNull(cache.get('menuList'))){
+    var menuList = cache.get('menuList');
+    if(validator.isNull(menuList)){
        Menu.find({}, null, {sort : {'rank' : 1}}, function(err,data){
            if(err){
                throw err;
@@ -37,7 +37,7 @@ router.get('/', function(req, res){
            res.send(data);
        });
     }else{
-        res.send(cache.get('menuList'));
+        res.send(menuList);
     }
 });
 

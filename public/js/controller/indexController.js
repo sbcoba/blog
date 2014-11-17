@@ -2,9 +2,22 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('indexController', ['$rootScope', '$scope', '$routeParams', '$location', '$window',
-        function($rootScope, $scope, $routeParams, $location, $window){
-            $scope.isLogin = true;
+    .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService',
+        function($rootScope, $scope, loginService, errorService){
+            $scope.openLogin = function(){
+                loginService.openLogin();
+            };
+
+            $scope.logout = function(){
+                loginService.logout();
+            }
+
+            $scope.$watch(loginService.loginInfo, function(){
+                loginService.getLoginInfo().then(function(loginInfo){
+                    $scope.loginInfo = loginInfo;
+                    $scope.isLogin = loginService.isLogin();
+                });
+            });
 
             $rootScope.$on("$routeChangeStart", function(){
                 $scope.loading = true;
@@ -12,8 +25,5 @@ angular.module('johayo.controller')
 
             $rootScope.$on("$routeChangeSuccess", function(){
                 $scope.loading = false;
-                if($scope.windowSize.w < 768){
-                    $scope.hideMenu = !$scope.hideMenu;
-                }
             });
         }]);

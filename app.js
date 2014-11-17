@@ -19,6 +19,7 @@ var config = require('./config/config');
 
 /* routes */
 var menu = require('./routes/menu');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -29,9 +30,26 @@ app.use(domain);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    store: new RedisStore({
+        port: config.redis.port,
+        host: config.redis.host,
+        pass: config.redis.password,
+        ttl: config.redis.ttl
+    }),
+    name : config.session.name,
+    secret: config.session.secret,
+    proxy: true,
+    resave : false,
+    saveUninitialized : true,
+    cookie: {
+        secure: false
+    }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/menu', menu);
+app.use('/api/login', login);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {

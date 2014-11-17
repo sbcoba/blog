@@ -10,7 +10,7 @@ angular.module("johayo.service")
                 throw new Error('Trying to open a dialog that is already open!');
             }
             loginDialog = ngDialog.open({
-                template: '/html/login/login.html',
+                template: '/html/login.html',
                 controller: 'loginController',
                 className: 'ngdialog-theme-default ngdialog-theme-custom'
             });
@@ -30,7 +30,7 @@ angular.module("johayo.service")
         // Register a handler for when an item is added to the retry queue
         queue.onItemAddedCallbacks.push(function() {
             if ( queue.hasMore() ) {
-                service.showLogin();
+                service.openLogin();
             }
         });
 
@@ -43,18 +43,16 @@ angular.module("johayo.service")
             openLogin: function() {
                 ngDialog.close();
                 var asy = $q.defer();
-                openLoginDialog().closePromise.then(function(loginInfo){
-                    $rootScope.$broadcast('getLoginInfo');
-                    onLoginDialogClose(loginInfo.result);
-                    asy.resolve(loginInfo.result);
+                openLoginDialog().closePromise.then(function(){
+                    onLoginDialogClose(service.isAuthenticated);
+                    asy.resolve();
                 });
                 return asy.promise;
             },
             doLogin : function(login){
                 var asy = $q.defer();
                 $http.post('/api/login', login).success(function (data){
-                    service.currentUser = data.info;
-                    $rootScope.$broadcast('getLoginInfo');
+                    service.loginInfo = data;
                     asy.resolve(data);
                 }).error(function(data){  asy.reject(data); });
                 return asy.promise;
@@ -62,29 +60,29 @@ angular.module("johayo.service")
             logout : function(){
                 var asy = $q.defer();
                 $http.post('/api/login/logout').then(function(){
-                    service.currentUser = null;
+                    service.loginInfo = null;
                     asy.resolve();
                 });
                 return asy.promise;
             },
             // Ask the backend to see if a user is already authenticated - this may be from a previous session.
-            requestCurrentUser: function() {
+            getLoginInfo: function() {
                 var asy = $q.defer();
-                if ( service.isAuthenticated() ) {
-                    asy.resolve(service.currentUser);
+                if ( service.isLogin() ) {
+                    asy.resolve(service.loginInfo);
                 } else {
-                    $http.post('/api/login/info').then(function(response) {
-                        service.currentUser = response.data.info;
-                        asy.resolve(service.currentUser);
+                    $http.post('/api/login/getLogin').then(function(response) {
+                        service.loginInfo = response.data;
+                        asy.resolve(service.loginInfo);
                     });
                 }
                 return asy.promise;
             },
-            isAuthenticated: function(){
-                return !!service.currentUser;
+            isLogin: function(){
+                return !!service.loginInfo;
             },
 
-            currentUser: null
+            loginInfo: null
         };
 
         return service;

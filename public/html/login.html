@@ -1,0 +1,20 @@
+<div class="ngdialog-message" style="margin-top: 5%">
+    <form name="login" role="form">
+        <div class="form-group"
+             ng-class="{ 'has-error' : login.id.$invalid && !login.id.$pristine ,'has-success': !login.id.$error.required }">
+            <input type="text" name="userId" ng-model="login.id" class="form-control input-lg" placeholder="ID" tabindex="1" required autofocus>
+        </div>
+        <div class="form-group"
+             ng-class="{ 'has-error' : login.password.$invalid && !login.password.$pristine ,'has-success': !login.password.$error.required }">
+            <input type="password" name="password" ng-model="login.pw" class="form-control input-lg" placeholder="Password" tabindex="2" required>
+        </div>
+        <div class="row" style="margin-bottom: 2%;">
+            <div class="col-xs-12">
+                <button class="btn btn-sns btn-block btn-lg" ng-click="doLogin();" tabindex="3"
+                        ng-disabled="login.password.$error.required || login.id.$error.required">
+                    Login
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

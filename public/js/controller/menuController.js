@@ -4,16 +4,34 @@
 angular.module('johayo.controller')
     .controller('menuController', ['$rootScope', '$scope', 'menuService', '$location',
         function($rootScope, $scope, menuService, $location){
-            menuService.getMenuList().then(function(data){
-                $scope.menuList = data;
-                console.log(data);
-            });
-
             /* 라우터가 바뀔때마다 체크 */
             $rootScope.$on("$routeChangeSuccess", function(){
-                var divisionList = $location.path().split('/');
-
+                if(!!$scope.menuList){
+                    $scope.getActiveMenu();
+                }else{
+                    menuService.getMenuList().then(function(data){
+                        $scope.menuList = data;
+                        $scope.getActiveMenu();
+                    });
+                }
             });
+
+            $scope.getActiveMenu = function(){
+                $scope.activeMenu = '';
+                $scope.activeSubMenu = '';
+                for(var i=0;i<$scope.menuList.length;i++){
+                    if($scope.menuList[i].url.replace('/#','') == $location.path()){
+                        $scope.activeMenu = $scope.menuList[i].name;
+                    }else if($scope.menuList[i].subMenu.length > 0){
+                        for(var j=0;j<$scope.menuList[i].subMenu.length;j++){
+                            if($scope.menuList[i].subMenu[j].url.replace('/#','') == $location.path()){
+                                $scope.activeMenu = $scope.menuList[i].name;
+                                $scope.activeSubMenu = $scope.menuList[i].subMenu[j].name;
+                            }
+                        }
+                    }
+                }
+            }
 
             /* 메뉴를 클릭스 active를 옮겨준다. */
             $scope.moveActive = function(name) {

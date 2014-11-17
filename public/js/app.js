@@ -3,7 +3,6 @@
  */
 angular.module('johayo', [
     "ngRoute",
-    "ngDialog",
     'ngResource',
     'ngAnimate',
     "errorHandler",
@@ -11,6 +10,7 @@ angular.module('johayo', [
     "johayo.controller",
     "johayo.service",
     "johayo.directive",
+    "ngDialog",
     "mgcrea.ngStrap"
 ])
     .config(['$httpProvider', function($httpProvider) {
