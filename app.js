@@ -18,6 +18,7 @@ var config = require('./config/config');
 /* util */
 
 /* routes */
+var menu = require('./routes/menu');
 
 var app = express();
 
@@ -29,6 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/menu', menu);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {

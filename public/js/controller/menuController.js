@@ -2,9 +2,18 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('menuController', ['$rootScope', '$scope', '$location',
-        function($rootScope, $scope, $location){
-            $scope.menuList = '';
+    .controller('menuController', ['$rootScope', '$scope', 'menuService', '$location',
+        function($rootScope, $scope, menuService, $location){
+            menuService.getMenuList().then(function(data){
+                $scope.menuList = data;
+                console.log(data);
+            });
+
+            /* 라우터가 바뀔때마다 체크 */
+            $rootScope.$on("$routeChangeSuccess", function(){
+                var divisionList = $location.path().split('/');
+
+            });
 
             /* 메뉴를 클릭스 active를 옮겨준다. */
             $scope.moveActive = function(name) {
@@ -26,7 +35,7 @@ angular.module('johayo.controller')
             /* step2의 메뉴를 체크하여 보여준다. */
             $scope.isSubActive = function(name){
                 return {
-                    'active' : $scope.activeSuvMenu == name
+                    'active' : $scope.activeSubMenu == name
                 }
             };
         }]);

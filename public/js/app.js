@@ -5,6 +5,7 @@ angular.module('johayo', [
     "ngRoute",
     "ngDialog",
     'ngResource',
+    'ngAnimate',
     "errorHandler",
     "interceptor",
     "johayo.controller",
@@ -21,6 +22,10 @@ angular.module('johayo', [
                 controller: 'mainController'
             })
             .when('/:division', {
+                templateUrl: '/html/main.html',
+                controller: 'mainController'
+            })
+            .when('/:firstDivision/:division', {
                 templateUrl: '/html/main.html',
                 controller: 'mainController'
             });

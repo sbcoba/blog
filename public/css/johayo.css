@@ -246,3 +246,36 @@ section > article {
     padding: 15px;
     width: 100%;
 }
+
+
+@media (max-width: 767px){
+    header {
+        position: relative! important;
+        margin-top: 80px ! important;
+    }
+
+    header > .logo {
+        width: 100%;
+        float: none;
+        position: fixed;
+        top: 0px;
+        z-index: 1005;
+    }
+
+    .sidebar-toggle-box{
+        right: 10px;
+    }
+
+    .header-right-menu{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .sidebar{
+        padding-top: 0;
+    }
+
+    section > article{
+        margin-top: 0px;
+    }
+}

@@ -2,7 +2,7 @@
  * Created by 동준 on 2014-10-23.
  */
 angular.module("johayo.service")
-    .factory("loginService", ['$http', '$q', '$rootScope', 'securityRetryQueue', 'ngDialog', function($http, $q, $rootScope, queue, ngDialog){
+    .factory("loginService", ['$http', '$q', '$rootScope', 'loginRetryQueue', 'ngDialog', function($http, $q, $rootScope, queue, ngDialog){
         // Login form dialog stuff
         var loginDialog = null;
         function openLoginDialog() {

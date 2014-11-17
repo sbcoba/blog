@@ -40,10 +40,12 @@
     <script src="/js/controller/mainController.js"></script>
 
     <!-- service -->
+    <script src="/js/service/menuService.js"></script>
     <script src="/js/service/errorService.js"></script>
 
     <!-- directive -->
     <script src="/js/directive/menuDirective.js"></script>
+    <script src="/js/directive/commonDirective.js"></script>
 
     <!-- config -->
     <script src="/js/config/errorQueue.js"></script>
@@ -51,7 +53,7 @@
     <script src="/js/config/loginRetryQueue.js"></script>
 </head>
 <body ng-controller="indexController">
-    <header class="fixed-top header clearfix">
+    <header window-width-check window-size="windowSize" class="fixed-top header clearfix">
         <div class="logo">
             <a href="/" class="logo">
                 <img src="/imgs/logo.png" alt="Log">
@@ -71,7 +73,7 @@
             </ul>
         </div>
     </header>
-    <aside johayo-menu hide-menu="{{hideMenu}}" active-menu="{{activeMenu}}" active-sub-menu="{{activeSubMenu}}"></aside>
+    <aside johayo-menu hide-menu="{{hideMenu}}"></aside>
     <section ng-class="{'move-section' : hideMenu}">
         <article>
             <div class="spinner" ng-show="loading">

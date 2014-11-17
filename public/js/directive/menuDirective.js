@@ -9,7 +9,7 @@ angular.module('johayo.directive')
             scope : {
                 hideMenu : '@',
                 activeMenu : '@',
-                activeSuvMenu : '@'
+                activeSubMenu : '@'
             },
             controller : 'menuController'
         }
