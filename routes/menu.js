@@ -6,11 +6,8 @@ var error = require('../util/error');
 var dateUtil = require('../util/dateUtil');
 var validator = require('validator');
 /*  캐쉬 설정 */
-var LRU = require("lru-cache") , options = { max: 500
-        , length: function (n) { return n * 2 }
-        , dispose: function (key, n) { n.close() }
-        , maxAge: 1000 * 60 * 60 }
-    , cache = LRU(options);
+var SimpleCache = require("simple-lru-cache");
+var cache = new SimpleCache({"maxSize":1000});
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');

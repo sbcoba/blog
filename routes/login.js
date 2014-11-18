@@ -26,14 +26,20 @@ router.post('/getLogin', function(req, res){
 
 /**
  * 로그인 하기
+ * 통합 에러 메시지에 걸리지 않게 나만의 코드 만듬 4019,
+ * 로그인 같은경우 에러가 났을시 로그인 창에 뿌려주기 때문에 에러코드 409가 아닌 4019로 넘겨준다.
  */
 router.post('/', function(req, res){
-    var id = validator.isNull(req.param('email'))  ? error.throw(409,'Please check email.') : req.param('email');
-    var password = validator.isNull(req.param('pw')) ? error.throw(409,'Please check Password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
+    var id = validator.isNull(req.param('id'))  ? error.throw(4019,'Please check id.') : req.param('id');
+    var password = validator.isNull(req.param('pw')) ? error.throw(4019,'Please check Password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
 
     Member.findOne({_id: id, password : password}, function(err, loginInfo){
         if(err){
             throw err;
+        }
+
+        if(!loginInfo){
+            error.throw(4019,'Please check id or password.');
         }
 
         req.session.loginInfo = loginInfo;

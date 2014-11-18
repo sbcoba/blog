@@ -4,15 +4,17 @@
 angular.module('johayo.controller')
     .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService',
         function($rootScope, $scope, loginService, errorService){
+            $scope.loginInfo = loginService.loginInfo;
+
             $scope.openLogin = function(){
                 loginService.openLogin();
             };
 
             $scope.logout = function(){
                 loginService.logout();
-            }
+            };
 
-            $scope.$watch(loginService.loginInfo, function(){
+            $rootScope.$on('getLoginInfo', function(){
                 loginService.getLoginInfo().then(function(loginInfo){
                     $scope.loginInfo = loginInfo;
                     $scope.isLogin = loginService.isLogin();

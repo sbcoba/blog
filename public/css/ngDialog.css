@@ -21,3 +21,12 @@
 .ngdialog.ngdialog-theme-custom{
     z-index: 5;
 }
+
+.ngdialog.ngdialog-theme-custom-error {
+    z-index: 6;
+}
+
+.ngdialog.ngdialog-theme-error {
+    /*padding-bottom: 160px;*/
+    padding-top: 50px;
+}

@@ -270,6 +270,46 @@ section > article {
     width: 100%;
 }
 
+.login-err-box {
+    position: relative;
+    height: 0px;
+    opacity: 0;
+}
+
+.login-err-box-show{
+    -webkit-transition:all linear 0.2s;
+    transition:all linear 0.5s;
+    height: 40px;
+    opacity: 1;
+}
+
+.login-err-box .login-err-show {
+    background-color: red;
+    color: #ffffff;
+    padding: 1px;
+    text-align: center;
+    margin-top: 3%;
+    border-radius: 25px;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    -ms-transform: translate(0px,0px); /* IE 9 */
+    -webkit-transform: translate(0px,0px); /* Chrome, Safari, Opera */
+    -moz-transform: translate(0px,0px); /* firefox */
+    transform: translate(0px,0px); /* Standard syntax */
+}
+
+.login-err-box .login-err-hide {
+    background-color: red;
+    color: #ffffff;
+    padding: 1px;
+    text-align: center;
+    margin-top: 3%;
+    border-radius: 25px;
+    -ms-transform: translate(0px,-20px); /* IE 9 */
+    -webkit-transform: translate(0px,-20px); /* Chrome, Safari, Opera */
+    -moz-transform: translate(0px,-20px); /* firefox */
+    transform: translate(0px,-20px); /* Standard syntax */
+}
 
 @media (max-width: 767px){
     header {

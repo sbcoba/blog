@@ -44,7 +44,8 @@ angular.module("johayo.service")
                 ngDialog.close();
                 var asy = $q.defer();
                 openLoginDialog().closePromise.then(function(){
-                    onLoginDialogClose(service.isAuthenticated);
+                    onLoginDialogClose(service.isLogin);
+                    service.finalLogin();
                     asy.resolve();
                 });
                 return asy.promise;
@@ -53,14 +54,16 @@ angular.module("johayo.service")
                 var asy = $q.defer();
                 $http.post('/api/login', login).success(function (data){
                     service.loginInfo = data;
+                    service.finalLogin();
                     asy.resolve(data);
-                }).error(function(data){  asy.reject(data); });
+                }).error(function(data, st){asy.reject(data);});
                 return asy.promise;
             },
             logout : function(){
                 var asy = $q.defer();
                 $http.post('/api/login/logout').then(function(){
                     service.loginInfo = null;
+                    service.finalLogin();
                     asy.resolve();
                 });
                 return asy.promise;
@@ -81,7 +84,9 @@ angular.module("johayo.service")
             isLogin: function(){
                 return !!service.loginInfo;
             },
-
+            finalLogin : function(){
+                $rootScope.$broadcast('getLoginInfo');
+            },
             loginInfo: null
         };
 
