@@ -31,7 +31,7 @@ angular.module('johayo.controller')
                         }
                     }
                 }
-            }
+            };
 
             /* 메뉴를 클릭스 active를 옮겨준다. */
             $scope.moveActive = function(name) {
