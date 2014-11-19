@@ -98,6 +98,48 @@ a.logo {
     color: rgba(0,0,0,.3);
 }
 
+.search-box {
+    position: relative;
+    margin-top: 7px;
+}
+
+.search-box .fa-search {
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    padding: 8px 0px 0px 10px;
+    color: rgba(0,0,0,.3);
+    cursor: text;
+}
+
+.search-box .search-text {
+    border: 2px solid #D1C7AC;
+    border-radius: 25px;
+    width: 32px;
+    padding-left: 30px;
+    height: 32px;
+    box-shadow: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.search-box:hover .search-text, .search-box:focus .search-text, .search-text:hover, .search-text:focus {
+    outline: none;
+    border: 2px solid #D1C7AC;
+    border-radius: 25px;
+    padding-left: 26px;
+    height: 32px;
+    box-shadow: none;
+    width: 200px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
 .header-right-menu{
     margin-top: 17px;
 }
