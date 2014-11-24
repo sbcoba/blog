@@ -10,7 +10,7 @@ var router = express.Router();
 router.get('/msg', function( req, res ) {
     var _cmd = 'msg ' + ' 유자성 ' + req.param('msg',null);
     console.log( _cmd );
-    exec( "echo '" + _cmd  + "' | telegram-cli -k /telegram/tg/tg-server.pub -W " ,
+    exec( "echo '" + _cmd  + "' | /telegram/tg/bin/telegram-cli -k /telegram/tg/tg-server.pub -W " ,
         function(err, stdout, stderr) {
             if(err) {
                 console.log(err.message);
