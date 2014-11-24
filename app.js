@@ -20,6 +20,7 @@ var config = require('./config/config');
 /* routes */
 var menu = require('./routes/menu');
 var login = require('./routes/login');
+var tg = require('./routes/tg');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/menu', menu);
 app.use('/api/login', login);
+app.use('/tg', tg);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {
