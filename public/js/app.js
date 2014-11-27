@@ -10,7 +10,9 @@ angular.module('johayo', [
     "johayo.controller",
     "johayo.service",
     "johayo.directive",
+    "johayo.filter",
     "ngDialog",
+    'textAngular',
     "mgcrea.ngStrap"
 ])
     .config(['$httpProvider', function($httpProvider) {
@@ -18,17 +20,36 @@ angular.module('johayo', [
     }]).config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/html/main.html',
-                controller: 'mainController'
+                templateUrl: '/html/board/board.html',
+                controller: 'boardController'
             })
             .when('/:division', {
-                templateUrl: '/html/main.html',
-                controller: 'mainController'
+                templateUrl: '/html/board/boardDetail.html',
+                controller: 'boardDetailController'
             })
-            .when('/:firstDivision/:division', {
-                templateUrl: '/html/main.html',
-                controller: 'mainController'
-            });
+            .when('/board/:firstDivision/:division', {
+                templateUrl: '/html/board/board.html',
+                controller: 'boardController',
+                resolve : {
+                    boardList : function(boardService){
+                        boardService.list($route.current.params.division).then(function(data){
+                            return data;
+                        });
+                    }
+                }
+            })
+            .when('/board/:firstDivision/:division/:seq', {
+                templateUrl: '/html/board.html',
+                controller: 'boardDetailController',
+                resolve : {
+                    boardDetail : function(boardService){
+                        boardService.detail($route.current.params.seq).then(function(data){
+                            return data;
+                        });
+                    }
+                }
+            })
+        ;
     }]);
 
 angular.module('johayo.controller', []);

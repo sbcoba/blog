@@ -1,19 +1,17 @@
 /**
  * Created by 동준 on 2014-11-17.
  */
-/**
- * Created by 동준 on 2014-10-24.
- */
 var express = require('express');
 var cryptoUtil = require('../util/cryptoUtil');
 var config = require('../config/config');
 var validator = require('validator');
 var error = require('../util/error');
-var dateUtil = require('../util/dateUtil');
-var mongo = require('../config/mongoConfig');
+
 /* mongo 연결 */
-var mongoose = mongo.mongoose;
-var Member = mongoose.model('member', mongo.schema.member);
+var mongo = require('../config/mongoConfig');
+/* mongo Model */
+var Member = mongo.model.member;
+
 /* 라우터 */
 var router = express.Router();
 

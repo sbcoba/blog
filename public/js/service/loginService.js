@@ -9,8 +9,9 @@ angular.module("johayo.service")
             if ( loginDialog ) {
                 throw new Error('Trying to open a dialog that is already open!');
             }
+
             loginDialog = ngDialog.open({
-                template: '/html/login.html',
+                template: '/html/login/login.html',
                 controller: 'loginController',
                 className: 'ngdialog-theme-default ngdialog-theme-custom'
             });

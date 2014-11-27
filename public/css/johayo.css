@@ -20,6 +20,7 @@ body {
     height: 100%;
 }
 
+/* 해더 start */
 .header {
     left: 0;
     right: 0;
@@ -90,55 +91,14 @@ a.logo {
     color: rgba(0,0,0,.3);
 }
 
-.search-box {
-    position: relative;
-    margin-top: 7px;
-}
-
-.search-box .fa-search {
-    position: absolute;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 15px;
-    padding: 8px 0px 0px 10px;
-    color: rgba(0,0,0,.3);
-    cursor: text;
-}
-
-.search-box .search-text {
-    border: 2px solid #D1C7AC;
-    border-radius: 25px;
-    width: 32px;
-    padding-left: 30px;
-    height: 32px;
-    box-shadow: none;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-}
-
-.search-box:hover .search-text, .search-box:focus .search-text, .search-text:hover, .search-text:focus {
-    outline: none;
-    border: 2px solid #D1C7AC;
-    border-radius: 25px;
-    padding-left: 26px;
-    height: 32px;
-    box-shadow: none;
-    width: 200px;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-}
-
 .header-right-menu{
     margin-top: 17px;
 }
 
-.top-menu {
+.top {
     margin-right: 15px;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .my-photo-box {
@@ -150,10 +110,10 @@ a.logo {
     font-weight: bolder;
 }
 
-.top-menu>li {
+.top> li {
     margin-left: 10px;
 }
-ul.top-menu>li {
+ul.top> li {
     float: left;
 }
 
@@ -263,19 +223,51 @@ ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
     font-size: 20px;
 }
 
-ul li {
-    list-style: none;
+
+
+/* 검색 start */
+.search-box {
+    position: relative;
 }
 
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
+.search-box .fa-search {
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    padding: 8px 0px 0px 10px;
+    color: rgba(0,0,0,.3);
+    cursor: text;
 }
 
-a, a:hover, a:focus {
-    text-decoration: none;
+.search-box .search-text {
+    border: 2px solid #31708f;
+    background-color: #d9edf7;
+    border-radius: 25px;
+    width: 32px;
+    padding-left: 30px;
+    height: 32px;
+    box-shadow: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.search-box:hover .search-text, .search-box:focus .search-text, .search-text:hover, .search-text:focus {
     outline: none;
+    border: 2px solid #31708f;
+    border-radius: 25px;
+    padding-left: 26px;
+    height: 32px;
+    box-shadow: none;
+    width: 200px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
+/* 검색 end */
 
 section {
     margin-left: 240px;
@@ -308,28 +300,31 @@ section > article {
     width: 100%;
 }
 
+/* login start */
 .login-err-box {
     position: relative;
     height: 0px;
     opacity: 0;
+    margin-bottom: 3%;
+    background-color: #ebcccc;
+    color: red;
+    padding: 1px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 3%;
+    border-radius: 15px;
 }
 
 .login-err-box-show{
     -webkit-transition:all linear 0.2s;
-    transition:all linear 0.5s;
+    transition:all linear 0.2s;
     height: 40px;
     opacity: 1;
 }
 
 .login-err-box .login-err-show {
-    background-color: red;
-    color: #ffffff;
-    padding: 1px;
-    text-align: center;
-    margin-top: 3%;
-    border-radius: 25px;
     -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
+    transition:all linear 0.2s;
     -ms-transform: translate(0px,0px); /* IE 9 */
     -webkit-transform: translate(0px,0px); /* Chrome, Safari, Opera */
     -moz-transform: translate(0px,0px); /* firefox */
@@ -337,25 +332,68 @@ section > article {
 }
 
 .login-err-box .login-err-hide {
-    background-color: red;
-    color: #ffffff;
-    padding: 1px;
-    text-align: center;
-    margin-top: 3%;
-    border-radius: 25px;
     -ms-transform: translate(0px,-20px); /* IE 9 */
     -webkit-transform: translate(0px,-20px); /* Chrome, Safari, Opera */
     -moz-transform: translate(0px,-20px); /* firefox */
     transform: translate(0px,-20px); /* Standard syntax */
 }
 
-.read-more {
-    font-size: 12px;
-    color: #78b310;
-    text-decoration: none;
+.login-box {
+    margin-bottom: 2%;
 }
 
-/* 시계 */
+.login-title {
+    font-weight: bolder;
+    color: #8a6d3b;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+/* login end */
+
+/* editor start */
+.editor-around {
+    border: 1px solid rgba(2,2,2,0.1);
+    border-radius: 4px;
+    vertical-align: text-bottom;
+    background: #ffffff;
+    margin: 3px;
+    padding: 3px;
+    position: relative;
+}
+
+.ta-scroll-window > .ta-bind {
+    min-height: 30px;
+    outline: none;
+}
+.ta-editor.ta-html {
+    min-height: 30px;
+    display: none;
+}
+/* editor end */
+
+/* comment start */
+.comment-box {
+    margin-top: 20px;
+}
+
+.comment-detail{
+    margin: 0;
+    padding: 8px 0 8px 5px;
+    border-bottom: 1px solid #adadad;
+}
+.comment-detail .title {
+    font-size: 15px;
+    font-weight: bold
+}
+
+.conmentstyle{
+    color: #7b7b7b;
+    font-size: 12px;
+}
+/* comment end */
+
+/* 시계 start */
 .hero-circle {
     width: 180px;
     height: 180px;
@@ -365,7 +403,6 @@ section > article {
     border-radius: 50%;
     -webkit-box-shadow: 0 1px 8px rgba(34, 34, 34, 0.3),inset 0 1px 8px rgba(34, 34, 34, 0.3);
     box-shadow: 0 1px 8px rgba(34, 34, 34, 0.3),inset 0 1px 8px rgba(34, 34, 34, 0.3);
-    /*background: url(../img/bg.png) 0 50%;*/
 }
 
 .hero-face {
@@ -429,7 +466,99 @@ section > article {
     -ms-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
 }
+/* 시계 end */
 
+/* 날씨 start */
+.weather ul {
+    margin-bottom: 0;
+}
+
+.weather ul li {
+    display: inline-block;
+    width: 16%;
+    text-align: center;
+    border-left: 1px solid #f1f2f7;
+}
+/* 날씨 end */
+
+/* 공통 start */
+.box {
+    padding: 10px;
+    margin: 5px;
+}
+
+ul li {
+    list-style: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+/* 공통 end */
+
+/* board start */
+.board-list, .board-detail {
+    -webkit-animation: flying-from-right 600ms;
+    animation: flying-from-right 600ms;
+}
+
+.panel {
+    webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -o-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,.15);
+}
+
+.panel-heading {
+    height: 50px;
+}
+
+.header-division {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.reg-date {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.board-detail {
+    background-color: #ffffff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.board-detail .header {
+    position: relative;
+}
+
+.board-detail .header .title {
+    font-size: 25px;
+    font-weight: bolder;
+    padding: 5px 0;
+    word-wrap: break-word;
+}
+
+.board-detail .content {
+    border-top: 3px double #dcdcdc;
+    border-bottom: 3px double #dcdcdc;
+    padding: 15px 0;
+    font-size: 16px;
+}
+
+.board-detail .reg-date {
+    padding: 15px 0 0;
+    text-align: right;
+}
+/* board end */
 
 @media (max-width: 1000px){
     header {
@@ -483,3 +612,114 @@ section > article {
     }
 }
 
+/* repeat animate start */
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+    -webkit-animation: leave 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    animation: leave 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    display: block;
+    position: relative;
+}
+
+@-webkit-keyframes leave {
+    to {
+        opacity: 0;
+        height: 0px;
+        right: -70px;
+    }
+    25% {
+        right: 15px;
+    }
+    from {
+        opacity: 1;
+        height: 30px;
+        right: 0px;
+    }
+}
+@keyframes leave {
+    to {
+        opacity: 0;
+        height: 0px;
+        right: -70px;
+    }
+    25% {
+        right: 15px;
+    }
+    from {
+        opacity: 1;
+        height: 30px;
+        right: 0px;
+    }
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+    -webkit-animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    display: block;
+    position: relative;
+}
+
+@-webkit-keyframes enter {
+    from {
+        opacity: 0;
+        height: 0px;
+        right: -70px;
+    }
+    75% {
+        right: 15px;
+    }
+    to {
+        opacity: 1;
+        height: 30px;
+        right: 0px;
+    }
+}
+@keyframes enter {
+    from {
+        opacity: 0;
+        height: 0px;
+        right: -70px;
+    }
+    75% {
+        right: 15px;
+    }
+    to {
+        opacity: 1;
+        height: 30px;
+        right: 0px;
+    }
+}
+/* repeat animate end */
+
+@-webkit-keyframes flying-from-right {
+    from {
+        right: -170px;
+    }
+    75% {
+        right: 15px;
+    }
+    to {
+        right: 0px;
+    }
+}
+@keyframes flying-from-right {
+    from {
+        right: -170px;
+    }
+    75% {
+        right: 15px;
+    }
+    to {
+        right: 0px;
+    }
+}

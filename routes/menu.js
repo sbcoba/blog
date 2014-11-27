@@ -5,15 +5,17 @@ var express = require('express');
 var error = require('../util/error');
 var dateUtil = require('../util/dateUtil');
 var validator = require('validator');
+
 /*  캐쉬 설정 */
 var SimpleCache = require("simple-lru-cache");
 var cache = new SimpleCache({"maxSize":1000});
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');
-var mongoose = mongo.mongoose;
-var Menu = mongoose.model('menu', mongo.schema.menu);
-
+/* mongo Model */
+var Menu = mongo.model.menu;
+/* mongo objectId type */
+var ObjectId = mongo.mongoose.Types.ObjectId;
 
 var router = express.Router();
 
@@ -38,20 +40,16 @@ router.get('/', function(req, res){
     }
 });
 
-router.get('/insert', function(req, res){
+/**
+ * 메뉴 등록
+ */
+router.post('/', function(req, res){
     var menu = new Menu();
-    menu.name = 'program1';
-    menu.url = '/#/program2';
-    menu.rank = 0;
+    menu.name =  validator.isNull(req.param('name'))  ? error.throw(409,'Please check name.') : req.param('name');
+    menu.url = validator.isNull(req.param('url'))  ? error.throw(409,'Please check url.') : req.param('url');
+    menu.rank = validator.isNull(req.param('rank'))  ? error.throw(409,'Please check rank.') : req.param('rank');
+    menu.isAdmin = validator.isNull(req.param('rank'))  ? error.throw(409,'Please check rank.') : req.param('rank');
     menu.regDt = dateUtil.nowDateTypeDate();
-    menu.subMenu[0] = {};
-    menu.subMenu[1] = {};
-    menu.subMenu[0].name = 'nodejs';
-    menu.subMenu[0].url = '/#/program/nodejs';
-    menu.subMenu[0].rank = '2';
-    menu.subMenu[1].name = 'angular1';
-    menu.subMenu[1].url = '/#/program/angular1';
-    menu.subMenu[1].rank = '3';
 
     menu.save(function(err){
         if(err){
@@ -59,7 +57,35 @@ router.get('/insert', function(req, res){
         }
 
         res.send('');
-    })
+    });
+});
+
+/**
+ * 메뉴 수정
+ */
+router.put('/:seq', function(req, res){
+    var name =  validator.isNull(req.param('name'))  ? error.throw(409,'Please check name.') : req.param('name');
+    var url = validator.isNull(req.param('url'))  ? error.throw(409,'Please check url.') : req.param('url');
+    var rank = validator.isNull(req.param('rank'))  ? error.throw(409,'Please check rank.') : req.param('rank');
+    var isAdmin = validator.isNull(req.param('rank'))  ? error.throw(409,'Please check rank.') : req.param('rank');
+
+    Menu.findOneAndUpdate(
+        {_id: new ObjectId(req.params.seq)},
+        {$set : { name : name, url : url, rank : rank, isAdmin : isAdmin }},
+        function(err, data){
+            if(err){
+                throw err;
+            }
+
+            res.send(data);
+        })
+});
+
+/**
+ * 메뉴 삭제
+ */
+router.delete('/:seq', function(req,res){
+
 });
 
 

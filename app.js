@@ -10,17 +10,18 @@ var RedisStore  = require ('connect-redis')(session);
 var domain = require('express-domain-middleware');
 var validator = require('validator');
 var colors = require('colors');
-colors.setTheme({error: 'red'});
 
 /* config */
 var config = require('./config/config');
 
 /* util */
+var tg = require('./util/tg');
 
 /* routes */
 var menu = require('./routes/menu');
 var login = require('./routes/login');
-var tg = require('./routes/tg');
+var board = require('./routes/board');
+var comment = require('./routes/comment');
 
 var app = express();
 
@@ -51,7 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/menu', menu);
 app.use('/api/login', login);
-app.use('/tg', tg);
+app.use('/api/board', board);
+app.use('/api/comment', comment);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {
@@ -67,6 +69,9 @@ app.use(function(req, res, next) {
 
 // catch all error handler
 app.use(function errorHandler(err, req, res, next) {
+    /* 텔레그램으로 나한테 오류 메세지 전송 */
+    tg.sendMsg(err.message.red);
+    /* 에러 처리 */
     err.status = validator.isNull(err.status) ? 500 : err.status;
     console.log('error on request %d | %s | %s | %d'.red, process.domain.id, req.method, req.url, err.status);
     console.log(err.stack.red);

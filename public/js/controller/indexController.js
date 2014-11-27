@@ -2,8 +2,8 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService',
-        function($rootScope, $scope, loginService, errorService){
+    .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService', '$route',
+        function($rootScope, $scope, loginService, errorService, $route){
             $scope.loginInfo = loginService.loginInfo;
             /* 윈도우 창의 크기를 체크 */
             $scope.windowSize = {};
@@ -13,7 +13,9 @@ angular.module('johayo.controller')
             };
 
             $scope.logout = function(){
-                loginService.logout();
+                loginService.logout().then(function(){
+                    $route.reload();
+                });
             };
 
             /**

@@ -14,7 +14,7 @@
 
 /* 모달 메인 back 색 */
 .ngdialog.ngdialog-theme-custom .ngdialog-content {
-    background: rgba(255,255,255,.9);
+    background: #fcf8e3;
 }
 
 /* 모달 순서 */
