@@ -25,15 +25,11 @@
             </h4>
             <div ng-show="showWriteBox">
                 <form role="form">
-                    <div text-angular="text-angular" name="comment" ng-keydown="insertCt($event);" placeholder="Comment"
+                    <div text-angular="text-angular" name="comment" ng-keydown="insertCt($event);" placeholder="Comment" class="comment-editor"
                          ng-model="comment.content" ta-toolbar="[]" ta-text-editor-class="editor-around form-control" ></div>
-                    <div class="navbar-form">
-                        <div class="form-group" ng-if="!isLogin">
-                            <input type="text" placeholder="Name" class="form-control">
-                        </div>
-                        <div class="form-group" ng-if="!isLogin">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
+                    <div class="comment-form">
+                        <input type="text" placeholder="Name" class="form-control" ng-if="!isLogin">
+                        <input type="password" placeholder="Password" class="form-control" ng-if="!isLogin">
                         <button type="submit" class="btn btn-success">Write</button>
                     </div>
                 </form>
@@ -50,10 +46,8 @@
                         <p style="font-weight: bolder; color: chocolate;padding-left: 5px;">※ if you want to cancel, put the esc.</p>
                         <text-angular ng-keydown="editCt($event);"
                              ng-model="commentDetail.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
-                        <div class="navbar-form">
-                            <div class="form-group">
-                                <input type="password" placeholder="Password" class="form-control" ng-keydown="editCt($event, commentDetail.seq);">
-                            </div>
+                        <div class="comment-form">
+                            <input type="password" placeholder="Password" class="form-control" ng-keydown="editCt($event, commentDetail.seq);">
                             <button type="submit" class="btn btn-warning btn-sm">Edit</button>
                         </div>
                     </div>

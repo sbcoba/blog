@@ -358,7 +358,7 @@ section > article {
     border-radius: 4px;
     vertical-align: text-bottom;
     background: #ffffff;
-    margin: 3px;
+    margin: 5px 0;
     padding: 3px;
     position: relative;
 }
@@ -385,6 +385,12 @@ section > article {
 /* comment start */
 .comment-box .navbar-form{
     padding: 0 3px;
+}
+
+.comment-form .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
 }
 
 .comment-box {
