@@ -39,6 +39,7 @@ angular.module('johayo.controller')
             $scope.showComment = false;
 
             $scope.commentList = [{
+                seq : '1',
                 name : '권동준',
                 regDt : '2014-11-27 05:29',
                 content : 'sdkljfbsdlfjknlkwefnweklfnweklfndjklsfvbsdkjfbnsdjkfbsdjkf'

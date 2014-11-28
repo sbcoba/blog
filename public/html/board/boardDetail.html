@@ -19,8 +19,7 @@
             <h4>
                 Comments
                 <small>({{commentList.length}})</small>
-                <button class="btn btn-xs btn-info" ng-click="showWriteBox = !showWriteBox">
-                    Write
+                <button class="btn btn-xs btn-info" ng-click="showWriteBox = !showWriteBox; closeEditor()">
                     <i class="glyphicon" ng-class="{'glyphicon-chevron-down' : !showWriteBox, 'glyphicon-chevron-up' : showWriteBox}"></i>
                 </button>
             </h4>
@@ -39,20 +38,26 @@
                     </div>
                 </form>
             </div>
-            <div class="media comment-detail" ng-repeat="commentDetail in commentList">
+            <div class="media comment-detail" ng-repeat="commentDetail in commentList" id="{{commentDetail.seq}}">
                 <div>
                     <div class="title">
                         <p>{{commentDetail.name}} <small class="conmentstyle">({{commentDetail.regDt}})</small></p>
-                        <span style="float: right; cursor: pointer;">
+                        <span style="float: right; cursor: pointer;" ng-hide="isShowEditor[commentDetail.seq]">
                             <i class="glyphicon glyphicon-wrench signcolor" bs-dropdown="commentDrop(commentDetail.seq)" placement="bottom-right" html="true"></i>
                         </span>
                     </div>
-                    <!--<div>
-                        <div text-angular="text-angular"
-                             ng-model="commentDetail.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></div>
-                        if you want to cancel, put the esc.
-                    </div>-->
-                    <div ng-bind-html="commentDetail.content"></div>
+                    <div ng-show="isShowEditor[commentDetail.seq]">
+                        <p style="font-weight: bolder; color: chocolate;padding-left: 5px;">※ if you want to cancel, put the esc.</p>
+                        <text-angular ng-keydown="editCt($event, commentDetail.seq);"
+                             ng-model="commentDetail.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
+                        <div class="navbar-form">
+                            <div class="form-group">
+                                <input type="password" placeholder="Password" class="form-control" ng-keydown="editCt($event, commentDetail.seq);">
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                        </div>
+                    </div>
+                    <div ng-bind-html="commentDetail.content" ng-hide="isShowEditor[commentDetail.seq]"></div>
                 </div>
             </div>
         </div>
