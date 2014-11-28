@@ -401,6 +401,10 @@ section > article {
     font-weight: bold
 }
 
+.comment-content {
+    word-wrap: break-word;
+}
+
 .conmentstyle{
     color: #7b7b7b;
     font-size: 12px;
