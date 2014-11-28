@@ -18,21 +18,18 @@ angular.module('johayo.controller')
             /* 댓글 수정시 다른 곳의 댓글들의 editor 연것을 안보이게 하고 해당 부분을 보이게 한다. */
             $scope.showEditor = function(seq){
                 $scope.showWriteBox = false;
-                $scope.isShowEditor[seq] = !$scope.isShowEditor[seq];
-                $scope.showInsert = !$scope.isShowEditor[seq];
+                $scope.isShowEditor[seq] = true;
             };
 
             $scope.closeEditor = function(){
                 for(var i=0;i<$scope.commentList.length;i++){
-                    if($scope.commentList[i].seq !== seq){
-                        $scope.isShowEditor[$scope.commentList[i].seq] = false;
-                    }
+                    $scope.isShowEditor[$scope.commentList[i].seq] = false;
                 }
             };
 
-            $scope.editCt = function(event, seq){
+            $scope.editCt = function(event){
                 if(event.keyCode === 27){
-                    $scope.showEditor(seq);
+                    $scope.closeEditor();
                 }
             };
         }]);
