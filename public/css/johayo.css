@@ -277,6 +277,14 @@ section {
     transition: all .3s ease-in-out;
     padding-left: 5%;
     padding-right: 5%;
+    min-height: 800px;
+}
+
+section > article {
+    display: inline-block;
+    margin-top: 80px;
+    padding: 15px;
+    width: 100%;
 }
 
 .hide-left-bar {
@@ -291,13 +299,6 @@ section {
     margin-left: 0px;
     padding-left: 10%;
     padding-right: 10%;
-}
-
-section > article {
-    display: inline-block;
-    margin-top: 80px;
-    padding: 15px;
-    width: 100%;
 }
 
 /* login start */
@@ -362,17 +363,30 @@ section > article {
     position: relative;
 }
 
+.placeholder-text:before{
+    color: #969696;
+    font-size: 13px;
+}
+
 .ta-scroll-window > .ta-bind {
-    min-height: 30px;
+    min-height: 50px;
     outline: none;
 }
+
 .ta-editor.ta-html {
-    min-height: 30px;
-    display: none;
+    min-height: 50px;
+}
+
+.ta-scroll-window.form-control {
+    min-height: 50px;
 }
 /* editor end */
 
 /* comment start */
+.comment-box .navbar-form{
+    padding: 0 3px;
+}
+
 .comment-box {
     margin-top: 20px;
 }
