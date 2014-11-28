@@ -16,7 +16,7 @@ angular.module('johayo.directive')
             }
         }
     })
-    /*.directive('windowWidthCheck', function($window){
+    .directive('windowWidthCheck', function($window){
         return {
             restrict: 'A',
             scope : {
@@ -40,5 +40,5 @@ angular.module('johayo.directive')
                 });
             }
         }
-    })*/
+    })
 ;
