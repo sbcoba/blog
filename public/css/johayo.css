@@ -500,10 +500,19 @@ a, a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
+
+p {
+    padding: 0;
+    margin: 0;
+}
 /* 공통 end */
 
 /* board start */
-.board-list, .board-detail {
+.panel-group{
+    -webkit-animation: enter 600ms;
+    animation: enter 600ms;
+}
+.board-detail {
     -webkit-animation: flying-from-right 600ms;
     animation: flying-from-right 600ms;
 }
@@ -703,7 +712,7 @@ a, a:hover, a:focus {
 
 @-webkit-keyframes flying-from-right {
     from {
-        right: -170px;
+        right: -800px;
     }
     75% {
         right: 15px;
@@ -714,7 +723,7 @@ a, a:hover, a:focus {
 }
 @keyframes flying-from-right {
     from {
-        right: -170px;
+        right: -800px;
     }
     75% {
         right: 15px;

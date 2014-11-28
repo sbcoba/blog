@@ -11,14 +11,20 @@
         <div class="content">
             sdfsdfdsfdsfsdfs
         </div>
-        <!-- 댓글  -->
+
+        <!--<comment-box comment-list="commentList"></comment-box>-->
+
         <div class="comment-box" ng-controller="commentController">
-            <h4>Comments <small>({{commentList.length}})</small></h4>
-            <div class="row">
-                <div class="col-xs-12" >
-                    <div text-angular="text-angular" name="comment" ng-keydown="insertCt($event);" placeholder="comment"
-                         ng-model="comment.content" ta-toolbar="[]" ta-text-editor-class="editor-around" ></div>
-                </div>
+            <h4>
+                Comments
+                <small>({{commentList.length}})</small>
+                <button class="btn btn-xs btn-primary" ng-click="showWriteBox = !showWriteBox">
+                    <i class="glyphicon" ng-class="{'glyphicon-chevron-down' : !showWriteBox, 'glyphicon-chevron-up' : showWriteBox}"></i>
+                </button>
+            </h4>
+            <div ng-show="showWriteBox">
+                <div text-angular="text-angular" name="comment" ng-keydown="insertCt($event);"
+                     ng-model="comment.content" ta-toolbar="[]" ta-text-editor-class="editor-around" ></div>
             </div>
             <div class="media comment-detail" ng-repeat="commentDetail in commentList">
                 <div>
