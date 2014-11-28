@@ -35,12 +35,12 @@ angular.module('johayo.controller')
 
             $rootScope.$on("$routeChangeStart", function(){
                 $scope.loading = true;
+                /* 윈도우 창에 따른 메뉴 보이기 안보이기 체크 */
+                windowSizeHideMenu();
             });
 
             $rootScope.$on("$routeChangeSuccess", function(){
                 $scope.loading = false;
-                /* 윈도우 창에 따른 메뉴 보이기 안보이기 체크 */
-                windowSizeHideMenu();
             });
 
             function windowSizeHideMenu(){
