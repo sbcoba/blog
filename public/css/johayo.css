@@ -383,14 +383,16 @@ section > article {
 /* editor end */
 
 /* comment start */
-.comment-box .navbar-form{
-    padding: 0 3px;
+.comment-set {
+    float: right;
+    cursor: pointer;
 }
 
 .comment-form .form-control {
     display: inline-block;
     width: auto;
     vertical-align: middle;
+    width: 250px;
 }
 
 .comment-box {
@@ -411,9 +413,23 @@ section > article {
     word-wrap: break-word;
 }
 
-.conmentstyle{
+.conment-reg-date{
     color: #7b7b7b;
     font-size: 12px;
+}
+
+.comment-two-step{
+    padding-left: 15px;
+    margin-top: 3px;
+    border-top: 1px dashed #adadad;
+    position: relative;
+}
+
+.comment-two-step-icon {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    font-weight: bolder;
 }
 /* comment end */
 
@@ -506,6 +522,11 @@ section > article {
 /* 날씨 end */
 
 /* 공통 start */
+*:focus {
+    outline:0 !important;
+    outline-width: 0;
+}
+
 .box {
     padding: 10px;
     margin: 5px;
@@ -636,8 +657,8 @@ p {
 
     section {
         margin-left: 0px;
-        padding-left: 5%;
-        padding-right: 5%;
+        padding-left: 0%;
+        padding-right: 0%;
         padding-top: 120px;
     }
 

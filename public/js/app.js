@@ -20,12 +20,32 @@ angular.module('johayo', [
     }]).config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/html/board/board.html',
-                controller: 'boardController'
+                templateUrl: '/html/main/main.html',
+                controller: 'mainController'
             })
-            .when('/:division', {
+            .when('/profile', {
                 templateUrl: '/html/board/boardDetail.html',
                 controller: 'boardDetailController'
+            })
+            .when('/adminMenu', {
+                templateUrl: '/html/menu/adminMenu.html',
+                controller: 'boardDetailController',
+                resolve : {
+                    menuList : function(menuService, loginService){
+                        
+                    }
+                }
+            })
+            .when('/board/:division', {
+                templateUrl: '/html/board/board.html',
+                controller: 'boardController',
+                resolve : {
+                    boardList : function(boardService){
+                        boardService.list($route.current.params.division).then(function(data){
+                            return data;
+                        });
+                    }
+                }
             })
             .when('/board/:firstDivision/:division', {
                 templateUrl: '/html/board/board.html',

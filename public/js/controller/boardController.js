@@ -42,7 +42,21 @@ angular.module('johayo.controller')
                 seq : '1',
                 name : '권동준',
                 regDt : '2014-11-27 05:29',
-                content : 'sdkljfbsdlfjknlkwefnweklfnweklfndjklsfvbsdkjfbnsdjkfbsdjkf'
+                content : 'sdkljfbsdlfjknlkwefnweklfnweklfndjklsfvbsdkjfbnsdjkfbsdjkf',
+                sub : [
+                    {
+                        seq : '1',
+                        name : '권동준',
+                        regDt : '2014-11-27 05:29',
+                        content : '이런 저런 주정뱅이들!@ ㅋㅋ'
+                    },
+                    {
+                        seq : '2',
+                        name : '이런',
+                        regDt : '2014-11-33 05:29',
+                        content : '이런 저43543주정뱅이들!@ ㅋㅋ'
+                    }
+                ]
             }];
 
             /* 이게 모듈 버그 같은데 이거 안해주면 자꾸 밑에 먼가 보인다.. */

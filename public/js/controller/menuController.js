@@ -2,7 +2,11 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('menuController', ['$rootScope', '$scope', 'menuService', '$location',
+    .controller('adminMenuController', ['$rootScope', '$scope', 'menuService', '$location',
+        function($scope, menuService){
+
+        }])
+    .controller('sideMenuController', ['$rootScope', '$scope', 'menuService', '$location',
         function($rootScope, $scope, menuService, $location){
             /* 라우터가 바뀔때마다 체크 */
             $rootScope.$on("$routeChangeSuccess", function(){

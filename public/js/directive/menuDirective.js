@@ -5,10 +5,10 @@ angular.module('johayo.directive')
     .directive('johayoMenu', function($window){
         return {
             restrict: 'A',
-            templateUrl : '/html/tpls/sideMenu.html',
+            templateUrl : '/html/menu/sideMenu.html',
             scope : {
                 hideMenu : '@'
             },
-            controller : 'menuController'
+            controller : 'sideMenuController'
         }
     });

@@ -10,6 +10,11 @@
                         <input type="text" class="search-text" placeholder="Search" ng-model="search">
                     </div>
                 </li>
+                <li ng-if="isLogin" style="margin-top: 7px;">
+                    <button>
+                        dd
+                    </button>
+                </li>
                 <li style="margin-top: 7px;">
                     <a bs-collapse-toggle ng-click="downIcon = !downIcon">
                         <i class="glyphicon" ng-class="{'glyphicon-chevron-down' : downIcon, 'glyphicon-chevron-up' : !downIcon}"></i>

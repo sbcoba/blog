@@ -4,45 +4,48 @@
 angular.module("johayo.service")
     .factory("commentService", ['$resource', '$q',
         function($resource, $q){
-            var boardApi = {
-                list : $resource('/api/board/list/:division',{division:'@division'},{'query': {method: 'GET', isArray:true}}),
-                url : $resource('/api/board/:seq',{seq:'@seq'},{'get': {method: 'GET', 'update': {method:'PUT'}}})
-            };
+            /* 서브는 꼭 division에 sub 라고 넣어줘야됨 */
+            var commentApi = $resource('/api/comment/:division/',{division:'@division'});
 
             var service = {
-                list : function(division){
+                addComment : function(boardSeq, content, name, pw){
                     var asy = $q.defer();
-                    boardApi.list.query({division : division},
-                        function(data){
-                            asy.resolve(data);
-                        });
-                    return asy.promise;
-                },
-                detail : function(seq){
-                    var asy = $q.defer();
-                    boardApi.url.get({seq : seq},
-                        function(data){
-                            asy.resolve(data);
-                        });
-                    return asy.promise;
-                },
-                save : function(title, content, division){
-                    var asy = $q.defer();
-                    boardApi.url.save({title: title, content: content, division: division}, function(){
+                    commentApi.save({boardSeq: boardSeq, name: name, content: content, pw: pw}, function(data){
                         asy.resolve(data);
                     });
                     return asy.promise;
                 },
-                update : function(seq, title, content){
+                editComment : function(boardSeq, commentSeq, content, pw){
                     var asy = $q.defer();
-                    boardApi.url.update({title: title, content: content, seq: seq}, function(){
+                    commentApi.put({boardSeq: boardSeq, commentSeq: commentSeq, content: content, pw: pw}, function(data){
                         asy.resolve(data);
                     });
                     return asy.promise;
                 },
-                delete : function(seq){
+                deleteComment : function(boardSeq, commentSeq){
                     var asy = $q.defer();
-                    boardApi.url.delete({seq: seq}, function(){
+                    commentApi.delete({boardSeq: boardSeq, commentSeq: commentSeq}, function(data){
+                        asy.resolve(data);
+                    });
+                    return asy.promise;
+                },
+                addSubComment : function(param){
+                    var asy = $q.defer();
+                    commentApi.save(param, function(data){
+                        asy.resolve(data);
+                    });
+                    return asy.promise;
+                },
+                editSubComment: function(param){
+                    var asy = $q.defer();
+                    commentApi.put(param, function(){
+                        asy.resolve();
+                    });
+                    return asy.promise;
+                },
+                deleteSubComment: function(param){
+                    var asy = $q.defer();
+                    commentApi.delete(param, function(data){
                         asy.resolve(data);
                     });
                     return asy.promise;

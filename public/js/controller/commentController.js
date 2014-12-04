@@ -4,32 +4,129 @@
 angular.module('johayo.controller')
     .controller('commentController', ['$scope',
         function($scope){
+            /* 댓글 달때 씀 */
+            $scope.comment = {};
+            /* sub댓글 달때 쓴다. */
+            $scope.sub = {};
+            /* 서브 댓글 등록시 editor를 보이게 할지 설정 */
+            $scope.showWriteSubBox = {};
             /* 댓글 수정시 글을 안보이고 editor를 보이게 할지 설정 */
             $scope.isShowEditor = {};
+            /* 댓글의 서브 댓글을 수정시 editer를 보이게 할지 설정 */
+            $scope.isShowSubEditor = {};
 
-            /* 댓글 설정 부분. 삭제와 수정을 넣는다. */
-            $scope.commentDrop = function (seq){
-                return [
-                    {text: '<i class="glyphicon glyphicon-pencil"></i> Update', click: 'showEditor('+seq+')'},
-                    {text: '<i class="glyphicon glyphicon-remove"></i> Delete', click: 'commentDelete('+seq+')'}
-                ];
+            /* sub 댓글 달때 쓰는 param들 */
+            $scope.subParams = {
+                division: 'sub',
+                boardSeq: $scope.boardDetail.seq
+            };
+
+            /* 댓글 등록 */
+            $scope.addComment = function(){
+                commentService.addComment($scope.boardDetail.seq, $scope.comment.content, $scope.comment.name, $scope.comment.pw)
+                    .then(function(data){
+
+                    });
+            };
+
+            /* 댓글 수정 */
+            $scope.editComment = function(commentDetail){
+                commentService.editComment($scope.boardDetail.seq, commentDetail.Seq, commentDetail.content, commentDetail.pw)
+                    .then(function(){
+                        $scope.closeEditor();
+                    });
+            };
+
+            /* 댓글 삭제 */
+            $scope.deleteComment = function(commentSeq){
+                commentService.deleteComment($scope.boardDetail.seq, commentSeq)
+                    .then(function(data){
+
+                    });
+            };
+
+            /* sub 댓글 등록 */
+            $scope.addSubComment = function(commentSeq){
+                $scope.subParams.commentSeq = commentSeq;
+                $scope.subParams.content = $scope.sub.content;
+                $scope.subParams.name = $scope.sub.name;
+                $scope.subParams.pw = $scope.sub.pw;
+                commentService.editComment($scope.subParams)
+                    .then(function(data){
+
+                    });
+            };
+
+            /* sub 댓글 수정 */
+            $scope.editSubComment = function(commentSeq, commentSub){
+                $scope.subParams.commentSeq = commentSeq;
+                $scope.subParams.subSeq = commentSeq.seq;
+                $scope.subParams.content = commentSub.content;
+                $scope.subParams.pw = commentSub.pw;
+                commentService.editSubComment($scope.subParams)
+                    .then(function(){
+                        $scope.closeEditor();
+                    });
+            };
+
+            /* sub 댓글 삭제 */
+            $scope.deleteSubComment = function(commentSeq, subSeq){
+                $scope.subParams.commentSeq = commentSeq;
+                $scope.subParams.subSeq = subSeq;
+                commentService.deleteSubComment($scope.subParams)
+                    .then(function(data){
+
+                    });
+            };
+
+            /* 유효성 체크 */
+            $scope.checkVal = function(val){
+                var checkContent = true;
+                if(!!val.content){
+                    checkContent = val.content.replace(/(<([^>]+)>)/ig,"") == ''
+                }
+                return checkContent || (!$scope.isLogin && (!val.name || !val.pw));
             };
 
             /* 댓글 수정시 다른 곳의 댓글들의 editor 연것을 안보이게 하고 해당 부분을 보이게 한다. */
-            $scope.showEditor = function(seq){
+            $scope.showEditor = function(seq, subSeq){
                 $scope.showWriteBox = false;
-                $scope.isShowEditor[seq] = true;
-            };
-
-            $scope.closeEditor = function(){
-                for(var i=0;i<$scope.commentList.length;i++){
-                    $scope.isShowEditor[$scope.commentList[i].seq] = false;
+                if(!!subSeq){
+                    if(!$scope.isShowSubEditor[seq+'-'+subSeq]){
+                        $scope.closeEditor();
+                        $scope.isShowSubEditor[seq+'-'+subSeq] = true;
+                    }else{
+                        $scope.closeEditor();
+                    }
+                }else{
+                    if(!$scope.isShowEditor[seq]){
+                        $scope.closeEditor();
+                        $scope.isShowEditor[seq] = true;
+                    }else{
+                        $scope.closeEditor();
+                    }
                 }
             };
 
-            $scope.editCt = function(event){
-                if(event.keyCode === 27){
+            /* 서브 댓글 등록 박스 */
+            $scope.isShowWriteSubBox = function(seq){
+                $scope.showWriteBox = false;
+                if($scope.showWriteSubBox[seq]){
                     $scope.closeEditor();
+                }else{
+                    $scope.closeEditor();
+                    $scope.showWriteSubBox[seq] = true;
+                }
+            };
+
+            /* 댓글 다 닫기 */
+            $scope.closeEditor = function(){
+                for(var i=0;i<$scope.commentList.length;i++){
+                    $scope.isShowEditor[$scope.commentList[i].seq] = false;
+                    $scope.showWriteSubBox[$scope.commentList[i].seq] = false;
+                    for(var j=0;j < $scope.commentList[i].sub.length;j++){
+                        $scope.isShowSubEditor[$scope.commentList[i].seq+ '-' + $scope.commentList[i].sub[j].seq] = false;
+                    }
                 }
             };
         }]);

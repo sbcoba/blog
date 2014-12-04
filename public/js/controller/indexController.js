@@ -2,9 +2,8 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService', '$route',
-        function($rootScope, $scope, loginService, errorService, $route){
-            $scope.loginInfo = loginService.loginInfo;
+    .controller('indexController', ['$rootScope', '$scope', 'loginService', 'errorService', '$window',
+        function($rootScope, $scope, loginService, errorService, $window){
             /* 윈도우 창의 크기를 체크 */
             $scope.windowSize = {};
 
@@ -13,9 +12,7 @@ angular.module('johayo.controller')
             };
 
             $scope.logout = function(){
-                loginService.logout().then(function(){
-                    $route.reload();
-                });
+                loginService.logout()
             };
 
             /**
@@ -26,11 +23,11 @@ angular.module('johayo.controller')
                 windowSizeHideMenu();
             };
 
+            /**
+             * 로그인 한후 정보를 다시 가지고 온다.
+             */
             $rootScope.$on('getLoginInfo', function(){
-                loginService.getLoginInfo().then(function(loginInfo){
-                    $scope.loginInfo = loginInfo;
-                    $scope.isLogin = loginService.isLogin();
-                });
+                $scope.getLoginInfo();
             });
 
             $rootScope.$on("$routeChangeStart", function(){
@@ -43,10 +40,28 @@ angular.module('johayo.controller')
                 $scope.loading = false;
             });
 
+            $scope.getLoginInfo = function(){
+                loginService.getLoginInfo().then(function(loginInfo){
+                    $scope.loginInfo = loginInfo;
+                    $scope.isLogin = loginService.isLogin();
+                });
+            };
+
+            $scope.adminMenu = function (){
+                return [
+                    {text: '<i class="glyphicon glyphicon-ok"></i> Menu', click: 'showEditor()'},
+                    {text: '<i class="glyphicon glyphicon-cog"></i> Setting', click: 'showEditor()'},
+                    {"divider": true},
+                    {text: '<i class="glyphicon glyphicon-log-out"></i> Logout', click: 'logout()'}
+                ];
+            };
+
             function windowSizeHideMenu(){
                 /* 윈도우 창에 따른 메뉴 보이기 안보이기 체크 */
                 if($scope.windowSize.w < 1000){
                     $scope.hideMenu = false;
                 }
             }
+
+            $scope.getLoginInfo();
         }]);

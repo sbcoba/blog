@@ -77,6 +77,7 @@ angular.module("johayo.service")
                 } else {
                     $http.post('/api/login/getLogin').then(function(response) {
                         service.loginInfo = response.data;
+                        console.log(!!service.loginInfo);
                         asy.resolve(service.loginInfo);
                     });
                 }
