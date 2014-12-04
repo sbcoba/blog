@@ -23,7 +23,7 @@ angular.module('errorHandler', [])
                     try {
                         cb(retryItem);
                     } catch(e) {
-                        $log.error('errQueue.push(retryItem): callback threw an error' + e);
+                        /*$log.error('errQueue.push(retryItem): callback threw an error' + e);*/
                     }
                 });
             },

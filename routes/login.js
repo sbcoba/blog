@@ -6,6 +6,7 @@ var cryptoUtil = require('../util/cryptoUtil');
 var config = require('../config/config');
 var validator = require('validator');
 var error = require('../util/error');
+var checkLogin = require('../util/checkLogin');
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');
@@ -14,6 +15,13 @@ var Member = mongo.model.member;
 
 /* 라우터 */
 var router = express.Router();
+
+/**
+ * 로그인 체크
+ */
+router.post('/check', checkLogin.check, function(req, res){
+    res.send('');
+});
 
 /**
  * 로그인정보를 가지고 온다.

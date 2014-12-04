@@ -2,10 +2,48 @@
  * Created by 동준 on 2014-11-14.
  */
 angular.module('johayo.controller')
-    .controller('adminMenuController', ['$rootScope', '$scope', 'menuService', '$location',
-        function($scope, menuService){
+    .controller('adminMenuController', ['$rootScope', '$scope', 'menuService', 'menuList',
+        function($rootScope, $scope, menuService, menuList){
+            /* 현재 메뉴 리스트 */
+            $scope.menuList = menuList;
+            /* 메뉴 등록 */
+            $scope.menu = {
+                url : '/#/'
+            };
 
+            /* 메뉴 추가 */
+            $scope.addMenu = function(){
+                $scope.menu.url = '/#/';
+                if(!!$scope.menu.isBoard){
+                    $scope.menu.url = $scope.menu.url + 'board/';
+                }
+
+                /* 새로운 1step 메뉴 추가 */
+                if(!$scope.menu.select){
+                    $scope.menu.url = $scope.menu.url + $scope.menu.name;
+                    menuService.addOneStepMenu($scope.menu).then(function(){
+                        $scope.getMenuList();
+                    });
+                }
+                /* 2step 메뉴 추가 */
+                else{
+                    $scope.menu.url = $scope.menu.url + $scope.menu.select.name+'/'+$scope.menu.name;
+                    $scope.menu.oneStep_id = $scope.menu.select._id;
+                    menuService.addTwoStepMenu($scope.menu).then(function(){
+                        $scope.getMenuList();
+                    });
+                }
+            };
+
+            $scope.getMenuList = function(){
+                menuService.menuList = null;
+                menuService.getMenuList().then(function(data){
+                    $scope.menuList = data;
+                });
+                $rootScope.$broadcast('getMenuList');
+            };
         }])
+
     .controller('sideMenuController', ['$rootScope', '$scope', 'menuService', '$location',
         function($rootScope, $scope, menuService, $location){
             /* 라우터가 바뀔때마다 체크 */
@@ -26,11 +64,11 @@ angular.module('johayo.controller')
                 for(var i=0;i<$scope.menuList.length;i++){
                     if($scope.menuList[i].url.replace('/#','') == $location.path()){
                         $scope.activeMenu = $scope.menuList[i].name;
-                    }else if($scope.menuList[i].subMenu.length > 0){
-                        for(var j=0;j<$scope.menuList[i].subMenu.length;j++){
-                            if($scope.menuList[i].subMenu[j].url.replace('/#','') == $location.path()){
+                    }else if($scope.menuList[i].subMenuList.length > 0){
+                        for(var j=0;j<$scope.menuList[i].subMenuList.length;j++){
+                            if($scope.menuList[i].subMenuList[j].url.replace('/#','') == $location.path()){
                                 $scope.activeMenu = $scope.menuList[i].name;
-                                $scope.activeSubMenu = $scope.menuList[i].subMenu[j].name;
+                                $scope.activeSubMenu = $scope.menuList[i].subMenuList[j].name;
                             }
                         }
                     }
@@ -60,4 +98,17 @@ angular.module('johayo.controller')
                     'active' : $scope.activeSubMenu == name
                 }
             };
+
+            /* class를 가지고 온다. */
+            $scope.getClass = function(length){
+                return { 'sub-menu' : length > 0};
+            };
+
+            /* 메뉴를 다시 가지고 온다.*/
+            $rootScope.$on('getMenuList', function(){
+                menuService.menuList = null;
+                menuService.getMenuList().then(function(data){
+                    $scope.menuList = data;
+                })
+            });
         }]);

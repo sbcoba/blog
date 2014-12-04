@@ -137,6 +137,12 @@ ul.top> li {
     padding-top: 80px;
 }
 
+.sidebar-box{
+    height: 100%;
+    overflow: hidden;
+    outline: none;
+}
+
 ul.sidebar-menu, ul.sidebar-menu li ul.sub {
     margin: -2px 0 0;
     padding: 0;
@@ -151,16 +157,17 @@ ul.sidebar-menu li {
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-    background: #E8E2AE;
+    background: #D6D09C;
+    /*background: #E8E2AE;*/
     color: #000000;
     display: block;
     font-size: 15px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
+
+ul.sidebar-menu .haveSub{
+    background: #E8E2AE;
+}
+
 
 ul.sidebar-menu li a {
     color: #000000;
@@ -170,11 +177,6 @@ ul.sidebar-menu li a {
     font-size: 14px;
     font-weight: bolder;
     outline: none;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
     cursor: pointer;
 }
 
@@ -197,11 +199,7 @@ ul.sidebar-menu li ul.sub li a {
     font-size: 12px;
     padding-top: 13px;
     padding-bottom: 13px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    padding-left: 35px;
     color: #000000;
 }
 
@@ -210,11 +208,6 @@ ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
     color: #000000;
     display: block;
     font-size: 15px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
 
 .icon-right {
@@ -614,6 +607,15 @@ p {
     text-align: right;
 }
 /* board end */
+
+/* adminMenu start */
+.admin-menu {
+    background-color: #dff0d8;
+    border-radius: 15px;
+    border: 3px solid green;
+}
+/* adminMenu end */
+
 
 @media (max-width: 1000px){
     header {

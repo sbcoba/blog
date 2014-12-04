@@ -77,7 +77,6 @@ angular.module("johayo.service")
                 } else {
                     $http.post('/api/login/getLogin').then(function(response) {
                         service.loginInfo = response.data;
-                        console.log(!!service.loginInfo);
                         asy.resolve(service.loginInfo);
                     });
                 }
@@ -85,6 +84,13 @@ angular.module("johayo.service")
             },
             isLogin: function(){
                 return !!service.loginInfo;
+            },
+            getCheckLogin : function(){
+                var asy = $q.defer();
+                $http.post('/api/login/check').then(function(){
+                    asy.resolve();
+                });
+                return asy.promise;
             },
             finalLogin : function(){
                 $rootScope.$broadcast('getLoginInfo');

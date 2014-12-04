@@ -49,7 +49,7 @@ angular.module('johayo.controller')
 
             $scope.adminMenu = function (){
                 return [
-                    {text: '<i class="glyphicon glyphicon-ok"></i> Menu', click: 'showEditor()'},
+                    {text: '<i class="glyphicon glyphicon-ok"></i> Menu', href: '/#/adminMenu'},
                     {text: '<i class="glyphicon glyphicon-cog"></i> Setting', click: 'showEditor()'},
                     {"divider": true},
                     {text: '<i class="glyphicon glyphicon-log-out"></i> Logout', click: 'logout()'}

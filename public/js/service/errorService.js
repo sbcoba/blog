@@ -7,23 +7,21 @@ angular.module("johayo.service")
         var errorDialog = null;
 
         function openErrDialog(msg) {
-            console.log(errorDialog);
             if(!!errorDialog){
                 errorDialog.close();
             }
 
             errorDialog = ngDialog.open({
-                template: '/html/tpls/error.html',
+                template: '/html/error/error.html',
                 className: 'ngdialog-theme-error ngdialog-theme-custom-error',
                 controller : ['$scope', function($scope){
-                    $('#close').focus()
+                    $('#close').focus();
                     $scope.errorMsg = msg;
                     $scope.doClose = function(){
                         errorDialog.close();
                     };
                 }]
             });
-
             errorDialog.focus();
 
             return errorDialog

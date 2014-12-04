@@ -25,14 +25,19 @@ angular.module('johayo', [
             })
             .when('/profile', {
                 templateUrl: '/html/board/boardDetail.html',
-                controller: 'boardDetailController'
+                controller: 'boardController'
             })
             .when('/adminMenu', {
                 templateUrl: '/html/menu/adminMenu.html',
-                controller: 'boardDetailController',
+                controller: 'adminMenuController',
                 resolve : {
                     menuList : function(menuService, loginService){
-                        
+                        return  loginService.getCheckLogin().then(function(){
+                            return menuService.getMenuList()
+                                .then(function(menu){
+                                    return menu;
+                                });
+                        });
                     }
                 }
             })
@@ -40,7 +45,7 @@ angular.module('johayo', [
                 templateUrl: '/html/board/board.html',
                 controller: 'boardController',
                 resolve : {
-                    boardList : function(boardService){
+                    boardList : function(boardService, $route){
                         boardService.list($route.current.params.division).then(function(data){
                             return data;
                         });
@@ -51,7 +56,7 @@ angular.module('johayo', [
                 templateUrl: '/html/board/board.html',
                 controller: 'boardController',
                 resolve : {
-                    boardList : function(boardService){
+                    boardList : function(boardService, $route){
                         boardService.list($route.current.params.division).then(function(data){
                             return data;
                         });
@@ -59,10 +64,10 @@ angular.module('johayo', [
                 }
             })
             .when('/board/:firstDivision/:division/:seq', {
-                templateUrl: '/html/board.html',
+                templateUrl: '/html/boardDetail.html',
                 controller: 'boardDetailController',
                 resolve : {
-                    boardDetail : function(boardService){
+                    boardDetail : function(boardService, $route){
                         boardService.detail($route.current.params.seq).then(function(data){
                             return data;
                         });

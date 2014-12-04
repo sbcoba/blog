@@ -42,8 +42,7 @@ mongo.schema.menu = new Schema({
     url : String,
     /* 정렬 순서 */
     rank : Number,
-    isAdmin : String,
-    subMenu : [],
+    subMenuList : [],
     regDt : String
 });
 

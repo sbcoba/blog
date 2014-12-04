@@ -17,6 +17,22 @@ angular.module("johayo.service")
                         });
                     }
                     return asy.promise;
+                },
+                addOneStepMenu : function(param){
+                    var asy = $q.defer();
+                    $http.post('/api/menu', param).then(function(data) {
+                        service.menuList = data;
+                        asy.resolve(service.menuList);
+                    });
+                    return asy.promise;
+                },
+                addTwoStepMenu : function(param){
+                    var asy = $q.defer();
+                    $http.post('/api/menu/sub', param).then(function(data) {
+                        service.menuList = data;
+                        asy.resolve(service.menuList);
+                    });
+                    return asy.promise;
                 }
             };
 
