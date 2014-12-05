@@ -38,7 +38,42 @@ angular.module('johayo.controller')
         function($scope, boardService){
 
         }])
-    .controller('boardAddController', ['$scope', 'boardService',
-        function($scope, boardService){
+    .controller('boardAddController', ['$scope', 'boardService', 'menuList', 'fileService',
+        function($scope, boardService, menuList, fileService){
+            $scope.menuList = menuList;
+            $scope.uploadFileList = new Array();
+            $scope.board = {};
 
+            $scope.addBoard = function(){
+                boardService.save($scope.board).then(function(){
+                    alert('ok');
+                });
+            };
+
+            $scope.onFileSelect = function($files) {
+                $scope.error = [];
+                $scope.selectedFiles = $files;
+                for ( var i = 0; i < $files.length; i++) {
+                    $scope.selectedFiles[i].isImg = $scope.selectedFiles[i].type.indexOf('image') < 0 ? false : true;
+                    $scope.uploadFile(i);
+                }
+            };
+
+            $scope.uploadFile = function(index){
+                $scope.selectedFiles[index].progress = 0;
+                fileService.fileUpload($scope.selectedFiles[index], 'board')
+                    .then(function(data){
+                        console.log(data);
+                        $scope.uploadFileList.push(data);
+                    },function(data){
+                        $scope.selectedFiles[index].progress = 0;
+                        $scope.selectedFiles[index].error = data;
+                    },function(evt){
+                        $scope.selectedFiles[index].progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                    });
+            };
+
+            $scope.deleteFile = function(index){
+                $scope.uploadFileList[index].deleteYn = 'Y';
+            };
         }]);

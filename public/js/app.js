@@ -13,6 +13,7 @@ angular.module('johayo', [
     "johayo.filter",
     "ngDialog",
     'textAngular',
+    'angularFileUpload',
     "mgcrea.ngStrap"
 ])
     .config(['$httpProvider', function($httpProvider) {

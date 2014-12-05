@@ -16,12 +16,14 @@ var config = require('./config/config');
 
 /* util */
 var tg = require('./util/tg');
+var checkLogin = require('./util/checkLogin');
 
 /* routes */
 var menu = require('./routes/menu');
 var login = require('./routes/login');
 var board = require('./routes/board');
 var comment = require('./routes/comment');
+var file = require('./routes/file');
 
 var app = express();
 
@@ -49,11 +51,17 @@ app.use(session({
     }
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join('/johayo/upload')));
 
+/* 로그인이 필요한 서비스 */
+app.use('/api/file', checkLogin.check);
+
+/* 없는 서비스 */
 app.use('/api/menu', menu);
 app.use('/api/login', login);
 app.use('/api/board', board);
 app.use('/api/comment', comment);
+app.use('/api/file', file);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {

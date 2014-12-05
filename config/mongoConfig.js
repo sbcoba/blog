@@ -27,7 +27,6 @@ mongo.schema.board = new Schema({
     content : String,
     commentList : [],
     file : [],
-    hashTag : String,
     regDt : Date
 });
 
@@ -40,13 +39,14 @@ mongo.schema.autoSeq = new Schema({
 mongo.schema.menu = new Schema({
     name : String,
     url : String,
+    isBoard : Boolean,
     /* 정렬 순서 */
     rank : Number,
     subMenuList : [],
     regDt : String
 });
 
-/* 달력 */
+/* 달력 *//*
 mongo.schema.calendar = new Schema({
     year : Number,
     month : Number,
@@ -62,7 +62,7 @@ mongo.schema.calendar = new Schema({
         actionDt : Date,
         regDt : Date
     }]
-});
+});*/
 
 /* 모델 */
 mongo.model = {};

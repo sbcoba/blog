@@ -26,9 +26,9 @@ angular.module("johayo.service")
                         });
                     return asy.promise;
                 },
-                save : function(title, content, division){
+                save : function(params){
                     var asy = $q.defer();
-                    boardApi.url.save({title: title, content: content, division: division}, function(){
+                    boardApi.url.save(params, function(){
                         asy.resolve(data);
                     });
                     return asy.promise;

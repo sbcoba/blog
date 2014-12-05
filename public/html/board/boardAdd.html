@@ -6,25 +6,42 @@
         <div class="panel-collapse">
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="select">What is 1step?</label>
-                    <select id="select" ng-model="menu.select" ng-options="list.name for list in menuList" ng-change="settingUrl()" class="form-control">
-                        <option value="">--new one--</option>
+                    <label for="select">What kind of Board?</label>
+                    <select id="select" ng-model="board.division" class="form-control">
+                        <option value="">--choose--</option>
+                        <optgroup ng-repeat="list in menuList" ng-if="list.isBoard" label="{{list.name}}">
+                            <option ng-repeat="subList in list.subMenuList" value="{{subList.name}}">{{subList.name}}</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name"> Name</label>
-                    <input type="text" ng-model="menu.name" class="form-control" id="name" placeholder="Name">
+                    <label for="file"> File</label>
+                    <input type="file" id="file" name="myFile" ng-file-select="onFileSelect($files)" multiple onclick="this.value=null">
+                    <div class="col-xs-12" style="margin-top: 15px;">
+                        <div class="col-xs-1" style="text-align: center;word-wrap: break-word;" ng-repeat="list in selectedFiles">
+                            <div class="file-icon" ng-if="uploadFileList[$index].url == null || !list.isImg">
+                                <i class="fa fa-file-text-o"></i>
+                            </div>
+                            <img ng-src="{{uploadFileList[$index].url}}" ng-if="uploadFileList[$index].url != null && list.isImg">
+                            <div class="progress" style="height: 5px; margin-top: 5px; margin-bottom: 5px;">
+                                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{list.progress}}%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                            <span>{{list.name}}</span>
+                            <div style="padding-left: 0px;color: #ff0000;font-weight: bold" ng-if="list.error != null">{{list.error}}</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="rank"> Rank</label>
-                    <input type="text" ng-model="menu.rank" class="form-control" id="rank" placeholder="Rank">
+                    <label for="name"> Title</label>
+                    <input type="text" ng-model="board.title" class="form-control" id="name" placeholder="Title">
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="menu.isBoard"> is board?
-                    </label>
+                <div class="form-group">
+                    <label> Content</label>
+                    <text-angular ng-model="board.content" ta-disabled='disabled'  ta-text-editor-class="editor-around" placeholder="Content"></text-angular>
                 </div>
-                <button class="btn btn-default" ng-click="addMenu()">Add</button>
+                <button class="btn btn-default" ng-click="addBoard()">Add</button>
             </div>
         </div>
     </div>

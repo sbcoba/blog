@@ -49,6 +49,7 @@ router.post('/', checkLogin.check, function(req, res){
     menu.name =  validator.isNull(req.param('name'))  ? error.throw(409,'Please check name.') : req.param('name');
     menu.url = validator.isNull(req.param('url'))  ? error.throw(409,'Please check url.') : req.param('url');
     menu.rank = validator.isNull(req.param('rank'))  ? error.throw(409,'Please check rank.') : req.param('rank');
+    menu.isBoard = !validator.isNull(req.param('isBoard'));
     menu.regDt = dateUtil.nowDateTypeDate();
 
     menu.save(function(err){
