@@ -1,8 +1,8 @@
 #Johayo Blog
 ## 접근
-'''html
+```dark
 	http://johayo.com
-'''
+```
 
 ## 설명
 저의 blog는 기본 angular를 통해서 만들었으면 서버단은 nodejs로 되어 있습니다. 그리고 redis는 세션데이터 저장소로 사용되며 mongoDB가 base입니다.
