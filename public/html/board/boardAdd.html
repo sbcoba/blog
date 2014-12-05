@@ -22,7 +22,7 @@
                             <div class="file-icon" ng-if="uploadFileList[$index].url == null || !list.isImg">
                                 <i class="fa fa-file-text-o"></i>
                             </div>
-                            <img ng-src="{{uploadFileList[$index].url}}" ng-if="uploadFileList[$index].url != null && list.isImg">
+                            <img ng-src="{{uploadFileList[$index].url}}" ng-if="uploadFileList[$index].url != null && list.isImg" width="50" height="50">
                             <div class="progress" style="height: 5px; margin-top: 5px; margin-bottom: 5px;">
                                 <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{list.progress}}%;">
                                     <span class="sr-only">60% Complete</span>

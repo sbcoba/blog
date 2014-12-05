@@ -42,6 +42,7 @@ angular.module('johayo.controller')
         function($scope, boardService, menuList, fileService){
             $scope.menuList = menuList;
             $scope.uploadFileList = new Array();
+            $scope.selectedFiles = new Array();
             $scope.board = {};
 
             $scope.addBoard = function(){
@@ -51,11 +52,11 @@ angular.module('johayo.controller')
             };
 
             $scope.onFileSelect = function($files) {
-                $scope.error = [];
-                $scope.selectedFiles = $files;
                 for ( var i = 0; i < $files.length; i++) {
-                    $scope.selectedFiles[i].isImg = $scope.selectedFiles[i].type.indexOf('image') < 0 ? false : true;
-                    $scope.uploadFile(i);
+                    $scope.selectedFiles.push($files[i]);
+                    var count = $scope.selectedFiles.length*1-1 ;
+                    $scope.selectedFiles[count].isImg = $scope.selectedFiles[count].type.indexOf('image') < 0 ? false : true;
+                    $scope.uploadFile(count);
                 }
             };
 
@@ -63,7 +64,6 @@ angular.module('johayo.controller')
                 $scope.selectedFiles[index].progress = 0;
                 fileService.fileUpload($scope.selectedFiles[index], 'board')
                     .then(function(data){
-                        console.log(data);
                         $scope.uploadFileList.push(data);
                     },function(data){
                         $scope.selectedFiles[index].progress = 0;

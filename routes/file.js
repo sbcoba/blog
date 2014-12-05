@@ -27,7 +27,7 @@ router.post('/', function(req, res){
             result: 'ok',
             name: files.myFile[0].originalFilename.toString(),
             path: files.myFile[0].path.toString(),
-            url: "/upload/" + files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
+            url: "/blog/" + files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
             virtualName: files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
             size: files.myFile[0].size.toString(),
             type : files.myFile[0].headers['content-type'].toString()
