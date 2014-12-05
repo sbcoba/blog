@@ -24,12 +24,25 @@ angular.module('johayo', [
                 controller: 'mainController'
             })
             .when('/profile', {
-                templateUrl: '/html/board/boardDetail.html',
-                controller: 'boardController'
+                templateUrl: '/html/profile/profile.html'
             })
-            .when('/adminMenu', {
+            .when('/admin/menu', {
                 templateUrl: '/html/menu/adminMenu.html',
                 controller: 'adminMenuController',
+                resolve : {
+                    menuList : function(menuService, loginService){
+                        return  loginService.getCheckLogin().then(function(){
+                            return menuService.getMenuList()
+                                .then(function(menu){
+                                    return menu;
+                                });
+                        });
+                    }
+                }
+            })
+            .when('/admin/board', {
+                templateUrl: '/html/board/boardAdd.html',
+                controller: 'boardAddController',
                 resolve : {
                     menuList : function(menuService, loginService){
                         return  loginService.getCheckLogin().then(function(){

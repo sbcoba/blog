@@ -165,7 +165,7 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
 }
 
 ul.sidebar-menu .haveSub{
-    background: #E8E2AE;
+    /*background: #E8E2AE;*/
 }
 
 
@@ -181,7 +181,7 @@ ul.sidebar-menu li a {
 }
 
 ul.sidebar-menu li ul.sub li {
-    background: #E8E2AE;
+    /*background: #E8E2AE;*/
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -204,6 +204,7 @@ ul.sidebar-menu li ul.sub li a {
 }
 
 ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
+    /*background: #D6D09C;*/
     background: #D6D09C;
     color: #000000;
     display: block;
@@ -546,14 +547,18 @@ p {
 /* 공통 end */
 
 /* board start */
-.panel-group{
-    -webkit-animation: enter 600ms;
-    animation: enter 600ms;
+.board-list{
+    -webkit-animation: flying2-from-right 600ms;
+    animation: flying2-from-right 600ms;
 }
+
 .board-detail {
     -webkit-animation: flying-from-right 600ms;
     animation: flying-from-right 600ms;
-    border: 4px solid #c4e3f3;
+    webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    -o-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,.15);
 }
 
 .panel {
@@ -608,13 +613,16 @@ p {
 }
 /* board end */
 
-/* adminMenu start */
+/* admin start */
 .admin-menu {
-    background-color: #dff0d8;
-    border-radius: 15px;
-    border: 3px solid green;
+    -webkit-animation: opacity-animation 600ms;
+    animation: opacity-animation 600ms;
 }
-/* adminMenu end */
+.board-add {
+    -webkit-animation: flying-from-right 600ms;
+    animation: flying-from-right 600ms;
+}
+/* admin end */
 
 
 @media (max-width: 1000px){
@@ -778,5 +786,50 @@ p {
     }
     to {
         right: 0px;
+    }
+}
+
+@-webkit-keyframes flying2-from-right {
+    from {
+        right: -800px;
+        top : -300px
+    }
+    75% {
+        right: 15px;
+        top : 15px;
+    }
+    to {
+        right: 0px;
+        right: 0px;
+    }
+}
+@keyframes flying2-from-right {
+    from {
+        right: -800px;
+        top : -300px
+    }
+    75% {
+        right: 15px;
+        top : 15px;
+    }
+    to {
+        right: 0px;
+        right: 0px;
+    }
+}
+@-webkit-keyframes opacity-animation {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+@keyframes opacity-animation {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
     }
 }

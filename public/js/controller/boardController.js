@@ -34,33 +34,11 @@ angular.module('johayo.controller')
                 }
             }
         }])
-    .controller('boardDetailController', ['$scope', '$timeout', 'boardService',
-        function($scope, $timeout, boardService){
-            $scope.showComment = false;
+    .controller('boardDetailController', ['$scope', 'boardService',
+        function($scope, boardService){
 
-            $scope.commentList = [{
-                seq : '1',
-                name : '권동준',
-                regDt : '2014-11-27 05:29',
-                content : 'sdkljfbsdlfjknlkwefnweklfnweklfndjklsfvbsdkjfbnsdjkfbsdjkf',
-                sub : [
-                    {
-                        seq : '1',
-                        name : '권동준',
-                        regDt : '2014-11-27 05:29',
-                        content : '이런 저런 주정뱅이들!@ ㅋㅋ'
-                    },
-                    {
-                        seq : '2',
-                        name : '이런',
-                        regDt : '2014-11-33 05:29',
-                        content : '이런 저43543주정뱅이들!@ ㅋㅋ'
-                    }
-                ]
-            }];
+        }])
+    .controller('boardAddController', ['$scope', 'boardService',
+        function($scope, boardService){
 
-            /* 이게 모듈 버그 같은데 이거 안해주면 자꾸 밑에 먼가 보인다.. */
-            $timeout(function(){
-                $scope.showComment = true;
-            }, 500);
         }]);

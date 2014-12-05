@@ -106,7 +106,6 @@ angular.module('johayo.controller')
 
             /* 메뉴를 다시 가지고 온다.*/
             $rootScope.$on('getMenuList', function(){
-                menuService.menuList = null;
                 menuService.getMenuList().then(function(data){
                     $scope.menuList = data;
                 })
