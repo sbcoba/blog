@@ -7,7 +7,6 @@ var config = require('../config/config');
 
 exports.sendMsg = function(msg){
     var _cmd = 'msg ' + 'dongjun_kwon ' +  msg;
-    console.log("echo " + _cmd  + " | "+config.tg.path+"bin/telegram-cli -k "+config.tg.path+"/tg-server.pub -W" );
     exec( "echo " + _cmd  + " | "+config.tg.path+"bin/telegram-cli -k "+config.tg.path+"/tg-server.pub -W" ,
         function(err, stdout, stderr) {
             if(err) {
