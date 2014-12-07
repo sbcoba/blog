@@ -41,13 +41,17 @@ angular.module('johayo.controller')
     .controller('boardAddController', ['$scope', 'boardService', 'menuList', 'fileService',
         function($scope, boardService, menuList, fileService){
             $scope.menuList = menuList;
-            $scope.uploadFileList = new Array();
-            $scope.selectedFiles = new Array();
-            $scope.board = {};
+
+            $scope.cleanScope = function(){
+                $scope.uploadFileList = new Array();
+                $scope.selectedFiles = new Array();
+                $scope.board = {};
+            };
 
             $scope.addBoard = function(){
                 $scope.board.fileList = $scope.uploadFileList;
                 boardService.save($scope.board).then(function(){
+                    $scope.cleanScope();
                     alert('ok');
                 });
             };
@@ -76,8 +80,10 @@ angular.module('johayo.controller')
 
             $scope.deleteFile = function(index, filePath){
                 fileService.deleteFile(filePath).then(function(){
-                    $scope.uploadFileList[index].deleteYn = true;
-                    $scope.selectedFiles[index].deleteYn = true;
+                    $scope.uploadFileList.splice(index,1);
+                    $scope.selectedFiles.splice(index,1);
                 });
             };
+
+            $scope.cleanScope();
         }]);
