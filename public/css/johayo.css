@@ -562,6 +562,19 @@ p {
     padding-top: 12px;
     cursor: inherit;
 }
+
+.file {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.file >li {
+    margin-left: 5px;
+    width: 60px;
+    word-wrap: break-word;
+    float: left;
+}
 /* 공통 end */
 
 /* board start */

@@ -5,6 +5,7 @@ var express = require('express');
 var config = require('../config/config');
 var multiparty = require('multiparty');
 var error = require('../util/error');
+var validator = require('validator');
 var fs = require('fs');
 
 /* 라우터 */
@@ -30,11 +31,20 @@ router.post('/', function(req, res){
             url: "/blog/" + files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
             virtualName: files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
             size: files.myFile[0].size.toString(),
-            type : files.myFile[0].headers['content-type'].toString()
+            type : files.myFile[0].headers['content-type'].toString(),
+            isImg: files.myFile[0].headers['content-type'].toString().indexOf('image') > -1
         };
 
         res.send(resultObj);
     });
+});
+
+/**
+ * 파일 삭제
+ */
+router.delete('/:filePath', function(req, res){
+    fs.unlinkSync("d:\\" + req.params.filePath);
+    res.send('');
 });
 
 module.exports = router;

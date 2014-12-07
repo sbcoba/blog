@@ -26,7 +26,7 @@ mongo.schema.board = new Schema({
     title : String,
     content : String,
     commentList : [],
-    file : [],
+    fileList : [],
     regDt : Date
 });
 

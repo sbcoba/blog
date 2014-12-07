@@ -53,7 +53,8 @@ router.post('/', checkLogin.check, function(req, res){
     board.division = validator.isNull(req.param('division'))  ? error.throw(409,'Please check division.') : req.param('division');
     board.title = validator.isNull(req.param('title'))  ? error.throw(409,'Please check title.') : req.param('title');
     board.content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
-    board.hashTag = validator.isNull(req.param('hashTag'))  ? error.throw(409,'Please check hashTag.') : req.param('hashTag');
+    board.hashTag = req.param('hashTag');
+    board.fileList = req.param('fileList');
     board.reqDt = dateUtil.nowDateTypeDate();
 
     board.save(function(err, data){

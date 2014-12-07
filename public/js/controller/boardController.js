@@ -46,6 +46,7 @@ angular.module('johayo.controller')
             $scope.board = {};
 
             $scope.addBoard = function(){
+                $scope.board.fileList = $scope.uploadFileList;
                 boardService.save($scope.board).then(function(){
                     alert('ok');
                 });
@@ -55,7 +56,7 @@ angular.module('johayo.controller')
                 for ( var i = 0; i < $files.length; i++) {
                     $scope.selectedFiles.push($files[i]);
                     var count = $scope.selectedFiles.length*1-1 ;
-                    $scope.selectedFiles[count].isImg = $scope.selectedFiles[count].type.indexOf('image') < 0 ? false : true;
+                    $scope.selectedFiles[count].isImg = $scope.selectedFiles[count].type.indexOf('image') > -1;
                     $scope.uploadFile(count);
                 }
             };
@@ -65,15 +66,18 @@ angular.module('johayo.controller')
                 fileService.fileUpload($scope.selectedFiles[index], 'board')
                     .then(function(data){
                         $scope.uploadFileList.push(data);
-                    },function(data){
+                    },function(err){
                         $scope.selectedFiles[index].progress = 0;
-                        $scope.selectedFiles[index].error = data;
+                        $scope.selectedFiles[index].error = err;
                     },function(evt){
                         $scope.selectedFiles[index].progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                     });
             };
 
-            $scope.deleteFile = function(index){
-                $scope.uploadFileList[index].deleteYn = 'Y';
+            $scope.deleteFile = function(index, filePath){
+                fileService.deleteFile(filePath).then(function(){
+                    $scope.uploadFileList[index].deleteYn = true;
+                    $scope.selectedFiles[index].deleteYn = true;
+                });
             };
         }]);

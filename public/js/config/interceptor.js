@@ -16,7 +16,6 @@ angular.module('interceptor', ['loginRetryQueue', 'errorHandler'])
                     });
                 }
                 else if(originalResponse.status === 500 || originalResponse.status === 409){
-                    console.log(originalResponse.status)
                     err.pushErrorFn(originalResponse.status, originalResponse.data);
                 }
 

@@ -2,7 +2,7 @@
  * Created by 동준 on 2014-12-05.
  */
 angular.module("johayo.service")
-    .factory("fileService", ['$http','$sce', '$q', '$upload', function($http, $sce, $q, $upload){
+    .factory("fileService", ['$resource','$sce', '$q', '$upload', function($resource, $sce, $q, $upload){
         var service = {
             fileUpload : function(file, division){
                 var asy = $q.defer();
@@ -21,15 +21,17 @@ angular.module("johayo.service")
                 });
                 return asy.promise;
             },
-            fileDelete : function(seq){
+            deleteFile : function(filePath){
                 var asy = $q.defer();
-                $http.post('file/ajaxFileDelete',{seq : seq}).success(function(data){
-                    if(data.err){ error(data.err); asy.reject(data.err); }
+                $resource('/api/file/:filePath',{filePath:'@filePath'}).delete({filePath:filePath},function(){
+                    asy.resolve('');
+                });
+                /*$http.delete('/api/file/'+filePath).success(function(data){
                     asy.resolve(data);
-                }).error(function(){  asy.reject('실패');});
+                });*/
                 return asy.promise;
             }
-        }
+        };
 
         return service;
     }]);

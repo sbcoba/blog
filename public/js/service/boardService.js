@@ -29,7 +29,7 @@ angular.module("johayo.service")
                 save : function(params){
                     var asy = $q.defer();
                     boardApi.url.save(params, function(){
-                        asy.resolve(data);
+                        asy.resolve('');
                     });
                     return asy.promise;
                 },
