@@ -65,8 +65,8 @@ app.use('/api/file', file);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/html/comming.html');
-    /*res.sendFile(__dirname + '/public/html/index.html');*/
+    /*res.sendFile(__dirname + '/public/html/comming.html');*/
+    res.sendFile(__dirname + '/public/html/index.html');
 });
 
 // catch 404 and forward to error handler
