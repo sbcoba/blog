@@ -78,9 +78,9 @@ app.use(function(req, res, next) {
 
 // catch all error handler
 app.use(function errorHandler(err, req, res, next) {
+    var ip = req.headers['x-forwarded-for'] || req.ip;
     /* 텔레그램으로 나한테 오류 메세지 전송 */
-    tg.sendMsg(' url\\('+req.url + '\\) \\(ip: '+ req.headers['x-forwarded-for'] || req.ip+'\\)');
-    tg.sendMsg(err.message);
+    tg.sendMsg('('+req.url + ','+ip+'\\): ' + err.message);
     /* 에러 처리 */
     err.status = validator.isNull(err.status) ? 500 : err.status;
     console.log('error on request %d | %s | %s | %d'.red, process.domain.id, req.method, req.url, err.status);
