@@ -48,13 +48,6 @@ angular.module('johayo.controller')
         function($rootScope, $scope, menuService, $location){
             /* 라우터가 바뀔때마다 체크 */
             $rootScope.$on("$routeChangeSuccess", function(){
-                $scope.getMenuAndActive();
-            });
-            $rootScope.$on("$routeChangeStart", function(){
-                $scope.getMenuAndActive();
-            });
-
-            $scope.getMenuAndActive =function(){
                 if(!!$scope.menuList){
                     $scope.getActiveMenu();
                 }else{
@@ -63,7 +56,7 @@ angular.module('johayo.controller')
                         $scope.getActiveMenu();
                     });
                 }
-            };
+            });
 
             $scope.getActiveMenu = function(){
                 $scope.activeMenu = '';
