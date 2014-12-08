@@ -8,11 +8,6 @@
                         <i class="fa fa-search"></i>
                         <input type="text" class="search-text" placeholder="Search" ng-model="search">
                     </li>
-                    <!--<li ng-if="isLogin" style="margin-top: 5px">
-                        <button class="btn btn-primary btn-xs">
-                            add
-                        </button>
-                    </li>-->
                     <li style="margin-top: 7px">
                         <a bs-collapse-toggle ng-click="downIcon = !downIcon">
                             <i class="glyphicon" ng-class="{'glyphicon-chevron-down' : downIcon, 'glyphicon-chevron-up' : !downIcon}"></i>
@@ -23,10 +18,10 @@
             <div class="panel-collapse" bs-collapse-target>
                 <div class="panel-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item animate-repeat" ng-repeat="list in boardList | filter:search"  ng-class="getColor($index)">
+                        <a ng-href="/#{{path}}/{{list._id}}" class="list-group-item animate-repeat" ng-repeat="list in boardList | filter:search"  ng-class="getColor($index)">
                             {{list.title | limitAndJjum:100}}
                             <div class="reg-date">
-                                {{list.regDt}}
+                                {{list.regDt | date : 'yyyy-MM-dd'}}
                             </div>
                         </a>
                     </div>

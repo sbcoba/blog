@@ -43,7 +43,11 @@ router.post('/', function(req, res){
  * 파일 삭제
  */
 router.delete('/:filePath', function(req, res){
-    fs.unlinkSync("d:\\" + req.params.filePath);
+    var local = '';
+    if(req.host == 'localhost'){
+        local = 'd:\\';
+    }
+    fs.unlinkSync(local+req.params.filePath);
     res.send('');
 });
 

@@ -71,18 +71,18 @@ angular.module('johayo', [
                 controller: 'boardController',
                 resolve : {
                     boardList : function(boardService, $route){
-                        boardService.list($route.current.params.division).then(function(data){
+                        return boardService.list($route.current.params.division).then(function(data){
                             return data;
                         });
                     }
                 }
             })
             .when('/board/:firstDivision/:division/:seq', {
-                templateUrl: '/html/boardDetail.html',
+                templateUrl: '/html/board/boardDetail.html',
                 controller: 'boardDetailController',
                 resolve : {
                     boardDetail : function(boardService, $route){
-                        boardService.detail($route.current.params.seq).then(function(data){
+                        return boardService.detail($route.current.params.seq).then(function(data){
                             return data;
                         });
                     }

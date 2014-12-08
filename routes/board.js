@@ -21,12 +21,12 @@ var router = express.Router();
  * 게시물을 가지고 온다.
  */
 router.get('/list/:division', function(req, res){
-    Board.find({division: req.params.division}, function(err, data){
+    Board.find({division: req.params.division}, null, {sort : {'regDt' : -1}}, function(err, docs){
         if(err){
             throw err;
         }
 
-        res.send(data);
+        res.send(docs);
     });
 });
 
@@ -34,7 +34,7 @@ router.get('/list/:division', function(req, res){
  * 상세 게시물 가지고 온다.
  */
 router.get('/:seq', function(req, res){
-    Board.findOne({_id : new ObjectId(req.params.seq)}, function(err, data){
+    Board.findOne({_id : new ObjectId(req.params.seq)},{'commentList.pw': 0},function(err, data){
         if(err){
             throw err;
         }
@@ -55,7 +55,7 @@ router.post('/', checkLogin.check, function(req, res){
     board.content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
     board.hashTag = req.param('hashTag');
     board.fileList = req.param('fileList');
-    board.reqDt = dateUtil.nowDateTypeDate();
+    board.reqDt = new Date();
 
     board.save(function(err, data){
         if(err){

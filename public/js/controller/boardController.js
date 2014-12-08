@@ -2,27 +2,11 @@
  * Created by 동준 on 2014-11-25.
  */
 angular.module('johayo.controller')
-    .controller('boardController', ['$scope', 'boardService',
-        function($scope, boardService){
-
-            $scope.boardList = [
-                {
-                    "title": "Collapsible Group Item #1",
-                    "regDt": "2011-01-01"
-                },
-                {
-                    "title": "Collapsible Group Item #2",
-                    "regDt": "2011-01-01"
-                },
-                {
-                    "title": "Collapsible Group Item #3",
-                    "regDt": "2011-01-01"
-                },
-                {
-                    "title": "Collapsible Group Item #3",
-                    "regDt": "2011-01-01"
-                }
-            ];
+    .controller('boardController', ['$scope', 'boardService', 'boardList', '$location',
+        function($scope, boardService, boardList, $location){
+            /* 상세 갈때 쓴다. */
+            $scope.path = $location.path();
+            $scope.boardList = boardList;
             $scope.activePanel = 0;
 
             $scope.getColor = function(index){
@@ -34,9 +18,9 @@ angular.module('johayo.controller')
                 }
             }
         }])
-    .controller('boardDetailController', ['$scope', 'boardService',
-        function($scope, boardService){
-
+    .controller('boardDetailController', ['$scope', 'boardService', 'boardDetail',
+        function($scope, boardService, boardDetail){
+            $scope.boardDetail = boardDetail;
         }])
     .controller('boardAddController', ['$scope', 'boardService', 'menuList', 'fileService',
         function($scope, boardService, menuList, fileService){

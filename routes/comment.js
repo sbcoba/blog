@@ -25,9 +25,15 @@ var router = express.Router();
  * autoSeq에서 seq를 가지고 온 후
  * 댓글을 등록 후 데이터 리턴
  */
-router.post('/:seq', checkLogin.check, function(req, res){
-    var id = validator.isNull(req.param('id'))  ? error.throw(409,'Please check id.') : req.param('id');
-    var pw = validator.isNull(req.param('pw'))  ? error.throw(409,'Please check password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
+router.post('/', checkLogin.check, function(req, res){
+    if(!!req.session.loginInfo){
+        var id = req.session.loginInfo._id;
+        var pw = req.session.loginInfo.password;
+    }else{
+        var id = validator.isNull(req.param('id'))  ? error.throw(409,'Please check id.') : req.param('id');
+        var pw = validator.isNull(req.param('pw'))  ? error.throw(409,'Please check password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
+    }
+    var boardSeq = validator.isNull(req.param('boardSeq'))  ? error.throw(409,'Please check boardSeq.') : req.param('boardSeq');
     var content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
 
     AutoSeq.findOneAndUpdate({_id : 'comment'}, {$inc : {seq: 1}, new: true}, function(err, result){
@@ -38,8 +44,12 @@ router.post('/:seq', checkLogin.check, function(req, res){
         var seq = result.seq;
 
         Board.findOneAndUpdate(
-            {_id: new ObjectId(req.params.seq)},
-            {$push: {comment : {seq: seq, id : id, pw : pw, content : content, regDt : dateUtil.nowDateTypeDate()}}, new: true},
+            {_id: new ObjectId(boardSeq)},
+            {
+                $push: {commentList : {seq: seq, id : id, pw : pw, content : content, regDt : dateUtil.nowDateTypeDate()}},
+                new: true
+            },
+            {fields : {'commentList.pw': 0}},
             function (err, data){
                 if(err){
                     throw err;
@@ -62,6 +72,7 @@ router.delete('/:boardSeq/:seq', checkLogin.check, function(){
     Board.findOneAndUpdate(
         {_id: new ObjectId(req.params.seq)},
         {$pull: {id: id, pw: pw, regDt: regDt}, new: true},
+        {fields : {'commentList.pw': 0}},
         function(err, data){
             if(err){
                 throw err;

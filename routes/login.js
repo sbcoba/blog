@@ -48,8 +48,8 @@ router.post('/', function(req, res){
             error.throw(4019,'Please check id or password.');
         }
 
-        req.session.loginInfo = loginInfo;
-        res.send(loginInfo);
+        req.session.loginInfo = loginInfo._doc;
+        res.send(loginInfo._doc);
     });
 });
 

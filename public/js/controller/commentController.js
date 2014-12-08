@@ -2,8 +2,8 @@
  * Created by 동준 on 2014-11-27.
  */
 angular.module('johayo.controller')
-    .controller('commentController', ['$scope',
-        function($scope){
+    .controller('commentController', ['$scope', 'commentService',
+        function($scope, commentService){
             /* 댓글 달때 씀 */
             $scope.comment = {};
             /* sub댓글 달때 쓴다. */
@@ -23,15 +23,16 @@ angular.module('johayo.controller')
 
             /* 댓글 등록 */
             $scope.addComment = function(){
-                commentService.addComment($scope.boardDetail.seq, $scope.comment.content, $scope.comment.name, $scope.comment.pw)
+                commentService.addComment($scope.boardDetail._id, $scope.comment.content, $scope.comment.name, $scope.comment.pw)
                     .then(function(data){
-
+                        $scope.boardDetail = data;
+                        $scope.comment = {};
                     });
             };
 
             /* 댓글 수정 */
             $scope.editComment = function(commentDetail){
-                commentService.editComment($scope.boardDetail.seq, commentDetail.Seq, commentDetail.content, commentDetail.pw)
+                commentService.editComment($scope.boardDetail._id, commentDetail._id, commentDetail.content, commentDetail.pw)
                     .then(function(){
                         $scope.closeEditor();
                     });
@@ -39,7 +40,7 @@ angular.module('johayo.controller')
 
             /* 댓글 삭제 */
             $scope.deleteComment = function(commentSeq){
-                commentService.deleteComment($scope.boardDetail.seq, commentSeq)
+                commentService.deleteComment($scope.boardDetail._id, commentSeq)
                     .then(function(data){
 
                     });
@@ -121,11 +122,15 @@ angular.module('johayo.controller')
 
             /* 댓글 다 닫기 */
             $scope.closeEditor = function(){
-                for(var i=0;i<$scope.commentList.length;i++){
-                    $scope.isShowEditor[$scope.commentList[i].seq] = false;
-                    $scope.showWriteSubBox[$scope.commentList[i].seq] = false;
-                    for(var j=0;j < $scope.commentList[i].sub.length;j++){
-                        $scope.isShowSubEditor[$scope.commentList[i].seq+ '-' + $scope.commentList[i].sub[j].seq] = false;
+                if(!!$scope.boardDetail.commentList){
+                    for(var i=0;i<$scope.boardDetail.commentList.length;i++){
+                        $scope.isShowEditor[$scope.boardDetail.commentList[i].seq] = false;
+                        $scope.showWriteSubBox[$scope.boardDetail.commentList[i].seq] = false;
+                        if(!!$scope.boardDetail.commentList[i].sub){
+                            for(var j=0;j < $scope.boardDetail.commentList[i].sub.length;j++){
+                                $scope.isShowSubEditor[$scope.commentList[i].seq+ '-' + $scope.boardDetail.commentList[i].sub[j].seq] = false;
+                            }
+                        }
                     }
                 }
             };

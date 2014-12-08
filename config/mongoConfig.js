@@ -16,7 +16,7 @@ mongo.schema.member = new Schema({
     _id : String,
     password : String,
     name : String,
-    regDt : Date
+    regDt : {type: Date, default: Date.now}
 });
 
 /* 게시판 */
@@ -27,7 +27,7 @@ mongo.schema.board = new Schema({
     content : String,
     commentList : [],
     fileList : [],
-    regDt : Date
+    regDt : {type: Date, default: Date.now}
 });
 
 mongo.schema.autoSeq = new Schema({
@@ -43,7 +43,7 @@ mongo.schema.menu = new Schema({
     /* 정렬 순서 */
     rank : Number,
     subMenuList : [],
-    regDt : String
+    regDt : {type: Date, default: Date.now}
 });
 
 /* 달력 *//*
