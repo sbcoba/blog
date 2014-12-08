@@ -42,12 +42,14 @@ router.post('/', function(req, res){
 /**
  * 파일 삭제
  */
-router.delete('/:filePath', function(req, res){
+router.delete('/', function(req, res){
+    var filePath = validator.isNull(req.param('filePath'))  ? error.throw(409,'Please check filePath.') : req.param('filePath');
+
     var local = '';
     if(req.host == 'localhost'){
         local = 'd:\\';
     }
-    fs.unlinkSync(local+req.params.filePath);
+    fs.unlinkSync(local+filePath);
     res.send('');
 });
 

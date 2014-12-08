@@ -23,7 +23,7 @@ angular.module("johayo.service")
             },
             deleteFile : function(filePath){
                 var asy = $q.defer();
-                $resource('/api/file/:filePath',{filePath:'@filePath'}).delete({filePath:filePath},function(){
+                $resource('/api/file/',{filePath:'@filePath'}).delete({filePath:filePath},function(){
                     asy.resolve('');
                 });
                 /*$http.delete('/api/file/'+filePath).success(function(data){

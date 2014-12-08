@@ -24,6 +24,9 @@ angular.module('johayo', [
                 templateUrl: '/html/main/main.html',
                 controller: 'mainController'
             })
+            .when('/bookmark', {
+                templateUrl: '/html/bookmark/bookmark.html'
+            })
             /*.when('/profile', {
                 templateUrl: '/html/profile/profile.html'
             })*/

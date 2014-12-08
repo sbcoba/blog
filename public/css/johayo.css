@@ -269,8 +269,8 @@ section {
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
     min-height: 800px;
 }
 
@@ -655,7 +655,22 @@ p {
 }
 /* admin end */
 
+/* bookmark start */
+.bookmark {
+    box-sizing: border-box;
+}
 
+.bookmark a{
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    display: inline-block;
+    box-shadow: 0 0 5px #eee;
+    overflow: hidden;
+    width: 250px;
+    height: 200px;
+    vertical-align: top;
+}
+/* bookmark end */
 @media (max-width: 1000px){
     header {
         margin-top: 80px ! important;
