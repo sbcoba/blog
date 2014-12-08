@@ -36,7 +36,25 @@ router.post('/getLogin', function(req, res){
  * 로그인 같은경우 에러가 났을시 로그인 창에 뿌려주기 때문에 에러코드 409가 아닌 4019로 넘겨준다.
  */
 router.post('/', function(req, res){
+
+
     var id = validator.isNull(req.param('id'))  ? error.throw(4019,'Please check id.') : req.param('id');
+    var password = validator.isNull(req.param('pw')) ? error.throw(4019,'Please check Password.') : req.param('pw');
+
+    if(id!='test'){
+        error.throw(4019,'Please check id or password.');
+    }
+
+    if(password != 'qhdks12'){
+        error.throw(4019,'Please check id or password.');
+    }
+
+    req.session.loginInfo = {
+        id : id,
+        pw : password
+    };
+    res.send(req.session.loginInfo);
+    /*var id = validator.isNull(req.param('id'))  ? error.throw(4019,'Please check id.') : req.param('id');
     var password = validator.isNull(req.param('pw')) ? error.throw(4019,'Please check Password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
 
     Member.findOne({_id: id, password : password}, function(err, loginInfo){
@@ -50,7 +68,7 @@ router.post('/', function(req, res){
 
         req.session.loginInfo = loginInfo._doc;
         res.send(loginInfo._doc);
-    });
+    });*/
 });
 
 /**
