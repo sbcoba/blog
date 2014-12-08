@@ -24,9 +24,9 @@ angular.module('johayo', [
                 templateUrl: '/html/main/main.html',
                 controller: 'mainController'
             })
-            .when('/profile', {
+            /*.when('/profile', {
                 templateUrl: '/html/profile/profile.html'
-            })
+            })*/
             .when('/admin/menu', {
                 templateUrl: '/html/menu/adminMenu.html',
                 controller: 'adminMenuController',
