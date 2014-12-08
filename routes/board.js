@@ -34,7 +34,7 @@ router.get('/list/:division', function(req, res){
  * 상세 게시물 가지고 온다.
  */
 router.get('/:seq', function(req, res){
-    Board.findOne({_id : new ObjectId(req.params.seq)},{'commentList.pw': 0},function(err, data){
+    Board.findOne({_id : new ObjectId(req.params.seq)},{'commentList.pw': 0, 'commentList.sub.pw' : 0},  {sort : {'commonList.regDt' : -1}},function(err, data){
         if(err){
             throw err;
         }
@@ -75,13 +75,17 @@ router.put('/:seq', checkLogin.check, function(){
     var content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
     var hashTag = validator.isNull(req.param('hashTag'))  ? error.throw(409,'Please check hashTag.') : req.param('hashTag');
 
-    Board.findOneAndUpdate({_id: new ObjectId(req.params.seq)}, {$set: {title: title, content: content, hashTag: hashTag}, new: true}, function(err, data){
-        if(err){
-            throw err;
-        }
+    Board.findOneAndUpdate(
+        {_id: new ObjectId(req.params.seq)},
+        {$set: {title: title, content: content, hashTag: hashTag}, new: true},
+        {fields : {'commentList.pw': 0, 'commentList.sub.pw' : 0}},
+        function(err, data){
+            if(err){
+                throw err;
+            }
 
-        res.send(data);
-    })
+            res.send(data);
+        })
 });
 
 /**

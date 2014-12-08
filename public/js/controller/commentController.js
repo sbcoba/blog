@@ -18,7 +18,7 @@ angular.module('johayo.controller')
             /* sub 댓글 달때 쓰는 param들 */
             $scope.subParams = {
                 division: 'sub',
-                boardSeq: $scope.boardDetail.seq
+                boardSeq: $scope.boardDetail._id
             };
 
             /* 댓글 등록 */
@@ -32,29 +32,33 @@ angular.module('johayo.controller')
 
             /* 댓글 수정 */
             $scope.editComment = function(commentDetail){
-                commentService.editComment($scope.boardDetail._id, commentDetail._id, commentDetail.content, commentDetail.pw)
-                    .then(function(){
+                commentService.editComment($scope.boardDetail._id, commentDetail.seq, commentDetail.content, commentDetail.pw)
+                    .then(function(data){
                         $scope.closeEditor();
+                        $scope.boardDetail = data;
+                        $scope.showWriteBox = false;
                     });
             };
 
             /* 댓글 삭제 */
-            $scope.deleteComment = function(commentSeq){
-                commentService.deleteComment($scope.boardDetail._id, commentSeq)
+            $scope.deleteComment = function(commentSeq, pw){
+                commentService.deleteComment($scope.boardDetail._id, commentSeq, pw)
                     .then(function(data){
-
+                        $scope.boardDetail = data;
                     });
             };
 
             /* sub 댓글 등록 */
-            $scope.addSubComment = function(commentSeq){
+            $scope.addSubComment = function(commentSeq, sub){
                 $scope.subParams.commentSeq = commentSeq;
-                $scope.subParams.content = $scope.sub.content;
-                $scope.subParams.name = $scope.sub.name;
-                $scope.subParams.pw = $scope.sub.pw;
-                commentService.editComment($scope.subParams)
-                    .then(function(data){
+                $scope.subParams.content = sub.content;
+                $scope.subParams.name = sub.name;
+                $scope.subParams.pw = sub.pw;
 
+                commentService.addSubComment($scope.subParams)
+                    .then(function(data){
+                        $scope.boardDetail = data;
+                        sub.pw = {};
                     });
             };
 
@@ -64,9 +68,11 @@ angular.module('johayo.controller')
                 $scope.subParams.subSeq = commentSeq.seq;
                 $scope.subParams.content = commentSub.content;
                 $scope.subParams.pw = commentSub.pw;
+
                 commentService.editSubComment($scope.subParams)
                     .then(function(){
                         $scope.closeEditor();
+                        commentSub.pw={};
                     });
             };
 
@@ -91,7 +97,7 @@ angular.module('johayo.controller')
 
             /* 댓글 수정시 다른 곳의 댓글들의 editor 연것을 안보이게 하고 해당 부분을 보이게 한다. */
             $scope.showEditor = function(seq, subSeq){
-                $scope.showWriteBox = false;
+                $scope.showWriteBox = true;
                 if(!!subSeq){
                     if(!$scope.isShowSubEditor[seq+'-'+subSeq]){
                         $scope.closeEditor();
@@ -111,7 +117,7 @@ angular.module('johayo.controller')
 
             /* 서브 댓글 등록 박스 */
             $scope.isShowWriteSubBox = function(seq){
-                $scope.showWriteBox = false;
+                $scope.showWriteBox = true;
                 if($scope.showWriteSubBox[seq]){
                     $scope.closeEditor();
                 }else{
@@ -128,7 +134,7 @@ angular.module('johayo.controller')
                         $scope.showWriteSubBox[$scope.boardDetail.commentList[i].seq] = false;
                         if(!!$scope.boardDetail.commentList[i].sub){
                             for(var j=0;j < $scope.boardDetail.commentList[i].sub.length;j++){
-                                $scope.isShowSubEditor[$scope.commentList[i].seq+ '-' + $scope.boardDetail.commentList[i].sub[j].seq] = false;
+                                $scope.isShowSubEditor[$scope.boardDetail.commentList[i].seq+ '-' + $scope.boardDetail.commentList[i].sub[j].seq] = false;
                             }
                         }
                     }

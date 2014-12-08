@@ -21,16 +21,15 @@ var ObjectId = mongo.mongoose.Types.ObjectId;
 var router = express.Router();
 
 /**
- * 로그인 체크후
  * autoSeq에서 seq를 가지고 온 후
  * 댓글을 등록 후 데이터 리턴
  */
-router.post('/', checkLogin.check, function(req, res){
+router.post('/', function(req, res){
     if(!!req.session.loginInfo){
-        var id = req.session.loginInfo._id;
+        var name = req.session.loginInfo._id;
         var pw = req.session.loginInfo.password;
     }else{
-        var id = validator.isNull(req.param('id'))  ? error.throw(409,'Please check id.') : req.param('id');
+        var name = validator.isNull(req.param('name'))  ? error.throw(409,'Please check id.') : req.param('name');
         var pw = validator.isNull(req.param('pw'))  ? error.throw(409,'Please check password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
     }
     var boardSeq = validator.isNull(req.param('boardSeq'))  ? error.throw(409,'Please check boardSeq.') : req.param('boardSeq');
@@ -46,10 +45,10 @@ router.post('/', checkLogin.check, function(req, res){
         Board.findOneAndUpdate(
             {_id: new ObjectId(boardSeq)},
             {
-                $push: {commentList : {seq: seq, id : id, pw : pw, content : content, regDt : dateUtil.nowDateTypeDate()}},
+                $push: {commentList : {seq: seq, name : name, pw : pw, content : content, regDt : dateUtil.nowDateTypeDate()}},
                 new: true
             },
-            {fields : {'commentList.pw': 0}},
+            {fields : {'commentList.pw': 0, 'commentList.sub.pw' : 0}},
             function (err, data){
                 if(err){
                     throw err;
@@ -61,18 +60,20 @@ router.post('/', checkLogin.check, function(req, res){
 });
 
 /**
- * 로그인 체크후
  * 댓글을 삭제 후 데이터 리턴
  */
-router.delete('/:boardSeq/:seq', checkLogin.check, function(){
-    var id = validator.isNull(req.param('id'))  ? error.throw(409,'Please check id.') : req.param('id');
+router.post('/delete', function(req, res){
     var pw = validator.isNull(req.param('pw'))  ? error.throw(409,'Please check password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
-    var regDt = validator.isNull(req.param('regDt'))  ? error.throw(409,'Please check regDt.') : req.param('regDt');
+    var boardSeq = validator.isNull(req.param('boardSeq'))  ? error.throw(409,'Please check boardSeq.') : req.param('boardSeq');
+    var commentSeq = validator.isNull(req.param('commentSeq'))  ? error.throw(409,'Please check commentSeq.') : req.param('commentSeq');
 
     Board.findOneAndUpdate(
-        {_id: new ObjectId(req.params.seq)},
-        {$pull: {id: id, pw: pw, regDt: regDt}, new: true},
-        {fields : {'commentList.pw': 0}},
+        {_id: new ObjectId(boardSeq)},
+        {
+            $pull: {commentList : {pw: pw, seq: commentSeq}},
+            new: true
+        },
+        {fields : {'commentList.pw': 0, 'commentList.sub.pw' : 0}},
         function(err, data){
             if(err){
                 throw err;
@@ -80,6 +81,39 @@ router.delete('/:boardSeq/:seq', checkLogin.check, function(){
 
             res.send(data);
         })
+});
+
+/**
+ * 댓글을 삭제 후 데이터 리턴
+ */
+router.put('/', function(req, res){
+    var pw = validator.isNull(req.param('pw'))  ? error.throw(409,'Please check password.') : cryptoUtil.encrypt(req.param('pw'), config.crypto.password);
+    var boardSeq = validator.isNull(req.param('boardSeq'))  ? error.throw(409,'Please check boardSeq.') : req.param('boardSeq');
+    var commentSeq = validator.isNull(req.param('commentSeq'))  ? error.throw(409,'Please check commentSeq.') : req.param('commentSeq');
+    var content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
+
+    Board.findOneAndUpdate(
+        {
+            _id: new ObjectId(boardSeq),
+            'commentList': {
+                $elemMatch: {'seq': commentSeq, 'pw':pw}
+            }
+        },
+        {
+            $set: {'commentList.$.content': content}
+        },
+        {fields : {'commentList.pw': 0, 'commentList.sub.pw' : 0}},
+        function (err, data){
+            if(err){
+                throw err;
+            }
+
+            if(!data){
+                throw error.throw('409', 'check password.');
+            }
+
+            res.send(data);
+        });
 });
 
 module.exports = router;

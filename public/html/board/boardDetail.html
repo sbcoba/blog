@@ -16,7 +16,7 @@
         <div class="comment-box" ng-controller="commentController">
             <h4>
                 Comments
-                <small>({{boardDetail.commentList.length}})</small>
+                <small>({{!!boardDetail.commentList ? boardDetail.commentList.length : 0}})</small>
                 <button class="btn btn-xs btn-info" ng-click="showWriteBox = !showWriteBox; closeEditor(); comment={}">
                     <i class="glyphicon glyphicon-pencil"></i>
                 </button>
@@ -28,20 +28,20 @@
                     <div class="comment-form">
                         <input type="text" ng-model="comment.name" placeholder="Name" class="form-control" ng-if="!isLogin">
                         <input type="password" ng-model="comment.pw" placeholder="Password" class="form-control" ng-if="!isLogin">
-                        <button type="submit" class="btn btn-success" ng-disabled="checkVal(comment)" ng-click="addComment()">Write</button>
-                        <button type="submit" class="btn btn-danger"  ng-click="showWriteBox = !showWriteBox;">Close</button>
+                        <button class="btn btn-success" ng-disabled="checkVal(comment)" ng-click="addComment()">Write</button>
+                        <!--<button class="btn btn-danger"  ng-click="showWriteBox = !showWriteBox;">Close</button>-->
                     </div>
                 </form>
             </div>
-            <div class="media comment-detail" ng-repeat="commentDetail in boardDetail.commentList" id="{{commentDetail.seq}}">
+            <div class="media comment-detail" ng-repeat="commentDetail in boardDetail.commentList | orderBy:'regDt':true">
                 <!-- 1step comment -->
                 <div class="comment-one-step">
                     <div class="title">
                         <p>
-                            {{commentDetail.name}} <small class="conment-reg-date">({{commentDetail.regDt}})</small>
-                            <button class="btn btn-xs btn-default" ng-click="isShowWriteSubBox(commentDetail.seq);sub={};">
+                            {{commentDetail.name}} <small class="conment-reg-date">({{commentDetail.regDt | date : 'yyyy-MM-dd HH:mm:ss'}})</small>
+                            <!--<button class="btn btn-xs btn-default" ng-click="isShowWriteSubBox(commentDetail.seq);sub={};">
                                 <i class="glyphicon glyphicon-pencil"></i>
-                            </button>
+                            </button>-->
                             <button class="btn btn-xs btn-default" ng-click="showEditor(commentDetail.seq)">
                                 <i class="glyphicon glyphicon-wrench"></i>
                             </button>
@@ -51,14 +51,14 @@
                         <text-angular ng-model="commentDetail.content" ta-disabled='disabled' placeholder="subComment"  ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
                         <div class="comment-form">
                             <input type="password" ng-model="commentDetail.pw" placeholder="Password" class="form-control">
-                            <button type="submit" class="btn btn-warning btn-sm" ng-disabled="checkVal(commentDetail)">Edit</button>
-                            <button type="submit" class="btn btn-danger btn-sm" ng-disabled="!commentDetail.pw">Delete</button>
-                            <button type="submit" class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
+                            <button class="btn btn-warning btn-sm" ng-disabled="checkVal(commentDetail)" ng-click="editComment(commentDetail)">Edit</button>
+                            <button class="btn btn-danger btn-sm" ng-disabled="!commentDetail.pw" ng-click="deleteComment(commentDetail.seq, commentDetail.pw)">Delete</button>
+                            <button class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
                         </div>
                     </div>
                     <div class="comment-content" ng-bind-html="commentDetail.content" ng-hide="isShowEditor[commentDetail.seq]"></div>
                 </div>
-                <!-- 2step comment add -->
+               <!-- &lt;!&ndash; 2step comment add &ndash;&gt;
                 <div class="comment-two-step" ng-show="showWriteSubBox[commentDetail.seq]">
                     <div class="comment-two-step-icon">
                         └
@@ -67,12 +67,12 @@
                     <div class="comment-form">
                         <input type="text" ng-model="sub.name" placeholder="Name" class="form-control" ng-if="!isLogin">
                         <input type="password" ng-model="sub.pw" placeholder="Password" class="form-control" ng-if="!isLogin">
-                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="checkVal(sub)">Write</button>
-                        <button type="submit" class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
+                        <button class="btn btn-success btn-sm" ng-disabled="checkVal(sub)" ng-click="addSubComment(commentDetail.seq, sub)">Write</button>
+                        <button class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
                     </div>
                 </div>
-                <!-- 2step comment -->
-                <div class="comment-two-step" ng-repeat="commentSub in commentDetail.sub">
+                &lt;!&ndash; 2step comment &ndash;&gt;
+                <div class="comment-two-step" ng-repeat="commentSub in commentDetail.sub | orderBy:'regDt':true">
                     <div class="comment-two-step-icon">
                         └
                     </div>
@@ -88,13 +88,13 @@
                         <text-angular ng-model="commentSub.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
                         <div class="comment-form">
                             <input type="password" ng-model="commentSub.pw" placeholder="Password" class="form-control">
-                            <button type="submit" class="btn btn-warning btn-sm" ng-disabled="checkVal(commentSub)">Edit</button>
-                            <button type="submit" class="btn btn-danger btn-sm" ng-disabled="!commentSub.pw">Delete</button>
-                            <button type="submit" class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
+                            <button class="btn btn-warning btn-sm" ng-disabled="checkVal(commentSub)" ng-click="editSubComment(commentSub)">Edit</button>
+                            <button class="btn btn-danger btn-sm" ng-disabled="!commentSub.pw">Delete</button>
+                            <button class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
                         </div>
                     </div>
                     <div class="comment-content" ng-bind-html="commentSub.content" ng-hide="isShowSubEditor[commentDetail.seq+'-'+commentSub.seq]"></div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

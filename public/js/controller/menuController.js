@@ -48,6 +48,13 @@ angular.module('johayo.controller')
         function($rootScope, $scope, menuService, $location){
             /* 라우터가 바뀔때마다 체크 */
             $rootScope.$on("$routeChangeSuccess", function(){
+                $scope.getMenuAndActive();
+            });
+            $rootScope.$on("$routeChangeStart", function(){
+                $scope.getMenuAndActive();
+            });
+
+            $scope.getMenuAndActive =function(){
                 if(!!$scope.menuList){
                     $scope.getActiveMenu();
                 }else{
@@ -56,17 +63,18 @@ angular.module('johayo.controller')
                         $scope.getActiveMenu();
                     });
                 }
-            });
+            };
 
             $scope.getActiveMenu = function(){
                 $scope.activeMenu = '';
                 $scope.activeSubMenu = '';
                 for(var i=0;i<$scope.menuList.length;i++){
-                    if($scope.menuList[i].url.replace('/#','') == $location.path()){
+                    if($location.path().indexOf($scope.menuList[i].url.replace('/#','')) > -1){
                         $scope.activeMenu = $scope.menuList[i].name;
-                    }else if($scope.menuList[i].subMenuList.length > 0){
+                    }
+                    if($scope.menuList[i].subMenuList.length > 0){
                         for(var j=0;j<$scope.menuList[i].subMenuList.length;j++){
-                            if($scope.menuList[i].subMenuList[j].url.replace('/#','') == $location.path()){
+                            if($location.path().indexOf($scope.menuList[i].subMenuList[j].url.replace('/#','')) > -1){
                                 $scope.activeMenu = $scope.menuList[i].name;
                                 $scope.activeSubMenu = $scope.menuList[i].subMenuList[j].name;
                             }

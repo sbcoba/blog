@@ -2,10 +2,16 @@
  * Created by 동준 on 2014-11-27.
  */
 angular.module("johayo.service")
-    .factory("commentService", ['$resource', '$q',
-        function($resource, $q){
+    .factory("commentService", ['$http', '$q', '$resource',
+        function($http, $q, $resource){
             /* 서브는 꼭 division에 sub 라고 넣어줘야됨 */
-            var commentApi = $resource('/api/comment/:division/',{division:'@division'});
+            var commentApi = $resource('/api/comment/:division/',
+                {division:'@division'},
+                {
+                    'delete': {method: 'post'},
+                    'edit' : {method:'put'}
+                }
+            );
 
             var service = {
                 addComment : function(boardSeq, content, name, pw){
@@ -17,14 +23,15 @@ angular.module("johayo.service")
                 },
                 editComment : function(boardSeq, commentSeq, content, pw){
                     var asy = $q.defer();
-                    commentApi.put({boardSeq: boardSeq, commentSeq: commentSeq, content: content, pw: pw}, function(data){
+                    commentApi.edit({boardSeq: boardSeq, commentSeq: commentSeq, content: content, pw: pw}, function(data){
+                        console.log(data);
                         asy.resolve(data);
                     });
                     return asy.promise;
                 },
-                deleteComment : function(boardSeq, commentSeq){
+                deleteComment : function(boardSeq, commentSeq, pw){
                     var asy = $q.defer();
-                    commentApi.delete({boardSeq: boardSeq, commentSeq: commentSeq}, function(data){
+                    commentApi.delete({division:'delete', boardSeq: boardSeq, commentSeq: commentSeq, pw: pw}, function(data){
                         asy.resolve(data);
                     });
                     return asy.promise;

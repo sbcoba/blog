@@ -6,7 +6,11 @@ angular.module("johayo.service")
         function($resource, $q){
             var boardApi = {
                 list : $resource('/api/board/list/:division',{division:'@division'},{'query': {method: 'GET', isArray:true}}),
-                url : $resource('/api/board/:seq',{seq:'@seq'},{'get': {method: 'GET', 'update': {method:'PUT'}}})
+                url : $resource('/api/board/:seq',{seq:'@seq'},
+                    {
+                        'get': {method: 'GET'},
+                        'update': {method:'PUT'}
+                    })
             };
 
             var service = {
