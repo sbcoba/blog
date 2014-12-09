@@ -92,7 +92,7 @@ app.use(function errorHandler(err, req, res, next) {
     tg.sendMsg(err.message + '  ['+req.url + '], ['+ip+']');
     /* 에러 처리 */
     err.status = validator.isNull(err.status) ? 500 : err.status;
-    console.log('error on request %d | %s | %s | %d'.red, process.domain.id, req.method, req.url, err.status);
+    console.log('error on request %s | %s | %d'.red, req.method, req.url, err.status);
     console.log(err.stack.red);
     err.message = err.status == 500 ? 'Something bad happened. :(' : err.message;
     res.status(err.status).send(err.message);
