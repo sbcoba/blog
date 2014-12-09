@@ -47,15 +47,13 @@ angular.module('johayo.controller')
                 });
             };
 
-            $scope.adminMenu = function (){
-                return [
+            $scope.adminMenu = [
                     {text: '<i class="glyphicon glyphicon-ok"></i> Menu', href: '/#/admin/menu'},
                     /*{text: '<i class="glyphicon glyphicon-cog"></i> Setting', click: 'showEditor()'},*/
                     {text: '<i class="glyphicon glyphicon-pencil"></i> Write board', href:'/#/admin/board'},
                     {"divider": true},
                     {text: '<i class="glyphicon glyphicon-log-out"></i> Logout', click: 'logout()'}
                 ];
-            };
 
             function windowSizeHideMenu(){
                 /* 윈도우 창에 따른 메뉴 보이기 안보이기 체크 */

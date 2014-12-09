@@ -25,7 +25,7 @@
             <h4>{{list.title}}</h4>
         </div>
         <div class="bookmark-content" ng-bind-html="list.content"></div>
-        <a><img ng-src="{{list.fileList[0].url}}" class="img-rounded bookmark-img"></a>
+        <a ng-href="{{list.url}}" target="_blank"><img ng-src="{{list.fileList[0].url}}" class="img-rounded bookmark-img"></a>
         <div class="hash-tag-box">{{list.hashTag}}</div>
     </div>
 </div>

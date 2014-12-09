@@ -1,21 +1,15 @@
 /**
  * Created by 동준 on 2014-11-14.
  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
-*{
-    font-family: 'Open Sans', Arial, sans-serif, ng;
-}
 
 body {
-    font-family: 'Gotham A','Gotham B';
     font-weight: 400!important;
     font-style: normal!important;
     color: #767676;
     background: #f1f2f7;
     padding: 0px !important;
     margin: 0px !important;
-    font-size: 13px;
-
+    font-size: 12px;
     width: 100%;
     height: 100%;
 }
@@ -520,6 +514,15 @@ section > article {
 /* 날씨 end */
 
 /* 공통 start */
+table, td, th{
+    border: 1px solid silver;
+    padding: 3px;
+}
+
+th {
+   background-color: #adadad;
+}
+
 *:focus {
     outline:0 !important;
     outline-width: 0;
@@ -580,7 +583,7 @@ p {
     float: left;
 }
 
-.glyphicon-remove{
+.glyphicon-remove, .fa-cog{
     cursor: pointer;
 }
 /* 공통 end */
@@ -598,6 +601,16 @@ p {
     -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
     -o-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.15);
     box-shadow: 0px 0px 10px 3px rgba(0,0,0,.15);
+    background-color: #ffffff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.board-detail .config {
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+    float: right;
 }
 
 .panel {
@@ -622,12 +635,6 @@ p {
     top: 10px;
 }
 
-.board-detail {
-    background-color: #ffffff;
-    border-radius: 15px;
-    z-index: 0;
-}
-
 .board-detail .header {
     position: relative;
 }
@@ -643,13 +650,16 @@ p {
     border-top: 3px double #dcdcdc;
     border-bottom: 3px double #dcdcdc;
     padding: 15px 0;
-    font-size: 16px;
     word-wrap: break-word;
 }
 
 .board-detail .reg-date {
     padding: 15px 0 0;
     text-align: right;
+}
+
+.board-detail .detail-reg-date {
+    color: #9d9d9d
 }
 /* board end */
 

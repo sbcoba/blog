@@ -18,9 +18,20 @@ angular.module('johayo.controller')
                 }
             }
         }])
-    .controller('boardDetailController', ['$scope', 'boardService', 'boardDetail',
-        function($scope, boardService, boardDetail){
+    .controller('boardDetailController', ['$scope', 'boardService', 'boardDetail', '$location', '$routeParams',
+        function($scope, boardService, boardDetail, $location, $routeParams){
             $scope.boardDetail = boardDetail;
+            $scope.boardConfig = [
+                {text: '<i class="glyphicon glyphicon-pencil"></i> Edit', click: 'showEditor()'},
+                {text: '<i class="glyphicon glyphicon-remove"></i> Delete', click: 'deleteBoard()'},
+            ];
+
+            $scope.deleteBoard = function(){
+                boardService.delete(boardDetail._id).then(function(){
+                    $location.path('/board/'+$routeParams.firstDivision+'/'+$routeParams.division);
+                });
+            }
+
         }])
     .controller('boardAddController', ['$scope', 'boardService', 'menuList', 'fileService',
         function($scope, boardService, menuList, fileService){

@@ -10,8 +10,6 @@ angular.module('johayo.controller')
                     fileList : new Array()
                 };
             };
-            console.log($scope.bookmark);
-
             $scope.bookmarkList = bookmarkList;
             $scope.urlImgFile = {};
             var oldUrl = '';
