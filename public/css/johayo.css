@@ -644,6 +644,7 @@ p {
     border-bottom: 3px double #dcdcdc;
     padding: 15px 0;
     font-size: 16px;
+    word-wrap: break-word;
 }
 
 .board-detail .reg-date {
