@@ -88,10 +88,13 @@ app.use(function(req, res, next) {
 // catch all error handler
 app.use(function errorHandler(err, req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.ip;
-    /* 텔레그램으로 나한테 오류 메세지 전송 */
-    tg.sendMsg(err.message + '  ['+req.url + '], ['+ip+']');
     /* 에러 처리 */
     err.status = validator.isNull(err.status) ? 500 : err.status;
+    /* 텔레그램으로 나한테 오류 메세지 전송 */
+    if(err.status != 401 && err.status != 409 && err.status != 4019){
+        tg.sendMsg(err.message + '  ['+req.url + '], ['+ip+']');
+    }
+
     console.log('error on request %s | %s | %d'.red, req.method, req.url, err.status);
     console.log(err.stack.red);
     err.message = err.status == 500 ? 'Something bad happened. :(' : err.message;

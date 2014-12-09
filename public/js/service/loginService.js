@@ -21,7 +21,7 @@ angular.module("johayo.service")
 
         function onLoginDialogClose(success) {
             loginDialog = null;
-            if ( success ) {
+            if ( success() ) {
                 queue.retryAll();
             } else {
                 queue.cancelAll();
