@@ -8,11 +8,8 @@ angular.module("johayo.service")
                 var asy = $q.defer();
                 $http.post('/api/bookmark/url', {url:url}).then(function(response){
                     asy.resolve(response.data);
-                }, function(response){
-                    asy.reject(response.data);
-                }, function(response){
-                    console.log(response);
-                    asy.notify(response)
+                }, function(err){
+                    asy.reject(err);
                 });
 
                 return asy.promise;
