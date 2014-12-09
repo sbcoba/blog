@@ -16,7 +16,7 @@ var config = require('./config/config');
 
 /* util */
 var tg = require('./util/tg');
-var checkLogin = require('./util/checkLogin');
+var loginUtil = require('./util/loginUtil');
 
 /* routes */
 var menu = require('./routes/menu');
@@ -24,6 +24,9 @@ var login = require('./routes/login');
 var board = require('./routes/board');
 var comment = require('./routes/comment');
 var file = require('./routes/file');
+var bookmark = require('./routes/bookmark');
+var adminBoard = require('./routes/adminBoard');
+var adminMenu = require('./routes/adminMenu');
 
 var app = express();
 
@@ -54,7 +57,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join('/johayo/upload')));
 
 /* 로그인이 필요한 서비스 */
-app.use('/api/file', checkLogin.check);
+app.use('/api/file', loginUtil.check);
+app.use('/api/bookmark', loginUtil.check);
+app.use('/api/adminMenu', loginUtil.check);
+app.use('/api/adminBoard', loginUtil.check);
 
 /* 없는 서비스 */
 app.use('/api/menu', menu);
@@ -62,6 +68,9 @@ app.use('/api/login', login);
 app.use('/api/board', board);
 app.use('/api/comment', comment);
 app.use('/api/file', file);
+app.use('/api/bookmark', bookmark);
+app.use('/api/adminMenu', adminMenu);
+app.use('/api/adminBoard', adminBoard);
 
 /* 일단 get으로 요청된 것들은 바로 index.html으로 보여준다. */
 app.get('/', function(req, res) {

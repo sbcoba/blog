@@ -6,7 +6,8 @@ var config = require('../config/config');
 var multiparty = require('multiparty');
 var error = require('../util/error');
 var validator = require('validator');
-var fs = require('fs');
+var fileUtil = require('../util/fileUtil');
+var loginUtil = require('../util/loginUtil')
 
 /* 라우터 */
 var router = express.Router();
@@ -24,8 +25,13 @@ router.post('/', function(req, res){
             error.throw(4019, err);
         }
 
+        /*file.name = files.myFile[0].originalFilename.toString();
+        file.path = files.myFile[0].path.toString();
+        file.url = "/blog/" + files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,"");
+        file.type = files.myFile[0].headers['content-type'].toString();
+        file.size = files.myFile[0].size.toString();
+        */
         var resultObj = {
-            result: 'ok',
             name: files.myFile[0].originalFilename.toString(),
             path: files.myFile[0].path.toString(),
             url: "/blog/" + files.myFile[0].path.replace(/(\/([^>]+)\/)/ig,"").replace(/(\\([^>]+)\\)/ig,""),
@@ -34,6 +40,8 @@ router.post('/', function(req, res){
             type : files.myFile[0].headers['content-type'].toString(),
             isImg: files.myFile[0].headers['content-type'].toString().indexOf('image') > -1
         };
+
+        fileUtil.saveFileInfo(resultObj);
 
         res.send(resultObj);
     });
@@ -46,11 +54,21 @@ router.delete('/', function(req, res){
     var filePath = validator.isNull(req.param('filePath'))  ? error.throw(409,'Please check filePath.') : req.param('filePath');
 
     var local = '';
-    if(req.host == 'localhost'){
+    if(req.hostname == 'localhost'){
         local = 'd:\\';
     }
-    fs.unlinkSync(local+filePath);
+    fileUtil.deleteFile(local, filePath);
+
     res.send('');
+});
+
+/**
+ * 파일 다운로드
+ */
+router.get('/download', function(req,res){
+    var path = validator.isNull(req.param('path'))  ? error.throw(409,'Please check path.') : req.param('path');
+    var name = validator.isNull(req.param('name')) ? '' : req.param('name');
+    res.download(path,name);
 });
 
 module.exports = router;

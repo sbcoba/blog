@@ -25,6 +25,8 @@ mongo.schema.board = new Schema({
     division : String,
     title : String,
     content : String,
+    hashTag : String,
+    url: String,
     commentList : [],
     fileList : [],
     regDt : {type: Date, default: Date.now}
@@ -33,6 +35,14 @@ mongo.schema.board = new Schema({
 mongo.schema.autoSeq = new Schema({
     _id: String,
     seq : Number
+});
+
+mongo.schema.file = new Schema({
+    name : String,
+    path : String,
+    url : String,
+    type : String,
+    regDt : {type: Date, default: Date.now}
 });
 
 /* 메뉴 */
@@ -70,6 +80,7 @@ mongo.model.member =  mongo.mongoose.model('member', mongo.schema.member);
 mongo.model.menu =  mongo.mongoose.model('menu', mongo.schema.menu);
 mongo.model.board =  mongo.mongoose.model('board', mongo.schema.board);
 mongo.model.autoSeq =  mongo.mongoose.model('autoSeq', mongo.schema.autoSeq);
+mongo.model.file =  mongo.mongoose.model('file', mongo.schema.file);
 
 
 module.exports = mongo;

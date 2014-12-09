@@ -1,5 +1,31 @@
 <div class="bookmark">
+    <div class="bookmark-box custom_in" ng-show="isLogin">
+        <div style="margin-bottom: 5px;">
+            <form name="bookmarkForm" role="form">
+                <input type="text" name="title" class="form-control" ng-model="bookmark.title" placeholder="Title" required>
+                <input type="text" name="url" class="form-control" ng-model="bookmark.url" placeholder="Url" ng-blur="getUrlImg(bookmark.url);" required>
+                <input type="text" name="hashTag" class="form-control" ng-model="bookmark.hashTag" placeholder="Hash Tag" required>
+                <text-angular ng-model="bookmark.content" ta-disabled='disabled' ta-toolbar="[]"  ta-text-editor-class="editor-around" placeholder="Content"></text-angular>
+                <div style="text-align: right">
+                    <button class="btn btn-xs btn-primary" ng-click="addBookmark(bookmark)"
+                            ng-disabled="bookmarkForm.$error.required || !bookmark.fileList[0].url">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+        <spinner spinner-style="{margin: '30px auto'}" ng-show="showSpinner"></spinner>
+        <img ng-src="{{bookmark.fileList[0].url}}" ng-if="!!bookmark.fileList[0].url" class="img-rounded bookmark-img">
+    </div>
     <div class="bookmark-box custom_in" ng-repeat="list in bookmarkList">
-        ddd{{$index}}
+        <div class="pull-right" ng-if="isLogin">
+            <i class="glyphicon glyphicon-remove" ng-click="deleteBookmark(list._id)"></i>
+        </div>
+        <div>
+            <h4>{{list.title}}</h4>
+        </div>
+        <div class="bookmark-content" ng-bind-html="list.content"></div>
+        <a><img ng-src="{{list.fileList[0].url}}" class="img-rounded bookmark-img"></a>
+        <div class="hash-tag-box">{{list.hashTag}}</div>
     </div>
 </div>

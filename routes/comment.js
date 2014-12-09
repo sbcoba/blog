@@ -8,7 +8,7 @@ var cryptoUtil = require('../util/cryptoUtil');
 var config = require('../config/config');
 
 var dateUtil = require('../util/dateUtil');
-var checkLogin = require('../util/checkLogin');
+var checkLogin = require('../util/loginUtil');
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');

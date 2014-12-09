@@ -9,7 +9,7 @@ angular.module("johayo.service")
                 {division:'@division'},
                 {
                     'delete': {method: 'post'},
-                    'edit' : {method:'put'}
+                    'update' : {method:'put'}
                 }
             );
 
@@ -23,7 +23,7 @@ angular.module("johayo.service")
                 },
                 editComment : function(boardSeq, commentSeq, content, pw){
                     var asy = $q.defer();
-                    commentApi.edit({boardSeq: boardSeq, commentSeq: commentSeq, content: content, pw: pw}, function(data){
+                    commentApi.update({boardSeq: boardSeq, commentSeq: commentSeq, content: content, pw: pw}, function(data){
                         console.log(data);
                         asy.resolve(data);
                     });
@@ -35,7 +35,7 @@ angular.module("johayo.service")
                         asy.resolve(data);
                     });
                     return asy.promise;
-                },
+                }/*
                 addSubComment : function(param){
                     var asy = $q.defer();
                     commentApi.save(param, function(data){
@@ -56,7 +56,7 @@ angular.module("johayo.service")
                         asy.resolve(data);
                     });
                     return asy.promise;
-                }
+                }*/
             };
 
             return service;

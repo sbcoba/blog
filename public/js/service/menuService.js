@@ -20,7 +20,7 @@ angular.module("johayo.service")
                 },
                 addOneStepMenu : function(param){
                     var asy = $q.defer();
-                    $http.post('/api/menu', param).then(function(data) {
+                    $http.post('/api/adminMenu', param).then(function(data) {
                         service.menuList = data;
                         asy.resolve(service.menuList);
                     });
@@ -28,7 +28,7 @@ angular.module("johayo.service")
                 },
                 addTwoStepMenu : function(param){
                     var asy = $q.defer();
-                    $http.post('/api/menu/sub', param).then(function(data) {
+                    $http.post('/api/adminMenu/sub', param).then(function(data) {
                         service.menuList = data;
                         asy.resolve(service.menuList);
                     });

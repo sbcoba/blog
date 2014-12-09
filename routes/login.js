@@ -6,7 +6,7 @@ var cryptoUtil = require('../util/cryptoUtil');
 var config = require('../config/config');
 var validator = require('validator');
 var error = require('../util/error');
-var checkLogin = require('../util/checkLogin');
+var loginUtil = require('../util/loginUtil');
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');
@@ -19,7 +19,7 @@ var router = express.Router();
 /**
  * 로그인 체크
  */
-router.post('/check', checkLogin.check, function(req, res){
+router.post('/check', loginUtil.check, function(req, res){
     res.send('');
 });
 

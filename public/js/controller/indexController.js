@@ -12,7 +12,7 @@ angular.module('johayo.controller')
             };
 
             $scope.logout = function(){
-                loginService.logout()
+                loginService.logout();
             };
 
             /**

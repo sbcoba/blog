@@ -18,7 +18,7 @@ angular.module('johayo.directive')
     })
     .directive('windowWidthCheck', function($window){
         return {
-            restrict: 'A',
+            restrict: 'AE',
             scope : {
                 windowSize : "="
             },
@@ -38,6 +38,18 @@ angular.module('johayo.directive')
                 w.bind('resize', function () {
                     scope.$apply();
                 });
+            }
+        }
+    })
+    .directive('spinner', function($window){
+        return {
+            restrict: "AE",
+            template: "<div class='spinner' ng-style='{{spinnerStyle}}' ng-if='!urlImgFile.url'>" +
+            "<div class='spinner-container container1'><div class='circle1'></div><div class='circle2'></div><div class='circle3'></div><div class='circle4'></div></div>" +
+            "<div class='spinner-container container2'><div class='circle1'></div><div class='circle2'></div><div class='circle3'></div><div class='circle4'></div></div>" +
+            "<div class='spinner-container container3'><div class='circle1'></div><div class='circle2'></div><div class='circle3'></div><div class='circle4'></div></div></div>",
+            scope : {
+                spinnerStyle : "@"
             }
         }
     })

@@ -26,7 +26,14 @@ angular.module('johayo', [
             })
             .when('/bookmark', {
                 templateUrl: '/html/bookmark/bookmark.html',
-                controller : 'bookmarkController'
+                controller : 'bookmarkController',
+                resolve: {
+                    bookmarkList : function(boardService){
+                        return boardService.list('bookmark').then(function(data){
+                            return data;
+                        });
+                    }
+                }
             })
             /*.when('/profile', {
                 templateUrl: '/html/profile/profile.html'
@@ -64,7 +71,7 @@ angular.module('johayo', [
                 controller: 'boardController',
                 resolve : {
                     boardList : function(boardService, $route){
-                        boardService.list($route.current.params.division).then(function(data){
+                        return boardService.list($route.current.params.division).then(function(data){
                             return data;
                         });
                     }
