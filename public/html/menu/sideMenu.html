@@ -3,17 +3,15 @@
         <ul class="sidebar-menu">
             <li ng-repeat="list in menuList | orderBy : list.rank : false" ng-class="getClass(list.subMenuList.length)">
                 <span ng-if="list.subMenuList.length < 1">
-                    <a ng-href="{{list.url}}" ng-class="isActive(list.name)" ng-click="moveActive(list.name)">
+                    <a ng-href="{{list.url}}" ng-class="isActive(list.name)">
                         <span>{{list.name | firstCharUpper}}</span>
                     </a>
                 </span>
                 <span ng-if="list.subMenuList.length > 0">
                     <a class="haveSub" >
                         <span>{{list.name | firstCharUpper}}</span>
-                        <!--<i class="fa icon-right" ng-class="{'fa-angle-right': !checkActive(list.name), 'fa-angle-down': checkActive(list.name)}"></i>-->
                         <i class="fa icon-right fa-angle-down"></i>
                     </a>
-                    <!--<ul class="sub" ng-show="checkActive(list.name)">-->
                     <ul class="sub">
                         <li ng-repeat="subList in list.subMenuList | orderBy : subList.rank : false">
                             <a ng-href="{{subList.url}}" class="sub-menu-name" ng-class="isSubActive(subList.name)">└ {{subList.name}}</a>

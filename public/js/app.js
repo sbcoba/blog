@@ -11,6 +11,7 @@ angular.module('johayo', [
     "johayo.service",
     "johayo.directive",
     "johayo.filter",
+    "johayo.clock",
     "ngDialog",
     'textAngular',
     'angularFileUpload',

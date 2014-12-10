@@ -51,10 +51,7 @@ angular.module('johayo.controller')
                 if(!!$scope.menuList){
                     $scope.getActiveMenu();
                 }else{
-                    menuService.getMenuList().then(function(data){
-                        $scope.menuList = data;
-                        $scope.getActiveMenu();
-                    });
+                    $scope.getMenuList();
                 }
             });
 
@@ -105,10 +102,15 @@ angular.module('johayo.controller')
                 return { 'sub-menu' : length > 0};
             };
 
-            /* 메뉴를 다시 가지고 온다.*/
-            $rootScope.$on('getMenuList', function(){
+            $scope.getMenuList = function(){
                 menuService.getMenuList().then(function(data){
                     $scope.menuList = data;
-                })
+                    $scope.getActiveMenu();
+                });
+            };
+
+            /* 메뉴를 다시 가지고 온다.*/
+            $rootScope.$on('getMenuList', function(){
+                $scope.getMenuList();
             });
         }]);
