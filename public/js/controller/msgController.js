@@ -12,8 +12,7 @@ angular.module('johayo.controller')
                     alert = null;
                 }
                 msgService.sendMsg($scope.msg).then(function(){
-                    alert = $alert({title: 'DongJun Kwon에게 메세지(이메일,텔레그램) 보내기 성공했습니다.', type: 'success', show: true, container:'#alerts-container', duration: 3});
-                    $scope.msg = {};
+                    alert = $alert({title: 'DongJun Kwon에게 메세지(이메일,텔레그램) 보내기 성공했습니다.', type: 'success', show: true, container:'#alerts-container'});
                 }, function(data){
                     alert =  $alert({title: data, type: 'danger', show: true, container:'#alerts-container'});
                 });
