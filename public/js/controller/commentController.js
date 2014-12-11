@@ -48,7 +48,7 @@ angular.module('johayo.controller')
                     });
             };
 
-            /* sub 댓글 등록 */
+           /* *//* sub 댓글 등록 *//*
             $scope.addSubComment = function(commentSeq, sub){
                 $scope.subParams.commentSeq = commentSeq;
                 $scope.subParams.content = sub.content;
@@ -62,7 +62,7 @@ angular.module('johayo.controller')
                     });
             };
 
-            /* sub 댓글 수정 */
+            *//* sub 댓글 수정 *//*
             $scope.editSubComment = function(commentSeq, commentSub){
                 $scope.subParams.commentSeq = commentSeq;
                 $scope.subParams.subSeq = commentSeq.seq;
@@ -76,7 +76,7 @@ angular.module('johayo.controller')
                     });
             };
 
-            /* sub 댓글 삭제 */
+            *//* sub 댓글 삭제 *//*
             $scope.deleteSubComment = function(commentSeq, subSeq){
                 $scope.subParams.commentSeq = commentSeq;
                 $scope.subParams.subSeq = subSeq;
@@ -84,7 +84,7 @@ angular.module('johayo.controller')
                     .then(function(data){
 
                     });
-            };
+            };*/
 
             /* 유효성 체크 */
             $scope.checkVal = function(val){

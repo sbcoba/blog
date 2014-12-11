@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="/lib/css/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/lib/css/bootstrap/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/lib/css/awesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/lib/css/weather/css/weather-icons.min.css"/>
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog.min.css">
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog-theme-default.min.css" />
+    <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog-theme-flat.css" />
     <link rel="stylesheet" href="/lib/css/angular/ngDialog/ngDialog-theme-error.css" />
     <link rel="stylesheet" href="/lib/css/angular/strap/angular-motion.min.css">
     <link rel="stylesheet" href="/lib/css/angular/strap/libraries.min.css">
-    <link rel="stylesheet" href="/lib/css/angular/clock/clock.css">
-    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/main.min.css">
+    <link rel="stylesheet" href="/lib/css/angular/strap/main.min.css">
+    <link rel="stylesheet" href="/lib/css/angular/clock/clock.min.css">
     <link rel="stylesheet" href="/css/ngDialog.css"/>
     <link rel="stylesheet" href="/css/johayo.css"/>
     <link rel="stylesheet" href="/css/spinner.css"/>
@@ -39,7 +39,7 @@
     <script src="/lib/js/angular/textEditor/textAngular-sanitize.min.js"></script>
     <script src="/lib/js/angular/fileUpload/angular-file-upload-shim.js"></script>
     <script src="/lib/js/angular/fileUpload/angular-file-upload.min.js"></script>
-    <script src="/lib/js/angular/johayo/johayo-clock.js"></script>
+    <script src="/lib/js/angular/johayo/johayo-clock.min.js"></script>
     <script src="/lib/js/bootstrap/bootstrap.min.js"></script>
     <script src="/lib/js/moment/moment.min.js"></script>
 
@@ -54,6 +54,7 @@
     <script src="/js/controller/boardController.js"></script>
     <script src="/js/controller/commentController.js"></script>
     <script src="/js/controller/bookmarkController.js"></script>
+    <script src="/js/controller/msgController.js"></script>
 
     <!-- service -->
     <script src="/js/service/menuService.js"></script>
@@ -63,6 +64,7 @@
     <script src="/js/service/commentService.js"></script>
     <script src="/js/service/fileService.js"></script>
     <script src="/js/service/bookmarkService.js"></script>
+    <script src="/js/service/msgService.js"></script>
 
     <!-- directive -->
     <script src="/js/directive/menuDirective.js"></script>
@@ -87,32 +89,42 @@
                 <i class="fa fa-bars"></i>
             </div>
         </div>
-        <div class="header-right-menu clearfix">
+        <div class="header-menu clearfix">
+            <ul class="nav pull-left top">
+                <li>
+                   <div class="icon msg-box" ng-click="openMsg();">
+                       <i class="fa fa-envelope-o"></i>
+                   </div>
+                </li>
+                <li>
+                    <div class="icon admin-box" ng-if="isLogin">
+                        <i class="fa fa-unlock"></i>
+                    </div>
+                    <div class="icon admin-box" ng-click="openLogin()" ng-if="!isLogin">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                </li>
+            </ul>
             <ul class="nav pull-right top">
                 <li>
                     <div class="my-photo-box">
                         <img class="img-circle" src="/imgs/myPhoto.jpeg" alt="Generic placeholder image" style="width: 50px; height: 45px;">
-                        <span>DongJun Kwon</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="admin-toggle-box">
-                        <i ng-if="isLogin" class="fa fa-unlock" bs-dropdown="adminMenu" placement="bottom-right" html="true"></i>
-                        <i ng-if="!isLogin" class="fa fa-lock" ng-click="openLogin()"></i>
+                        <span bs-dropdown="adminMenu" placement="bottom-right" html="true" ng-if="isLogin" style="cursor: pointer;">DongJun Kwon</span>
+                        <span ng-if="!isLogin">DongJun Kwon</span>
                     </div>
                 </li>
             </ul>
         </div>
     </header>
     <aside johayo-menu hide-menu="{{hideMenu}}"></aside>
-    <section ng-class="{'move-section' : hideMenu}" ng-click="checkHideMenu()">
+    <section ng-class="{'move-section' : hideMenu}" ng-click="windowSizeHideMenu()">
         <article>
             <spinner ng-show="loading"></spinner>
             <ng-view ng-hide="loading"></ng-view>
         </article>
     </section>
     <footer></footer>
-    <!--<script>
+    <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -120,7 +132,6 @@
 
         ga('create', 'UA-57469105-1', 'auto');
         ga('send', 'pageview');
-
-    </script>-->
+    </script>
 </body>
 </html>

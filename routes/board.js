@@ -16,10 +16,23 @@ var ObjectId = mongo.mongoose.Types.ObjectId;
 var router = express.Router();
 
 /**
- * 게시물을 가지고 온다.
+ * 구분에 맞는 게시물을 가지고 온다.
  */
 router.get('/list/:division', function(req, res){
     Board.find({division: req.params.division}, null, {sort : {'regDt' : -1}}, function(err, docs){
+        if(err){
+            throw err;
+        }
+
+        res.send(docs);
+    });
+});
+
+/**
+ * 모든 게시물을 가지고 온다.
+ */
+router.get('/list/', function(req, res){
+    Board.find({}, null, {sort : {'regDt' : -1}}, function(err, docs){
         if(err){
             throw err;
         }

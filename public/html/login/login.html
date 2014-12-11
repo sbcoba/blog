@@ -1,15 +1,11 @@
 <div class="ngdialog-message">
     <div class="login-box">
         <form name="login" role="form">
-            <div class="login-title">
+            <div class="modal-title">
                 Admin Login
             </div>
             <div>
-                <div class="login-err-box" ng-class="{'login-err-box-show': isErr}">
-                    <div ng-class="{'login-err-show' : isErr, 'login-err-hide' : !isErr}">
-                        <h4>File Login : {{errorMsg}}</h4>
-                    </div>
-                </div>
+                <div id="alerts-container"></div>
                 <div class="form-group"
                      ng-class="{ 'has-error' : login.userId.$invalid && !login.userId.$pristine ,'has-success': !login.userId.$error.required }">
                     <input type="text" name="userId" ng-model="login.id" class="form-control input-lg" placeholder="ID" tabindex="1" required autofocus>

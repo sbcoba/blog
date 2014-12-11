@@ -6,9 +6,8 @@ var validator = require('validator');
 var error = require('../util/error');
 var cryptoUtil = require('../util/cryptoUtil');
 var config = require('../config/config');
-
+var tg = require('../util/tg');
 var dateUtil = require('../util/dateUtil');
-var checkLogin = require('../util/loginUtil');
 
 /* mongo 연결 */
 var mongo = require('../config/mongoConfig');
@@ -34,6 +33,7 @@ router.post('/', function(req, res){
     }
     var boardSeq = validator.isNull(req.param('boardSeq'))  ? error.throw(409,'Please check boardSeq.') : req.param('boardSeq');
     var content = validator.isNull(req.param('content'))  ? error.throw(409,'Please check content.') : req.param('content');
+    var url = validator.isNull(req.param('url'))  ? error.throw(409,'Please retry.') : req.param('url');
 
     AutoSeq.findOneAndUpdate({_id : 'comment'}, {$inc : {seq: 1}, new: true}, function(err, result){
         if(err){
@@ -53,6 +53,16 @@ router.post('/', function(req, res){
                 if(err){
                     throw err;
                 }
+
+                /* 텔레그램 메세지 보내기 */
+                var tgData = {
+                    content : '[댓글등록, '+name+'님]  http://johayo.com/#'+url ,
+                    division : data.division,
+                    ip: req.headers['x-forwarded-for'] || req.ip,
+                    url : url
+                };
+
+                tg.sendMsg(tgData);
 
                 res.send(data);
             });

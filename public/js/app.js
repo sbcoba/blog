@@ -23,7 +23,14 @@ angular.module('johayo', [
         $routeProvider
             .when('/', {
                 templateUrl: '/html/main/main.html',
-                controller: 'mainController'
+                controller: 'mainController',
+                resolve: {
+                    bookmarkList : function(boardService){
+                        return boardService.list('bookmark').then(function(data){
+                            return data;
+                        });
+                    }
+                }
             })
             .when('/bookmark', {
                 templateUrl: '/html/bookmark/bookmark.html',

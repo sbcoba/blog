@@ -11,6 +11,15 @@ var Schema = mongo.mongoose.Schema;
 /* 스키마 */
 mongo.schema = {};
 
+mongo.schema.msgLog = new Schema({
+    email : String,
+    content : String,
+    ip : String,
+    division : String,
+    url : String,
+    regDt : {type: Date, default: Date.now}
+});
+
 /* 사용자 */
 mongo.schema.member = new Schema({
     _id : String,
@@ -81,6 +90,6 @@ mongo.model.menu =  mongo.mongoose.model('menu', mongo.schema.menu);
 mongo.model.board =  mongo.mongoose.model('board', mongo.schema.board);
 mongo.model.autoSeq =  mongo.mongoose.model('autoSeq', mongo.schema.autoSeq);
 mongo.model.file =  mongo.mongoose.model('file', mongo.schema.file);
-
+mongo.model.msgLog = mongo.mongoose.model('msgLog', mongo.schema.msgLog);
 
 module.exports = mongo;

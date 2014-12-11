@@ -27,6 +27,7 @@ var file = require('./routes/file');
 var bookmark = require('./routes/bookmark');
 var adminBoard = require('./routes/adminBoard');
 var adminMenu = require('./routes/adminMenu');
+var msg = require('./routes/msg');
 
 var app = express();
 
@@ -68,6 +69,7 @@ app.use('/api/login', login);
 app.use('/api/board', board);
 app.use('/api/comment', comment);
 app.use('/api/file', file);
+app.use('/api/msg', msg);
 app.use('/api/bookmark', bookmark);
 app.use('/api/adminMenu', adminMenu);
 app.use('/api/adminBoard', adminBoard);
@@ -87,12 +89,16 @@ app.use(function(req, res, next) {
 
 // catch all error handler
 app.use(function errorHandler(err, req, res, next) {
-    var ip = req.headers['x-forwarded-for'] || req.ip;
     /* 에러 처리 */
     err.status = validator.isNull(err.status) ? 500 : err.status;
     /* 텔레그램으로 나한테 오류 메세지 전송 */
-    if(err.status != 401 && err.status != 409 && err.status != 4019){
-        tg.sendMsg(err.message + '  ['+req.url + '], ['+ip+']');
+    if(err.status != 401 && err.status != 409 && err.status != 4019 && err.status != 404){
+        var tgData = {};
+        tgData.ip = req.headers['x-forwarded-for'] || req.ip;
+        tgData.url = req.url;
+        tgData.division = 'error';
+        tgData.content = err.message + '  ['+tgData.url + '], ['+tgData.ip+']';
+        tg.sendMsg(tgData);
     }
 
     console.log('error on request %s | %s | %d'.red, req.method, req.url, err.status);

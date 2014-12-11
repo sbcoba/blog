@@ -82,7 +82,7 @@
   animation: ngdialog-flipin-horizontal .5s;
   background: #fff;
   color: #444;
-  border: 5px solid #EFEEE7 ;
+  border: 5px solid  #5CD1E5;
   font-family: "Helvetica Neue",sans-serif;
   line-height: 1.5em;
   margin: 0 auto;
@@ -103,7 +103,7 @@
 }
 
 .ngdialog.ngdialog-theme-flat .ngdialog-close:before {
-  background: #EFEEE7 ;
+  background: #5CD1E5 ;
   color: #fff;
   display: block;
   font-family: "Helvetica Neue",sans-serif;

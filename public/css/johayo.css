@@ -63,36 +63,42 @@ a.logo {
     color: rgba(0,0,0,.3);
 }
 
-.admin-toggle-box {
+.icon {
     float: left;
     margin-top: 7px;
-    background: #EAEAEA;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     width: 32px;
     height: 32px;
-}
-
-.admin-toggle-box:hover {
-    background: #C4BE8A;
-}
-
-.admin-toggle-box .fa-lock, .admin-toggle-box .fa-unlock {
     cursor: pointer;
+}
+
+.icon i {
     display: inline-block;
     font-size: 17px;
-    padding: 8px 8px 8px 11px;
     color: rgba(0,0,0,.3);
 }
 
-.header-right-menu{
+.admin-box{
+    background: #FAF4C0;
+    padding: 8px 8px 8px 11px;
+}
+
+.admin-box:hover, .msg-box:hover {
+    background: #EAEAEA;
+}
+
+.msg-box {
+    background: #d9edf7;
+    padding: 8px;
+}
+
+.header-menu{
     margin-top: 17px;
 }
 
 .top {
-    margin-right: 15px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0 15px;
 }
 
 .my-photo-box {
@@ -293,8 +299,14 @@ section > article {
     padding-right: 10%;
 }
 
-/* login start */
-.login-err-box {
+/* msg */
+.msg {
+    font-size: 13px;
+}
+/* msg end */
+
+
+.err-box {
     position: relative;
     height: 0px;
     opacity: 0;
@@ -308,14 +320,14 @@ section > article {
     border-radius: 15px;
 }
 
-.login-err-box-show{
+.err-box-show{
     -webkit-transition:all linear 0.2s;
     transition:all linear 0.2s;
     height: 40px;
     opacity: 1;
 }
 
-.login-err-box .login-err-show {
+.err-box .err-show {
     -webkit-transition:all linear 0.5s;
     transition:all linear 0.2s;
     -ms-transform: translate(0px,0px); /* IE 9 */
@@ -324,23 +336,16 @@ section > article {
     transform: translate(0px,0px); /* Standard syntax */
 }
 
-.login-err-box .login-err-hide {
+.err-box .err-hide {
     -ms-transform: translate(0px,-20px); /* IE 9 */
     -webkit-transform: translate(0px,-20px); /* Chrome, Safari, Opera */
     -moz-transform: translate(0px,-20px); /* firefox */
     transform: translate(0px,-20px); /* Standard syntax */
 }
 
+/* login start */
 .login-box {
     margin-bottom: 2%;
-}
-
-.login-title {
-    font-weight: bolder;
-    color: #8a6d3b;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 30px;
 }
 /* login end */
 
@@ -425,6 +430,16 @@ section > article {
 }
 /* comment end */
 
+/* 시계 start */
+.johayo-circle {
+    border: 8px solid #fff;
+}
+
+.johayo-face:after, .johayo-hour, .johayo-minute, .johayo-second {
+    background: #fff;
+}
+/* 시계 end */
+
 /* 공통 start */
 table, td, th{
     border: 1px solid silver;
@@ -462,6 +477,13 @@ a, a:hover, a:focus {
 p {
     padding: 0;
     margin: 0;
+}
+
+.modal-title {
+    font-weight: bolder;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 30px;
 }
 
 .file-icon {
@@ -639,7 +661,7 @@ p {
         right: 15px;
     }
 
-    .header-right-menu{
+    .header-menu{
         margin-top: 5px;
         margin-bottom: 5px;
     }
