@@ -5,47 +5,46 @@ var config = {};
 
 /* server port */
 config.web = {};
-config.web.port = process.env.WEB_PORT || 80; //post 번호
+config.web.port = process.env.WEB_PORT || 80;
 
 /* session 정보 */
 config.session = {};
-//세션 키
-config.session.secret= '';
-// 세션이름
-config.session.name = '';
+config.session.secret= 'johayoBlog';
+config.session.name = 'johayoBlog';
 
 /* redis정보 */
 config.redis = {};
-config.redis.host = '';
+config.redis.uri = process.env.DUOSTACK_DB_REDIS;
+config.redis.host = 'johayo.com';
 config.redis.port = 6379;
-config.redis.password = '';
+config.redis.password = 'johayoRedisSession0814';
 config.redis.tll = 100000;
 
 /* 암호화 키 */
 config.crypto = {};
-config.crypto.password = '';
+config.crypto.password = 'johayoBlogDongJun';
 
 /* Mongodb */
 config.mongodb= {};
-/* mongoDB 접속 url id : pw @ host:port / db_name */
-config.mongodb.connectUrl = '';
+/* id : pw @ host:port / db_name */
+config.mongodb.connectUrl = 'mongodb://admin:qhdks12@johayo.com:27017/johayo_blog';
 
 /* email관련 */
 config.email = {};
-config.email.host = '';
+config.email.host = 'smtp.naver.com';
 config.email.port = 587;
-config.email.id = '';
-config.email.password = '';
-config.email.form = '';
-config.email.to = '';
+config.email.id = 'mayajuni';
+config.email.password = 'ehdwns3';
+config.email.form = 'DongJun Kwon <mayajuni@naver.com>';
+config.email.to = 'mayajuni@naver.com';
 
 /* 텔레그램 */
 config.tg = {};
-config.tg.path = '';
+config.tg.path = '/telegram/tg/';
 
 /* file관련 */
 config.file = {};
-config.file.path="";
+config.file.path="/johayo/upload/blog";
 config.file.max_size = 1048576 * 5; // 5메가
 
 module.exports = config;

@@ -12,6 +12,7 @@ angular.module('johayo.controller')
             };
             $scope.bookmarkList = bookmarkList;
             $scope.urlImgFile = {};
+
             var oldUrl = '';
 
             $scope.addBookmark = function(bookmark){

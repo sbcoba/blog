@@ -1,10 +1,5 @@
-<div>
-    <ul>
-        <li></li>
-    </ul>
-</div>
 <div class="bookmark">
-    <div class="bookmark-box custom_in" ng-show="isLogin">
+    <div class="bookmark-box" ng-show="isLogin">
         <div style="margin-bottom: 5px;">
             <form name="bookmarkForm" role="form">
                 <input type="text" name="title" class="form-control" ng-model="bookmark.title" placeholder="Title" required>
@@ -22,7 +17,7 @@
         <spinner spinner-style="{margin: '30px auto'}" ng-show="showSpinner"></spinner>
         <img ng-src="{{bookmark.fileList[0].url}}" ng-if="!!bookmark.fileList[0].url" class="img-rounded bookmark-img">
     </div>
-    <div class="bookmark-box custom_in" ng-repeat="list in bookmarkList">
+    <div class="bookmark-box custom-repeat" ng-repeat="list in bookmarkList | filter : search">
         <div class="pull-right" ng-if="isLogin">
             <i class="glyphicon glyphicon-remove" ng-click="deleteBookmark(list._id)"></i>
         </div>

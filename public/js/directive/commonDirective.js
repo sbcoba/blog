@@ -2,6 +2,25 @@
  * Created by 동준 on 2014-11-17.
  */
 angular.module('johayo.directive')
+    .directive('searchBox', function($window){
+        return {
+            restrict: 'AE',
+            scope : {
+                search : "="
+            },
+            template: '<div class="search-box"><i class="fa fa-search"></i><input type="text" class="search-text" placeholder="Search" ng-style="getSearchTextStyle()" ng-model="search"></div>',
+            link: function (scope, element, attrs) {
+                scope.getSearchTextStyle = function(){
+                    var style= '';
+                    if(!!scope.search){
+                        style = {width : '200px'}
+                    }
+
+                    return style
+                };
+            }
+        }
+    })
     .directive('headerMenuScrolly', function($window){
         return {
             restrict: 'A',

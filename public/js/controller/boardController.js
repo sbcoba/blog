@@ -16,7 +16,7 @@ angular.module('johayo.controller')
                     'list-group-item-info' : index % 4 == 2,
                     'list-group-item-danger' : index % 4 == 3
                 }
-            }
+            };
         }])
     .controller('boardDetailController', ['$scope', 'boardService', 'boardDetail', '$location', '$routeParams',
         function($scope, boardService, boardDetail, $location, $routeParams){
