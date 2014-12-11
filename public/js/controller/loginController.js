@@ -14,7 +14,7 @@ angular.module('johayo.controller')
                 }, function(err){
                     if(err){
                         if(!!alert){
-                            alert.$hide();
+                            alert.hide();
                             alert = null;
                         }
                         alert =  $alert({title: err, type: 'danger', show: true, container:'#alerts-container'});

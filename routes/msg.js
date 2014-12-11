@@ -18,7 +18,7 @@ var router = express.Router();
  */
 router.post('/', function(req, res){
     var tgData = {
-        email : validator.isEmail(req.param('email'))  ? error.throw(4019,'Please check email.') : req.param('email'),
+        email : validator.isNull(req.param('email'))  ? error.throw(4019,'Please check email.') : req.param('email'),
         content : validator.isNull(req.param('content'))  ? error.throw(4019,'Please check content.') : req.param('content'),
         division : 'msg',
         ip: req.headers['x-forwarded-for'] || req.ip
