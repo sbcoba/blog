@@ -21,7 +21,7 @@ router.post('/', function(req, res){
     var email = validator.isNull(req.param('email'))  ? error.throw(4019,'Please check email.') : req.param('email');
     var tgData = {
         email : email,
-        content : '[Blog 메세지] '+email+' 님에게 메세지왔어요 이메일 체크!',
+        content : '[Blog 메세지] Check Email!',
         division : 'msg',
         ip: req.headers['x-forwarded-for'] || req.ip
     };
