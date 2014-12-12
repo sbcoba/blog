@@ -12,10 +12,8 @@
             </div>
         </div>
         <div class="content" ng-model="boardDetail.content" ta-bind="text"></div>
-        <!--
-            페이지 전환시 이게 약간의 시간차로 나중에 나타나서 디렉티브에서 뻄.
-             <comment-box comment-list="commentList"></comment-box>
-        -->
+
+        <!-- 댓글 -->
         <div class="comment-box" ng-controller="commentController">
             <h4>
                 Comments
@@ -42,9 +40,6 @@
                     <div class="title">
                         <p>
                             {{commentDetail.name}} <small class="conment-reg-date">({{commentDetail.regDt | date : 'yyyy-MM-dd HH:mm:ss'}})</small>
-                            <!--<button class="btn btn-xs btn-default" ng-click="isShowWriteSubBox(commentDetail.seq);sub={};">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </button>-->
                             <button class="btn btn-xs btn-default" ng-click="showEditor(commentDetail.seq)">
                                 <i class="glyphicon glyphicon-wrench"></i>
                             </button>
@@ -61,43 +56,6 @@
                     </div>
                     <div class="comment-content" ng-bind-html="commentDetail.content" ng-hide="isShowEditor[commentDetail.seq]"></div>
                 </div>
-               <!-- &lt;!&ndash; 2step comment add &ndash;&gt;
-                <div class="comment-two-step" ng-show="showWriteSubBox[commentDetail.seq]">
-                    <div class="comment-two-step-icon">
-                        └
-                    </div>
-                    <text-angular ng-model="sub.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
-                    <div class="comment-form">
-                        <input type="text" ng-model="sub.name" placeholder="Name" class="form-control" ng-if="!isLogin">
-                        <input type="password" ng-model="sub.pw" placeholder="Password" class="form-control" ng-if="!isLogin">
-                        <button class="btn btn-success btn-sm" ng-disabled="checkVal(sub)" ng-click="addSubComment(commentDetail.seq, sub)">Write</button>
-                        <button class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
-                    </div>
-                </div>
-                &lt;!&ndash; 2step comment &ndash;&gt;
-                <div class="comment-two-step" ng-repeat="commentSub in commentDetail.sub | orderBy:'regDt':true">
-                    <div class="comment-two-step-icon">
-                        └
-                    </div>
-                    <div class="title">
-                         <p>
-                             {{commentSub.name}} <small class="conment-reg-date">({{commentSub.regDt}})</small>
-                            <button class="btn btn-xs btn-default" ng-click="showEditor(commentDetail.seq, commentSub.seq)">
-                                <i class="glyphicon glyphicon-wrench"></i>
-                            </button>
-                         </p>
-                    </div>
-                    <div ng-show="isShowSubEditor[commentDetail.seq+'-'+commentSub.seq]">
-                        <text-angular ng-model="commentSub.content" ta-disabled='disabled' ta-toolbar="[]" ta-text-editor-class="editor-around" ></text-angular>
-                        <div class="comment-form">
-                            <input type="password" ng-model="commentSub.pw" placeholder="Password" class="form-control">
-                            <button class="btn btn-warning btn-sm" ng-disabled="checkVal(commentSub)" ng-click="editSubComment(commentSub)">Edit</button>
-                            <button class="btn btn-danger btn-sm" ng-disabled="!commentSub.pw">Delete</button>
-                            <button class="btn btn-default btn-sm" ng-click="closeEditor()">Close</button>
-                        </div>
-                    </div>
-                    <div class="comment-content" ng-bind-html="commentSub.content" ng-hide="isShowSubEditor[commentDetail.seq+'-'+commentSub.seq]"></div>
-                </div>-->
             </div>
         </div>
     </div>

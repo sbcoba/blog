@@ -58,10 +58,6 @@ angular.module('johayo.controller')
                     });
             };
 
-            $scope.$watch('searchText', function(data){
-                $scope.search.hashTag = data;
-            });
-
             $scope.cleanBookmark();
 
             function validateURL(textval) {
