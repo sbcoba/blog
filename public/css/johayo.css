@@ -881,6 +881,7 @@ p {
         opacity: 1
     }
 }
+
 @keyframes opacity-animation {
     from {
         opacity: 0
@@ -890,7 +891,32 @@ p {
     }
 }
 
-.custom_in {
+.custom-repeat.ng-move,
+.custom-repeat.ng-enter,
+.custom-repeat.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.custom-repeat.ng-leave.ng-leave-active,
+.custom-repeat.ng-move,
+.custom-repeat.ng-enter {
+    -webkit-animation: custom_out 0.5s;
+    -moz-animation:custom_out 0.5s;
+    -o-animation:custom_out 0.5s;
+    animation:custom_out 0.5s;
+}
+
+.custom-repeat.ng-leave,
+.custom-repeat.ng-move.ng-move-active,
+.custom-repeat.ng-enter.ng-enter-active {
+    -webkit-animation:custom_in 0.5s;
+    -moz-animation:custom_in 0.5s;
+    -o-animation:custom_in 0.5s;
+    animation:custom_in 0.5s;
+}
+
+.bookmark-box {
     -webkit-animation:custom_in 0.5s;
     -moz-animation:custom_in 0.5s;
     -o-animation:custom_in 0.5s;
@@ -938,6 +964,50 @@ p {
     to {
         -o-transform:rotate(0deg);
         opacity:1;
+    }
+}
+
+@keyframes custom_out {
+    from {
+        transform:rotate(0deg);
+        opacity:1;
+    }
+    to {
+        transform:rotate(-50deg);
+        opacity:0;
+    }
+}
+
+@-webkit-keyframes custom_out {
+    from {
+        -webkit-transform:rotate(0deg);
+        opacity:1;
+    }
+    to {
+        -webkit-transform:rotate(-50deg);
+        opacity:0;
+    }
+}
+
+@-moz-keyframes custom_out {
+    from {
+        -moz-transform:rotate(0deg);
+        opacity:1;
+    }
+    to {
+        -moz-transform:rotate(-50deg);
+        opacity:0;
+    }
+}
+
+@-o-keyframes custom_out {
+    from {
+        -o-transform:rotate(0deg);
+        opacity:1;
+    }
+    to {
+        -o-transform:rotate(-50deg);
+        opacity:0;
     }
 }
 
