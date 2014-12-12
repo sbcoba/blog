@@ -648,7 +648,7 @@ p {
 /* bookmark end */
 @media (max-width: 1000px){
     header {
-        margin-top: 80px ! important;
+        margin-top: 50px ! important;
     }
 
     header > .logo {
@@ -656,11 +656,17 @@ p {
         float: none;
         position: fixed;
         top: 0px;
+        height: 50px;
         z-index: 1005;
+    }
+
+    a.logo {
+        margin: 5px 10px;
     }
 
     .sidebar-toggle-box{
         right: 15px;
+        margin-top: 8px;
     }
 
     .header-menu{
@@ -690,7 +696,7 @@ p {
         margin-left: 0px;
         padding-left: 0%;
         padding-right: 0%;
-        padding-top: 120px;
+        padding-top: 90px;
     }
 
     section > article{
