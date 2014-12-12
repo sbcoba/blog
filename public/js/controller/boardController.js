@@ -2,8 +2,8 @@
  * Created by 동준 on 2014-11-25.
  */
 angular.module('johayo.controller')
-    .controller('boardController', ['$scope', 'boardService', 'boardList', '$location',
-        function($scope, boardService, boardList, $location){
+    .controller('boardController', ['$scope', 'boardService', 'boardList', '$location', '$rootScope',
+        function($scope, boardService, boardList, $location, $rootScope){
             /* 상세 갈때 쓴다. */
             $scope.path = $location.path();
             $scope.boardList = boardList;

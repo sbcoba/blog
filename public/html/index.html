@@ -3,7 +3,7 @@
 <head lang="ko">
     <meta charset="UTF-8">
     <meta name="author" content="DongJun Kwon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true" />
     <title>johayo_Blog</title>
 
@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="/lib/css/angular/strap/libraries.min.css">
     <link rel="stylesheet" href="/lib/css/angular/strap/main.min.css">
     <link rel="stylesheet" href="/lib/css/angular/clock/clock.min.css">
-    <link rel="stylesheet" href="/css/ngDialog.css"/>
     <link rel="stylesheet" href="/css/johayo.css"/>
     <link rel="stylesheet" href="/css/spinner.css"/>
 
@@ -69,7 +68,6 @@
     <!-- directive -->
     <script src="/js/directive/menuDirective.js"></script>
     <script src="/js/directive/commonDirective.js"></script>
-    <script src="/js/directive/commentDirective.js"></script>
 
     <!-- filter -->
     <script src="/js/filter/commonFilter.js"></script>
@@ -103,9 +101,6 @@
                     <div class="icon admin-box" ng-click="openLogin()" ng-if="!isLogin">
                         <i class="fa fa-lock"></i>
                     </div>
-                </li>
-                <li style="margin-top: 8px">
-                    <search-box search="search.hashTag"></search-box>
                 </li>
             </ul>
             <ul class="nav pull-right top">

@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2014-08-11.
  */
-/**
- * Created by Administrator on 2014-06-08.
- */
 angular.module("johayo.filter", [])
     /* 글자수를 자르고 해당 글을 가지고 온다. */
     .filter('limitAndJjum', function(limitToFilter){

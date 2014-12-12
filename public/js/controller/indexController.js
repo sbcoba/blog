@@ -6,7 +6,6 @@ angular.module('johayo.controller')
         function($rootScope, $scope, loginService, errorService, msgService){
             /* 윈도우 창의 크기를 체크 */
             $scope.windowSize = {};
-            $scope.search = {};
 
             $scope.openLogin = function(){
                 loginService.openLogin();
@@ -35,6 +34,8 @@ angular.module('johayo.controller')
 
             $rootScope.$on("$routeChangeSuccess", function(){
                 $scope.loading = false;
+                var colorClass = ['primary', 'success', 'info', 'warning', 'danger'];
+                $scope.boxClass = 'panel-' + colorClass[Math.floor(Math.random() * 5)];
             });
 
             $scope.getLoginInfo = function(){
