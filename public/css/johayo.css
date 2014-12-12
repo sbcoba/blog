@@ -11,6 +11,7 @@ body {
     margin: 0px !important;
     font-size: 12px;
     width: 100%;
+    min-width: 452px;
     height: 100%;
 }
 

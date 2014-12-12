@@ -14,7 +14,7 @@
             <div class="panel-collapse" bs-collapse-target>
                 <div class="panel-body">
                     <div class="list-group">
-                        <a ng-href="/#{{path}}/{{list._id}}" class="list-group-item animate-repeat" ng-repeat="list in boardList | filter: search" ng-class="getColor($index)">
+                        <a ng-href="/#{{path}}/{{list._id}}" class="list-group-item animate-repeat" ng-repeat="list in boardList | filter: searchText" ng-class="getColor($index)">
                             {{list.title | limitAndJjum:100}}
                             <div class="reg-date">
                                 {{list.regDt | date : 'yyyy-MM-dd'}}

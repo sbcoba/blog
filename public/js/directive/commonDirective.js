@@ -6,13 +6,15 @@ angular.module('johayo.directive')
         return {
             restrict: 'AE',
             scope : {
-                search : "="
+                searchText : "="
             },
-            template: '<div class="search-box"><i class="fa fa-search"></i><input type="text" class="search-text" placeholder="Search" ng-style="getSearchTextStyle()" ng-model="search"></div>',
+            template: '<div class="search-box"><i class="fa fa-search"></i><input type="text" class="search-text" placeholder="Search" ng-style="getSearchTextStyle()" ng-model="searchText"></div>',
             link: function (scope, element, attrs) {
+
+
                 scope.getSearchTextStyle = function(){
                     var style= '';
-                    if(!!scope.search){
+                    if(!!scope.searchText){
                         style = {width : '200px'}
                     }
 
