@@ -1,6 +1,5 @@
 /**
- * 현재 날짜 가져오기. 유틸로 해서 뺼까 고민중
- * 
+ * 현재 날짜 가져오기.
  * @returns
  */
 exports.nowDate = function(){

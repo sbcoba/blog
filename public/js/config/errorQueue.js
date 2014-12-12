@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2014-08-11.
  */
-/**
- * Created by Administrator on 2014-08-08.
- */
 angular.module('errorHandler', [])
 
 // This is a generic retry queue for security failures.  Each item is expected to expose two functions: retry and cancel.

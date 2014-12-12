@@ -940,3 +940,33 @@ p {
         opacity:1;
     }
 }
+
+
+/* 모달 바탕화면 색 */
+.ngdialog.ngdialog-theme-custom .ngdialog-overlay {
+    /*background: rgba(255,255,255,.5);*/
+}
+
+/* 모달 바탕화면 색 */
+.ngdialog.ngdialog-theme-flat .ngdialog-overlay {
+    /*background: rgba(255, 255, 255, 0.4);*/
+}
+
+/* 모달 메인 back 색 */
+.ngdialog.ngdialog-theme-custom .ngdialog-content {
+    background: #fcf8e3;
+}
+
+/* 모달 순서 */
+.ngdialog.ngdialog-theme-custom{
+    z-index: 5;
+}
+
+.ngdialog.ngdialog-theme-custom-error {
+    z-index: 6;
+}
+
+.ngdialog.ngdialog-theme-error {
+    /*padding-bottom: 160px;*/
+    padding-top: 50px;
+}

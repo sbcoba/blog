@@ -1,9 +1,6 @@
 /**
  * Created by 동준 on 2014-12-11.
  */
-/**
- * Created by 동준 on 2014-11-25.
- */
 var express = require('express');
 var validator = require('validator');
 var error = require('../util/error');
