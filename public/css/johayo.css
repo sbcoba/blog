@@ -255,7 +255,7 @@ ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
     padding-left: 26px;
     height: 32px;
     box-shadow: none;
-    width: 200px;
+    width: 100px;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;

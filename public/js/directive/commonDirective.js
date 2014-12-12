@@ -15,7 +15,7 @@ angular.module('johayo.directive')
                 scope.getSearchTextStyle = function(){
                     var style= '';
                     if(!!scope.searchText){
-                        style = {width : '200px'}
+                        style = {width : '100px'}
                     }
 
                     return style
