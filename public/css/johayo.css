@@ -615,7 +615,6 @@ p {
 }
 
 .bookmark-box{
-    position: relative;
     background-color: #ffffff;
     border: 1px solid #eee;
     display: inline-block;
