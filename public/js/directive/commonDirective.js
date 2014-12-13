@@ -10,12 +10,10 @@ angular.module('johayo.directive')
             },
             template: '<div class="search-box"><i class="fa fa-search"></i><input type="text" class="search-text" placeholder="Search" ng-style="getSearchTextStyle()" ng-model="searchText"></div>',
             link: function (scope, element, attrs) {
-
-
                 scope.getSearchTextStyle = function(){
                     var style= '';
                     if(!!scope.searchText){
-                        style = {width : '150px'}
+                        style = {width : '160px'}
                     }
 
                     return style

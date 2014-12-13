@@ -70,7 +70,6 @@ angular.module('johayo.controller')
                 if(!!$scope.boardDetail.commentList){
                     for(var i=0;i<$scope.boardDetail.commentList.length;i++){
                         $scope.isShowEditor[$scope.boardDetail.commentList[i].seq] = false;
-                        $scope.showWriteSubBox[$scope.boardDetail.commentList[i].seq] = false;
                     }
                 }
             };
