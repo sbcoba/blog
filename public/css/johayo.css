@@ -646,6 +646,24 @@ p {
     color: #ffffff;
 }
 /* bookmark end */
+
+/* main start */
+.intro {
+    background-color: #dff0d8;
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    padding: 15px;
+    font-size: 13px;
+    font-weight: bolder;
+    word-wrap: break-word;
+}
+
+.clock {
+    background-color: #B2AC78;
+    border-radius: 15px;
+    padding: 10px;
+}
+/* main end */
 @media (max-width: 1000px){
     header {
         margin-top: 50px ! important;
@@ -658,6 +676,10 @@ p {
         top: 0px;
         height: 50px;
         z-index: 1005;
+    }
+
+    .clock {
+        display: none;
     }
 
     a.logo {
@@ -915,7 +937,7 @@ p {
     animation:custom_in 0.5s;
 }
 
-.bookmark-box {
+.bookmark-box, .intro {
     -webkit-animation:custom_in 0.5s;
     -moz-animation:custom_in 0.5s;
     -o-animation:custom_in 0.5s;
@@ -1010,6 +1032,48 @@ p {
     }
 }
 
+.clock {
+    -webkit-animation:opacity-in 1.5s;
+    -moz-animation:opacity-in 1.5s;
+    -o-animation:opacity-in 1.5s;
+    animation:opacity-in 1.5s;
+}
+
+@keyframes opacity-in {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes opacity-in {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+@-moz-keyframes opacity-in {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+@-o-keyframes opacity-in {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
 
 /* 모달 바탕화면 색 */
 .ngdialog.ngdialog-theme-custom .ngdialog-overlay {

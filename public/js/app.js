@@ -29,6 +29,11 @@ angular.module('johayo', [
                         return boardService.list('bookmark').then(function(data){
                             return data;
                         });
+                    },
+                    boardList : function(boardService, $route){
+                        return boardService.list('').then(function(data){
+                            return data;
+                        });
                     }
                 }
             })
@@ -85,18 +90,7 @@ angular.module('johayo', [
                     }
                 }
             })
-            .when('/board/:firstDivision/:division', {
-                templateUrl: '/html/board/board.html',
-                controller: 'boardController',
-                resolve : {
-                    boardList : function(boardService, $route){
-                        return boardService.list($route.current.params.division).then(function(data){
-                            return data;
-                        });
-                    }
-                }
-            })
-            .when('/board/:firstDivision/:division/:seq', {
+            .when('/board/:division/:seq', {
                 templateUrl: '/html/board/boardDetail.html',
                 controller: 'boardDetailController',
                 resolve : {

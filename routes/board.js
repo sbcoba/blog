@@ -31,8 +31,8 @@ router.get('/list/:division', function(req, res){
 /**
  * 모든 게시물을 가지고 온다.
  */
-router.get('/list/', function(req, res){
-    Board.find({}, null, {sort : {'regDt' : -1}}, function(err, docs){
+router.get('/list', function(req, res){
+    Board.find({division:{'$ne':'bookmark'}}, null, {sort : {'regDt' : -1}}, function(err, docs){
         if(err){
             throw err;
         }

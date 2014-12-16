@@ -2,7 +2,7 @@
  * Created by 동준 on 2014-11-17.
  */
 angular.module('johayo.directive')
-    .directive('searchBox', function($window){
+    .directive('searchBox', function(){
         return {
             restrict: 'AE',
             scope : {
