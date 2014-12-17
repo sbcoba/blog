@@ -2,13 +2,22 @@
 ### <a href='http://johayo.com' target='_black'>Go to Blog</a>
 
 ## 설명
-저의 blog는 기본 angular를 통해서 만들었으면 서버단은 nodejs로 되어 있습니다. 그리고 redis는 세션데이터 저장소로 사용되며 mongoDB가 base입니다.
+ 저의 blog는 기본 angular를 통해서 만들었으면 서버단은 nodejs로 되어 있습니다. 그리고 redis는 세션데이터 저장소로 사용되며 mongoDB가 base입니다.
 
-그리고 좀더 나아가서 서버 자체적으로 텔레그램을 설치하여, 모든 오류 혹은 저한테 메세지를 push 할 수 있도록 개발 되어 있습니다. 물론 이메일도 되어 있고요.
+그리고 좀더 나아가서 서버에 텔레그램(telegram-cli)을 설치하여, 모든 오류 혹은 저한테 메세지(댓글 같은)를 push 할 수 있도록 개발 되어 있습니다. 물론 이메일도 되어 있고요.
 
-아직 개발 진행중 입니다.. ^^
+config.js 파일은 서버 설정 파일 및 디비 접근 정보들이 있기때문에 공개하지 않도록 하겠습니다.(밑의 예시 참조)
 
-config.js 파일은 서버 설정 파일 및 디비 접근 정보들이 있기때문에 공개하지 않도록 하겠습니다.
+bookmark에서 url 입력시 자동 스크린샷 찍는 부분 때문에 phantomJs가 설치되어 있어야 됩니다. 물론 paxkage.json 안에 명시 되어 있기때문에 npm install 하시면 됩니다.
+
+아직 베타 버젼으로 오픈되어 있으며, 
+게시물 수정, 메뉴 수정, 메세지 관리 이부분이 추가 될 예정입니다.
+
+admin부분을 테스트 해보고 싶으신분은 
+1. ID : test
+2. Password : qhdks12
+
+으로 로그인 할 수 있습니다. 2015년 01월 01일까지 오픈 하겠습니다..^^;
 
 ## 사용 기술
 * Front
@@ -16,10 +25,10 @@ config.js 파일은 서버 설정 파일 및 디비 접근 정보들이 있기�
 	- html5
 	- css3
 	- bootstrap
-    - moment
 	- font awesome
 * Back
 	- nodeJs
+	- phantomJs
 	- redis (noSql)
 	- mongoDB(nosql)
 * Server
@@ -95,4 +104,4 @@ module.exports = config;
 ```
 
 ## 텔레그램 설치법
-차후 업데이트 하겠습니다.
+이 부분은 자후 업데이트 하겠습니다.
