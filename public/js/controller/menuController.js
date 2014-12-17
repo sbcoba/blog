@@ -27,7 +27,7 @@ angular.module('johayo.controller')
                 }
                 /* 2step 메뉴 추가 */
                 else{
-                    $scope.menu.url = $scope.menu.url + $scope.menu.select.name+'/'+$scope.menu.name;
+                    $scope.menu.url = $scope.menu.url + $scope.menu.name;
                     $scope.menu.oneStep_id = $scope.menu.select._id;
                     menuService.addTwoStepMenu($scope.menu).then(function(){
                         $scope.getMenuList();
