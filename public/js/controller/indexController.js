@@ -36,6 +36,7 @@ angular.module('johayo.controller')
                 $scope.loading = false;
                 var colorClass = ['primary', 'success', 'info', 'warning', 'danger'];
                 $scope.boxClass = 'panel-' + colorClass[Math.floor(Math.random() * 5)];
+                $scope.twoBoxClass= 'panel-' + colorClass[Math.floor(Math.random() * 5)];
             });
 
             $scope.getLoginInfo = function(){

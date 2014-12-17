@@ -11,7 +11,7 @@
         <div class="panel-body">
             <div class="bookmark">
                 <div class="bookmark-box" ng-show="isLogin">
-                    <div style="margin-bottom: 5px;">
+                    <div class="bookmark-add">
                         <form name="bookmarkForm" role="form">
                         <input type="text" name="title" class="form-control" ng-model="bookmark.title" placeholder="Title" required>
                         <input type="text" name="url" class="form-control" ng-model="bookmark.url" placeholder="Url" ng-blur="getUrlImg(bookmark.url);" required>

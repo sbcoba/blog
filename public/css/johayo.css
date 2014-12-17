@@ -38,6 +38,14 @@ a.logo {
     text-transform: uppercase;
 }
 
+.header-img {
+    width: 50px; height: 45px;
+}
+
+.header-name {
+    cursor: pointer;
+}
+
 .sidebar-toggle-box {
     float: left;
     margin-top: 23px;
@@ -517,12 +525,48 @@ p {
     float: left;
 }
 
+.input-file {
+    display: none;
+}
+
+.file-list {
+    margin-top: 15px;
+}
+
+.panel-heading ul > li {
+    float: left;
+}
+
 .glyphicon-remove, .fa-cog{
     cursor: pointer;
 }
+
+.list-group {
+    margin: 0px;
+}
 /* 공통 end */
 
+/* err start */
+.err-title {
+    margin-top: -2%;
+    \border-bottom:1px solid rgba(2,2,2,0.1);
+}
+
+.err-msg {
+    border-bottom:1px solid rgba(2,2,2,0.1);
+    padding: 2%;
+    color: red
+}
+
+.err-btn {
+    margin-top: 2%
+}
+/* err end */
+
 /* board start */
+.board-add-btn {
+    padding-right: 5px;
+}
 .board-list{
     -webkit-animation: flying2-from-right 600ms;
     animation: flying2-from-right 600ms;
@@ -614,6 +658,10 @@ p {
     box-sizing: border-box;
 }
 
+.bookmark-add {
+    margin-bottom: 5px;
+}
+
 .bookmark-box{
     background-color: #ffffff;
     border: 1px solid #eee;
@@ -650,7 +698,7 @@ p {
 /* main start */
 .intro {
     background-color: #dff0d8;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 2px solid #ffffff;
     padding: 15px;
     font-size: 13px;
@@ -660,8 +708,17 @@ p {
 
 .clock {
     background-color: #B2AC78;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 10px;
+}
+
+.bookmark-main {
+    margin-top: 10px;
+
+}
+
+.board-main {
+    margin: 5px;
 }
 /* main end */
 @media (max-width: 1000px){

@@ -30,7 +30,7 @@ angular.module('johayo', [
                             return data;
                         });
                     },
-                    boardList : function(boardService, $route){
+                    boardList : function(boardService){
                         return boardService.list('').then(function(data){
                             return data;
                         });
@@ -48,9 +48,6 @@ angular.module('johayo', [
                     }
                 }
             })
-            /*.when('/profile', {
-                templateUrl: '/html/profile/profile.html'
-            })*/
             .when('/admin/menu', {
                 templateUrl: '/html/menu/adminMenu.html',
                 controller: 'adminMenuController',
