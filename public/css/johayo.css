@@ -526,10 +526,6 @@ p {
     float: left;
 }
 
-.input-file {
-    display: none;
-}
-
 .file-list {
     margin-top: 15px;
 }
