@@ -230,6 +230,7 @@ ul.sub li a.active, ul.sub li a:hover, ul.sub li a:focus {
 /* 검색 start */
 .search-box {
     position: relative;
+    color: #000000;
 }
 
 .search-box .fa-search {
